@@ -67,8 +67,9 @@ const getActivityBySlug = (slug: string) => {
   return activities[slug as keyof typeof activities];
 };
 
-export default function ActivityDetailPage({ params }: { params: { slug: string } }) {
-  const activity = getActivityBySlug(params.slug);
+export default async function ActivityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const activity = getActivityBySlug(slug);
 
   if (!activity) {
     notFound();

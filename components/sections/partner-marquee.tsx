@@ -50,7 +50,7 @@ export function PartnerMarquee() {
             Our <span className="text-[#00AEEF]">Strategic</span> Partners
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
-            Ennova bridges the gap between Esade's top talent and the world's most innovative organizations.
+            Ennova bridges the gap between Esade&apos;s top talent and the world&apos;s most innovative organizations.
           </p>
         </motion.div>
       </div>
