@@ -1,91 +1,164 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Sparkles, Globe } from "lucide-react";
 import { Particles } from "@/components/magicui/particles";
+import NextLink from "next/link";
 
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#13182e] text-white">
-      {/* 1. Enhanced Particles Background */}
-      <Particles
-        className="absolute inset-0 z-0"
-        quantity={150}
-        ease={100}
-        color="#00AEEF"
-        size={0.6}
-        staticity={40}
-      />
+    <section
+      ref={containerRef}
+      className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-[#13182e] text-white"
+    >
+      {/* 1. The "Ethereal" Background Layer - Breathing Effect */}
+      <div className="absolute inset-0 z-0">
+        <Particles
+          className="absolute inset-0"
+          quantity={200}
+          ease={80}
+          color="#00AEEF"
+          size={0.8}
+          staticity={30}
+        />
+        {/* Animated Gradient Orbs - Breathing & Moving */}
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1],
+            x: [0, 50, 0],
+            y: [0, 30, 0]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#00AEEF]/20 blur-[150px] rounded-full"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.05, 0.15, 0.05],
+            x: [0, -40, 0],
+            y: [0, -30, 0]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[150px] rounded-full"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.4, 1],
+            opacity: [0.08, 0.12, 0.08],
+            rotate: [0, 180, 360]
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full"
+        />
+      </div>
 
-      {/* 2. Abstract Ambient Glows (This adds the "stunning" depth) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#00AEEF]/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full" />
-
-      <div className="container mx-auto px-4 z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge Animation */}
+      {/* 2. Interactive Content Layer */}
+      <motion.div 
+        style={{ y: y1, opacity, scale }}
+        className="container relative z-10 mx-auto px-4"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          
+          {/* Badge: High-Energy Intro */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card">
-              <Sparkles className="w-4 h-4 text-[#00AEEF]" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
-                Innovation Through Collaboration
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
+              <Sparkles className="w-4 h-4 text-[#00AEEF] animate-pulse" />
+              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
+                The Future of Engineering is Here
               </span>
             </div>
           </motion.div>
 
-          {/* Headline with Kinetic feel */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl font-extrabold mb-8 leading-[1.1] tracking-tight"
-          >
-            Empowering <br />
-            <span className="text-gradient-accent">Innovation</span>
-          </motion.h1>
+          {/* Majestic Heading: Using Cal Sans + Kinetic Split Text */}
+          <h1 className="font-heading text-7xl md:text-[10rem] font-black mb-10 leading-[0.85] tracking-tighter uppercase">
+            <motion.span 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="block"
+            >
+              Engineering
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-gradient-accent block italic"
+            >
+              Excellence
+            </motion.span>
+          </h1>
 
+          {/* Refined Subtext: Geist Sans Precision */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="font-sans text-lg md:text-2xl text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            Ennova connects bright minds with global corporate partners to drive technical excellence through hands-on engineering projects.
+            Bridging the gap between Esade&apos;s brightest minds and the global innovation ecosystem.
           </motion.p>
 
-          {/* Button Group */}
+          {/* Action Group: High Contrast */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            transition={{ duration: 0.8, delay: 1 }}
+            className="flex flex-col sm:flex-row gap-8 justify-center items-center"
           >
             <Button
               as={Link}
               href="/work-with-us"
-              className="h-14 px-10 bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-bold rounded-full transition-all group"
-              endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+              className="h-16 px-12 bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-black text-lg rounded-full shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
+              endContent={<ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />}
             >
               Work With Us
             </Button>
-            <Button
-              as={Link}
-              href="/join"
-              variant="bordered"
-              className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
-            >
+            
+            <NextLink href="/join" className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors">
+              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
+                 <Globe className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
+              </div>
               Join the Community
-            </Button>
+            </NextLink>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* 3. Cinematic Bottom Mask */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#13182e] to-transparent z-20 pointer-events-none" />
     </section>
   );
 }

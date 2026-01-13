@@ -40,6 +40,7 @@ const departments = [
   {
     icon: Code,
     name: "Software Engineering",
+    slug: "software-engineering",
     description: "Full-stack development, mobile apps, web applications, and software architecture.",
     members: 120,
     projects: 15,
@@ -49,6 +50,7 @@ const departments = [
   {
     icon: Cpu,
     name: "Electrical Engineering",
+    slug: "electrical-engineering",
     description: "Circuit design, embedded systems, PCB development, and hardware integration.",
     members: 85,
     projects: 12,
@@ -58,6 +60,7 @@ const departments = [
   {
     icon: Wrench,
     name: "Mechanical Engineering",
+    slug: "mechanical-engineering",
     description: "CAD design, prototyping, manufacturing, and mechanical systems integration.",
     members: 95,
     projects: 10,
@@ -67,6 +70,7 @@ const departments = [
   {
     icon: Database,
     name: "Data Science & AI",
+    slug: "data-science-ai",
     description: "Machine learning, data analysis, predictive modeling, and AI applications.",
     members: 75,
     projects: 8,
@@ -76,6 +80,7 @@ const departments = [
   {
     icon: Briefcase,
     name: "Consulting",
+    slug: "consulting",
     description: "Business solutions, technical consulting, and strategic advisory services.",
     members: 45,
     projects: 18,
@@ -85,6 +90,7 @@ const departments = [
   {
     icon: Zap,
     name: "Entrepreneurship",
+    slug: "entrepreneurship",
     description: "Startup incubation, business development, and venture creation support.",
     members: 60,
     projects: 7,
@@ -277,50 +283,57 @@ export default function AboutPage() {
             {departments.map((dept, index) => {
               const Icon = dept.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#00AEEF]/30 hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                >
-                  {/* Gradient Glow on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00AEEF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <NextLink key={index} href={`/about/departments/${dept.slug}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#00AEEF]/30 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer h-full"
+                  >
+                    {/* Gradient Glow on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#00AEEF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${dept.color} group-hover:scale-110 transition-transform duration-500`}>
-                        <Icon className="w-8 h-8 text-white" />
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-6">
+                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${dept.color} group-hover:scale-110 transition-transform duration-500`}>
+                          <Icon className="w-8 h-8 text-white" />
+                        </div>
+                        <div className="px-3 py-1 rounded-full bg-[#00AEEF]/10 text-[#00AEEF] text-xs font-bold uppercase tracking-wider">
+                          {dept.focus}
+                        </div>
                       </div>
-                      <div className="px-3 py-1 rounded-full bg-[#00AEEF]/10 text-[#00AEEF] text-xs font-bold uppercase tracking-wider">
-                        {dept.focus}
+
+                      <h3 className="text-2xl font-bold mb-3 text-[#13182e] group-hover:text-[#00AEEF] transition-colors duration-300">
+                        {dept.name}
+                      </h3>
+
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        {dept.description}
+                      </p>
+
+                      <div className="flex items-center justify-between pt-6 border-t border-gray-200">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#00AEEF]">{dept.members}</div>
+                          <div className="text-xs text-gray-500 uppercase">Members</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#00AEEF]">{dept.projects}</div>
+                          <div className="text-xs text-gray-500 uppercase">Projects</div>
+                        </div>
+                      </div>
+
+                      {/* View Team Link */}
+                      <div className="mt-6 flex items-center text-[#00AEEF] font-semibold text-sm group-hover:gap-2 transition-all">
+                        <span>View Team</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-3 text-[#13182e] group-hover:text-[#00AEEF] transition-colors duration-300">
-                      {dept.name}
-                    </h3>
-
-                    <p className="text-gray-600 mb-6 leading-relaxed">
-                      {dept.description}
-                    </p>
-
-                    <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#00AEEF]">{dept.members}</div>
-                        <div className="text-xs text-gray-500 uppercase">Members</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#00AEEF]">{dept.projects}</div>
-                        <div className="text-xs text-gray-500 uppercase">Projects</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom Accent Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00AEEF] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-                </motion.div>
+                    {/* Bottom Accent Line */}
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00AEEF] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                  </motion.div>
+                </NextLink>
               );
             })}
           </div>

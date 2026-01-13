@@ -438,7 +438,7 @@ export default function ActivityLibraryPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   as="a"
-                  href={typeof window !== "undefined" ? "https://platform.ennova.org/events" : "#"}
+                  href="https://platform.ennova.org/events"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-14 px-10 bg-white text-primary hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
