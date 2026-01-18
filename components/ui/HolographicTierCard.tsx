@@ -236,11 +236,8 @@ export function HolographicTierCard({
 
       {/* 3D Corner Accents */}
       <div
-        style={{ transform: "translateZ(60px)" }}
+        style={{ transform: "translateZ(60px)", borderColor: hologramColor }}
         className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 rounded-tl-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-        css={{
-          borderColor: hologramColor,
-        }}
       >
         <div
           className="absolute -top-1 -left-1 w-2 h-2 rounded-full animate-pulse"
@@ -249,11 +246,8 @@ export function HolographicTierCard({
       </div>
 
       <div
-        style={{ transform: "translateZ(60px)" }}
+        style={{ transform: "translateZ(60px)", borderColor: hologramColor }}
         className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 rounded-br-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-        css={{
-          borderColor: hologramColor,
-        }}
       >
         <div
           className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full animate-pulse"
