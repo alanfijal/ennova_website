@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NextLink from "next/link";
+import { siteConfig } from "@/config/site";
 import {
   TrendingUp,
   Leaf,
@@ -438,7 +439,7 @@ export default function ActivityLibraryPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   as="a"
-                  href="https://platform.ennova.org/events"
+                  href={siteConfig.links.platform}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="h-14 px-10 bg-white text-primary hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
@@ -447,8 +448,8 @@ export default function ActivityLibraryPage() {
                   Visit Events Platform
                 </Button>
                 <Button
-                  as="a"
-                  href="mailto:partnerships@ennova.org"
+                  as={NextLink}
+                  href="/work-with-us"
                   variant="bordered"
                   className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
                   endContent={<ArrowRight className="w-5 h-5" />}

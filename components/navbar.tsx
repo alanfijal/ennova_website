@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { siteConfig } from "@/config/site";
+import { HolographicLogo } from "@/components/ui/HolographicLogo";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -78,14 +79,12 @@ export const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* 1. Primary Homepage Link via Logo */}
-            <NextLink href="/" className="relative z-10 group" aria-label="Ennova Home">
-              <div ref={logoRef} className="flex items-center gap-3 transition-transform duration-500 group-hover:scale-105">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-gradient flex items-center justify-center shadow-lg shadow-secondary/20">
-                  <span className="text-white font-bold text-xl">E</span>
-                </div>
-                <span className="text-2xl font-extrabold text-white tracking-tight">
-                  Ennova
-                </span>
+            <NextLink href="/" className="relative z-10" aria-label="Ennova Home">
+              <div ref={logoRef}>
+                <HolographicLogo
+                  src="/images/community/ennova-logo-white copy.png"
+                  size="navbar"
+                />
               </div>
             </NextLink>
 

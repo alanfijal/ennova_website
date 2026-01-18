@@ -52,8 +52,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    platform: "https://platform.ennova.org",
-    linkedin: "https://linkedin.com/company/ennova",
-    instagram: "https://instagram.com/ennova",
+    platform: "https://ennova-events.com/",
+    linkedin: "https://www.linkedin.com/company/ennovaesade/posts/?feedView=all",
+    instagram: "https://www.instagram.com/ennova.esade/",
   },
 };

@@ -252,12 +252,17 @@ export default function ConsultingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="relative group"
               >
-                <div className="text-6xl font-extrabold text-secondary/10 mb-4">
-                  {item.step}
+                <div className="relative mb-4">
+                  <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-secondary/20 to-secondary/5 group-hover:from-secondary/40 group-hover:to-secondary/10 transition-all duration-500">
+                    {item.step}
+                  </div>
+                  <div className="absolute inset-0 text-7xl font-black text-secondary/30 blur-sm group-hover:text-secondary/50 transition-all duration-500">
+                    {item.step}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-dark mb-3">
+                <h3 className="text-2xl font-bold text-dark mb-3 group-hover:text-secondary transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -291,8 +296,8 @@ export default function ConsultingPage() {
               Let's discuss how our consulting services can help bring your vision to life.
             </p>
             <Button
-              as="a"
-              href="mailto:consulting@ennova.org"
+              as={NextLink}
+              href="/work-with-us"
               className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
               endContent={<ArrowRight className="w-5 h-5" />}
             >

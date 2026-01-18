@@ -88,6 +88,6 @@
   }
 
   .animate-marquee-vertical {
-    animation: marquee-vertical var(--duration) linear infinite;
+    animation: marquee-vertical var(--duration, 3s) linear infinite;
   }
 }
