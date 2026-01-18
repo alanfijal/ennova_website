@@ -21,7 +21,7 @@ const departmentData = {
   "software-engineering": {
     name: "Software Engineering",
     description: "Our software engineering team builds cutting-edge web and mobile applications, develops robust backend systems, and creates innovative software solutions for clients and internal projects.",
-    color: "from-[#00AEEF] to-[#13182e]",
+    color: "from-secondary to-gradient",
     stats: {
       members: 120,
       projects: 15,
@@ -165,9 +165,9 @@ export default function DepartmentPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative bg-[#13182e] text-white py-20 overflow-hidden">
+      <section className="relative bg-dark text-white py-20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-64 h-64 bg-[#00AEEF] blur-[120px] rounded-full" />
+          <div className="absolute top-10 right-10 w-64 h-64 bg-secondary blur-[120px] rounded-full" />
           <div className="absolute bottom-10 left-10 w-64 h-64 bg-purple-500 blur-[120px] rounded-full" />
         </div>
 
@@ -202,13 +202,13 @@ export default function DepartmentPage() {
             {/* Stats */}
             <div className="flex flex-wrap gap-8">
               <div>
-                <div className="text-4xl font-bold text-[#00AEEF] mb-1">
+                <div className="text-4xl font-bold text-secondary mb-1">
                   {department.stats.members}
                 </div>
                 <div className="text-sm text-gray-400">Members</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-[#00AEEF] mb-1">
+                <div className="text-4xl font-bold text-secondary mb-1">
                   {department.stats.projects}
                 </div>
                 <div className="text-sm text-gray-400">Active Projects</div>
@@ -234,8 +234,8 @@ export default function DepartmentPage() {
                   color="primary"
                   size="lg"
                   classNames={{
-                    base: "bg-[#00AEEF]/10",
-                    content: "text-[#00AEEF] font-semibold",
+                    base: "bg-secondary/10",
+                    content: "text-secondary font-semibold",
                   }}
                 >
                   {tech}
@@ -256,7 +256,7 @@ export default function DepartmentPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#13182e]">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark">
               Meet the <span className="text-gradient-accent">Team</span>
             </h2>
             <p className="text-xl text-gray-600">
@@ -273,7 +273,7 @@ export default function DepartmentPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="group hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#00AEEF]/30">
+                <Card className="group hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-secondary/30">
                   <CardBody className="p-6">
                     {/* Avatar and Basic Info */}
                     <div className="flex flex-col items-center text-center mb-6">
@@ -283,7 +283,7 @@ export default function DepartmentPage() {
                           alt={member.name}
                           className="w-24 h-24 text-large"
                           fallback={
-                            <div className="w-full h-full bg-gradient-to-br from-[#00AEEF] to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
+                            <div className="w-full h-full bg-gradient-to-br from-secondary to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
                               {member.name.split(" ").map((n) => n[0]).join("")}
                             </div>
                           }
@@ -299,7 +299,7 @@ export default function DepartmentPage() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                         {member.name}
                       </h3>
-                      <p className="text-sm text-[#00AEEF] font-semibold mb-1">
+                      <p className="text-sm text-secondary font-semibold mb-1">
                         {member.role}
                       </p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">{member.position}</p>
@@ -374,7 +374,7 @@ export default function DepartmentPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#13182e] text-white">
+      <section className="py-20 bg-dark text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -393,7 +393,7 @@ export default function DepartmentPage() {
                 as={Link}
                 href="/join"
                 size="lg"
-                className="bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-bold"
+                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold"
                 endContent={<ExternalLink className="w-5 h-5" />}
               >
                 Apply Now

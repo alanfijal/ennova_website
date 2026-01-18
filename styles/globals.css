@@ -8,13 +8,18 @@
 
 @theme {
   /* Ennova Brand Colors */
-  --color-primary: #13182e;
+  --color-primary: #001a3b;
   --color-primary-foreground: #ffffff;
-  
+
   --color-secondary: #00AEEF;
   --color-secondary-foreground: #ffffff;
 
-  --color-accent: #FFD700;
+  --color-accent: #EF4444;
+  --color-gradient: #000313;
+
+  /* Commonly used colors */
+  --color-dark: #001a3b;
+  --color-dark-foreground: #ffffff;
 
   /* Typography */
   --font-sans: "Inter", system-ui, sans-serif;
@@ -26,8 +31,12 @@
 
 /* Base Styles */
 @layer base {
+  html {
+    @apply overflow-x-hidden;
+  }
+
   body {
-    @apply bg-white text-[#13182e] antialiased;
+    @apply bg-white text-[#13182e] antialiased overflow-x-hidden;
   }
 }
 
@@ -46,11 +55,11 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-r from-[#13182e] to-[#00AEEF] bg-clip-text text-transparent;
+    @apply text-[#00AEEF];
   }
 
   .text-gradient-accent {
-    @apply bg-gradient-to-r from-[#00AEEF] to-[#FFD700] bg-clip-text text-transparent;
+    @apply text-[#00AEEF];
   }
 }
 

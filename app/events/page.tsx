@@ -71,7 +71,7 @@ const activitiesData = [
     },
     date: "April 2026",
     featured: true,
-    image: "https://placehold.co/1200x600/13182e/FFD700?text=Pitch+Competition",
+    image: "https://placehold.co/1200x600/13182e/EF4444?text=Pitch+Competition",
     keyHighlights: [
       "Venture capital firm participation",
       "Mentorship from serial entrepreneurs",
@@ -183,8 +183,8 @@ function ActivityCard({ activity, index }: { activity: typeof activitiesData[0];
 
       <div className={`relative z-10 ${activity.featured ? "md:flex" : ""}`}>
         {/* Image Section */}
-        <div className={`relative overflow-hidden bg-[#13182e] ${activity.featured ? "md:w-1/2" : "h-56"}`}>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#13182e]/60 to-transparent z-10" />
+        <div className={`relative overflow-hidden bg-dark ${activity.featured ? "md:w-1/2" : "h-56"}`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-gradient/60 to-transparent z-10" />
           <img
             src={activity.image}
             alt={activity.title}

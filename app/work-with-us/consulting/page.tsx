@@ -102,8 +102,8 @@ export default function ConsultingPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#13182e] text-white">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#00AEEF]/10 blur-[120px] rounded-full" />
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-dark text-white">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full" />
 
         <div className="container relative mx-auto px-4 z-10 pt-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -152,16 +152,16 @@ export default function ConsultingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-[#00AEEF]/30 hover:shadow-2xl transition-all duration-500 overflow-hidden ${item.span}`}
+                className={`group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 overflow-hidden ${item.span}`}
               >
                 {/* Gradient Glow on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00AEEF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10 h-full flex flex-col">
                   {/* Header */}
                   <div className="mb-4">
                     {item.featured && (
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-[#00AEEF] to-[#13182e] text-white mb-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-secondary to-gradient text-white mb-4">
                         Featured Project
                       </span>
                     )}
@@ -174,7 +174,7 @@ export default function ConsultingPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className={`font-bold text-[#13182e] mb-3 group-hover:text-[#00AEEF] transition-colors duration-300 ${item.featured ? 'text-3xl' : 'text-xl'}`}>
+                  <h3 className={`font-bold text-dark mb-3 group-hover:text-secondary transition-colors duration-300 ${item.featured ? 'text-3xl' : 'text-xl'}`}>
                     {item.title}
                   </h3>
 
@@ -203,7 +203,7 @@ export default function ConsultingPage() {
                     <ul className="space-y-2">
                       {item.results.map((result, idx) => (
                         <li key={idx} className="flex items-center text-sm text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 text-[#00AEEF] mr-2 flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-secondary mr-2 flex-shrink-0" />
                           {result}
                         </li>
                       ))}
@@ -212,14 +212,14 @@ export default function ConsultingPage() {
 
                   {/* Hover Icon */}
                   <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-10 h-10 rounded-full bg-[#00AEEF]/10 flex items-center justify-center">
-                      <ExternalLink className="w-5 h-5 text-[#00AEEF]" />
+                    <div className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                      <ExternalLink className="w-5 h-5 text-secondary" />
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Accent Line */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00AEEF] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
               </motion.div>
             ))}
           </div>
@@ -236,7 +236,7 @@ export default function ConsultingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#13182e] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark tracking-tight">
               Our <span className="text-gradient-accent">Process</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -254,17 +254,17 @@ export default function ConsultingPage() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="text-6xl font-extrabold text-[#00AEEF]/10 mb-4">
+                <div className="text-6xl font-extrabold text-secondary/10 mb-4">
                   {item.step}
                 </div>
-                <h3 className="text-2xl font-bold text-[#13182e] mb-3">
+                <h3 className="text-2xl font-bold text-dark mb-3">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {item.description}
                 </p>
                 {index < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-12 -right-4 w-8 h-0.5 bg-gradient-to-r from-[#00AEEF] to-transparent" />
+                  <div className="hidden lg:block absolute top-12 -right-4 w-8 h-0.5 bg-gradient-to-r from-secondary to-transparent" />
                 )}
               </motion.div>
             ))}
@@ -273,9 +273,9 @@ export default function ConsultingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#13182e] text-white relative overflow-hidden">
+      <section className="py-24 bg-dark text-white relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[#00AEEF]/10 blur-[120px] rounded-full" />
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full" />
 
         <div className="container relative mx-auto px-4 text-center">
           <motion.div
@@ -293,7 +293,7 @@ export default function ConsultingPage() {
             <Button
               as="a"
               href="mailto:consulting@ennova.org"
-              className="h-14 px-10 bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-bold rounded-full transition-all"
+              className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
               endContent={<ArrowRight className="w-5 h-5" />}
             >
               Request a Consultation

@@ -15,9 +15,9 @@ const partners = [
 
 function PartnerCard({ partner }: { partner: typeof partners[0] }) {
   return (
-    <div className="group relative mx-4 flex h-32 w-64 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-[#00AEEF]/50 hover:bg-white/10">
+    <div className="group relative mx-4 flex h-32 w-64 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-secondary/50 hover:bg-white/10">
       {/* 1. Subtle Background Glow on Hover */}
-      <div className="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-[#00AEEF]/10" />
+      <div className="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-secondary/10" />
 
       {/* 2. Logo Container with Grayscale-to-Color logic */}
       <div className="relative z-10 flex flex-col items-center gap-2">
@@ -34,7 +34,7 @@ function PartnerCard({ partner }: { partner: typeof partners[0] }) {
 
 export function PartnerMarquee() {
   return (
-    <section id="partners" className="relative bg-[#13182e] py-32 overflow-hidden">
+    <section id="partners" className="relative bg-dark py-32 overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -47,7 +47,7 @@ export function PartnerMarquee() {
           className="text-center"
         >
           <h2 className="mb-6 text-4xl md:text-6xl font-bold tracking-tight text-white">
-            Our <span className="text-[#00AEEF]">Strategic</span> Partners
+            Our <span className="text-secondary">Strategic</span> Partners
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
             Ennova bridges the gap between Esade&apos;s top talent and the world&apos;s most innovative organizations.
@@ -64,8 +64,8 @@ export function PartnerMarquee() {
         </Marquee>
 
         {/* Cinematic Gradient Overlays */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-[#13182e] to-transparent z-30" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#13182e] to-transparent z-30" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-gradient to-transparent z-30" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-gradient to-transparent z-30" />
       </div>
 
       {/* Action CTA with "Join Us" energy */}
@@ -81,7 +81,7 @@ export function PartnerMarquee() {
         </p>
         <a
           href="/work-with-us/partners"
-          className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold text-[#13182e] transition-all hover:bg-[#00AEEF] hover:text-white"
+          className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold text-dark transition-all hover:bg-secondary hover:text-white"
         >
           Explore Collaboration
           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />

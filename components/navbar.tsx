@@ -80,7 +80,7 @@ export const Navbar = () => {
             {/* 1. Primary Homepage Link via Logo */}
             <NextLink href="/" className="relative z-10 group" aria-label="Ennova Home">
               <div ref={logoRef} className="flex items-center gap-3 transition-transform duration-500 group-hover:scale-105">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00AEEF] to-[#13182e] flex items-center justify-center shadow-lg shadow-secondary/20">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-gradient flex items-center justify-center shadow-lg shadow-secondary/20">
                   <span className="text-white font-bold text-xl">E</span>
                 </div>
                 <span className="text-2xl font-extrabold text-white tracking-tight">
@@ -99,13 +99,13 @@ export const Navbar = () => {
                   href={item.href}
                   className={`relative text-sm font-semibold transition-colors duration-300 group ${
                     pathname === item.href
-                      ? "text-[#00AEEF]"
+                      ? "text-secondary"
                       : "text-gray-300 hover:text-white"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-[#00AEEF] transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-secondary transition-all duration-300 ${
                       pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -120,7 +120,7 @@ export const Navbar = () => {
                   href={siteConfig.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#00AEEF] transition-colors duration-300"
+                  className="text-gray-400 hover:text-secondary transition-colors duration-300"
                 >
                   <LinkedInIcon className="w-5 h-5" />
                 </a>
@@ -128,7 +128,7 @@ export const Navbar = () => {
                   href={siteConfig.links.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#00AEEF] transition-colors duration-300"
+                  className="text-gray-400 hover:text-secondary transition-colors duration-300"
                 >
                   <InstagramIcon className="w-5 h-5" />
                 </a>
@@ -136,7 +136,7 @@ export const Navbar = () => {
               <Button
                 as={NextLink}
                 href="https://ennova-events.com/"
-                className="bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-bold rounded-full transition-all duration-500 px-6"
+                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 px-6"
               >
                 Join Events
               </Button>
@@ -160,7 +160,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 lg:hidden bg-[#13182e]/95 backdrop-blur-xl"
+            className="fixed inset-0 z-40 lg:hidden bg-dark/95 backdrop-blur-xl"
           >
             <div className="flex flex-col h-full pt-24 px-6">
               <nav className="flex flex-col gap-2">
@@ -176,7 +176,7 @@ export const Navbar = () => {
                       onClick={() => setIsMenuOpen(false)}
                       className={`block py-4 px-4 rounded-xl text-lg font-semibold transition-all duration-300 ${
                         pathname === item.href
-                          ? "bg-[#00AEEF]/20 text-[#00AEEF]"
+                          ? "bg-secondary/20 text-secondary"
                           : "text-gray-300 hover:bg-white/5 hover:text-white"
                       }`}
                     >
@@ -191,7 +191,7 @@ export const Navbar = () => {
                   as={NextLink}
                   href="/join"
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-full bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-bold rounded-full transition-all duration-500 h-12"
+                  className="w-full bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 h-12"
                 >
                   Join Ennova
                 </Button>

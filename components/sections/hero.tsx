@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-[#13182e] text-white"
+      className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-dark text-white"
     >
       {/* 1. The "Ethereal" Background Layer - Breathing Effect */}
       <div className="absolute inset-0 z-0">
@@ -31,7 +31,7 @@ export function Hero() {
           className="absolute inset-0"
           quantity={200}
           ease={80}
-          color="#00AEEF"
+          color="rgb(0, 174, 239)"
           size={0.8}
           staticity={30}
         />
@@ -48,7 +48,7 @@ export function Hero() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#00AEEF]/20 blur-[150px] rounded-full"
+          className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-secondary/20 blur-[150px] rounded-full"
         />
         <motion.div
           animate={{
@@ -94,7 +94,7 @@ export function Hero() {
             className="mb-10"
           >
             <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
-              <Sparkles className="w-4 h-4 text-[#00AEEF] animate-pulse" />
+              <Sparkles className="w-4 h-4 text-secondary animate-pulse" />
               <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
                 The Future of Engineering is Here
               </span>
@@ -141,7 +141,7 @@ export function Hero() {
             <Button
               as={Link}
               href="/work-with-us"
-              className="h-16 px-12 bg-white text-[#13182e] hover:bg-[#00AEEF] hover:text-white font-black text-lg rounded-full shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
+              className="h-16 px-12 bg-white text-dark hover:bg-secondary hover:text-white font-black text-lg rounded-full shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
               endContent={<ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />}
             >
               Work With Us
@@ -158,7 +158,7 @@ export function Hero() {
       </motion.div>
 
       {/* 3. Cinematic Bottom Mask */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#13182e] to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gradient to-transparent z-20 pointer-events-none" />
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Stats } from "@/components/sections/stats";
+import { KeyEvents } from "@/components/sections/key-events";
 import { PartnerMarquee } from "@/components/sections/partner-marquee";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Hero />
       <Stats />
+      <KeyEvents />
       <PartnerMarquee />
     </main>
   );
