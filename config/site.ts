@@ -27,16 +27,8 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "Work With Us",
       href: "/work-with-us",
-    },
-    {
-      label: "Consulting",
-      href: "/work-with-us/consulting",
     },
     {
       label: "Events",

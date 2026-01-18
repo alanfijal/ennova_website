@@ -2,6 +2,7 @@
 
 import NextLink from "next/link";
 import { siteConfig } from "@/config/site";
+import { HolographicLogo } from "@/components/ui/HolographicLogo";
 
 // Keep only the essential social icons
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -26,9 +27,10 @@ export const Footer = () => {
           {/* Brand Info */}
           <div className="max-w-xs">
             <NextLink href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">E</span>
-              </div>
+              <HolographicLogo
+                src="/images/community/ennova-logo-white copy.png"
+                size="sm"
+              />
               <span className="text-xl font-extrabold tracking-tight">Ennova</span>
             </NextLink>
             <p className="text-sm text-gray-400 leading-relaxed">

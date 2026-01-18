@@ -39,24 +39,34 @@ export const Navbar = () => {
     if (typeof window === "undefined" || !navRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Set initial transparent state
+      gsap.set(navRef.current, {
+        backgroundColor: "rgba(0, 26, 59, 0)",
+        backdropFilter: "blur(0px)",
+        borderBottomColor: "rgba(255, 255, 255, 0)",
+        boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+      });
+
+      // Transparent to Glass transition on scroll
       gsap.to(navRef.current, {
         scrollTrigger: {
           trigger: "body",
-          start: "100px top",
-          end: "200px top",
+          start: "50px top",
+          end: "150px top",
           scrub: true,
         },
-        backdropFilter: "blur(16px)",
-        backgroundColor: "rgba(19, 24, 46, 0.8)",
+        backdropFilter: "blur(20px)",
+        backgroundColor: "rgba(0, 26, 59, 0.85)", // Navy with transparency
         borderBottomColor: "rgba(255, 255, 255, 0.1)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
       });
 
       if (logoRef.current) {
         gsap.to(logoRef.current, {
           scrollTrigger: {
             trigger: "body",
-            start: "100px top",
-            end: "200px top",
+            start: "50px top",
+            end: "150px top",
             scrub: true,
           },
           scale: 0.9,
@@ -75,6 +85,10 @@ export const Navbar = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-500"
+        style={{
+          backgroundColor: "transparent",
+          backdropFilter: "blur(0px)",
+        }}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
@@ -188,11 +202,11 @@ export const Navbar = () => {
               <div className="mt-auto pb-8">
                 <Button
                   as={NextLink}
-                  href="/join"
+                  href="https://ennova-events.com/"
                   onClick={() => setIsMenuOpen(false)}
                   className="w-full bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 h-12"
                 >
-                  Join Ennova
+                  Join Events
                 </Button>
               </div>
             </div>

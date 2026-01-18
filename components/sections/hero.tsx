@@ -80,11 +80,11 @@ export function Hero() {
       </div>
 
       {/* 2. Interactive Content Layer */}
-      <motion.div 
+      <motion.div
         style={{ y: y1, opacity, scale }}
-        className="container relative z-10 mx-auto px-4"
+        className="container relative z-10 mx-auto px-4 w-full"
       >
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center w-full overflow-hidden">
           
           {/* Badge: High-Energy Intro */}
           <motion.div
@@ -102,8 +102,8 @@ export function Hero() {
           </motion.div>
 
           {/* Majestic Heading: Using Cal Sans + Kinetic Split Text */}
-          <h1 className="font-heading text-7xl md:text-[10rem] font-black mb-10 leading-[0.85] tracking-tighter uppercase">
-            <motion.span 
+          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black mb-10 leading-[0.85] tracking-tighter uppercase px-4">
+            <motion.span
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -111,7 +111,7 @@ export function Hero() {
             >
               Engineering
             </motion.span>
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4 }}

@@ -46,12 +46,12 @@ export const HolographicLogo = ({ src, size = "lg", className = "" }: Holographi
     y.set(0);
   };
 
-  // Size classes
+  // Size classes - wider aspect ratio
   const sizeClasses = {
-    navbar: "w-16 h-16",
-    sm: "w-12 h-12",
-    md: "w-32 h-32",
-    lg: "w-64 h-64 md:w-80 md:h-80",
+    navbar: "w-32 h-12",
+    sm: "w-20 h-12",
+    md: "w-48 h-32",
+    lg: "w-96 h-64 md:w-[480px] md:h-80",
   };
 
   const borderRadiusClasses = {
