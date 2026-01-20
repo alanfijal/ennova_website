@@ -141,7 +141,7 @@ export function Hero() {
             <Button
               as={Link}
               href="/work-with-us"
-              className="h-16 px-12 bg-white text-dark hover:bg-secondary hover:text-white font-black text-lg rounded-full shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
+              className="h-16 px-12 bg-white text-dark hover:bg-secondary hover:text-white font-black text-lg rounded-none shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
               endContent={<ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />}
             >
               Work With Us

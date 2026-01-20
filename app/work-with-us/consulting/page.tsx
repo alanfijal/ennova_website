@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { ArrowRight, Calendar, Building2, CheckCircle2, ExternalLink } from "lucide-react";
-import { Button } from "@heroui/button";
+import { ArrowRight, Building2, CheckCircle2, ExternalLink } from "lucide-react";
+import { TechnicalGrid } from "@/components/ui/TechnicalGrid";
+import { ContactForm } from "@/components/features/ContactForm";
 
 // Mock portfolio data - replace with Sanity CMS data later
 const portfolioItems = [
@@ -103,6 +104,7 @@ export default function ConsultingPage() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-dark text-white">
+        <TechnicalGrid />
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full" />
 
         <div className="container relative mx-auto px-4 z-10 pt-20">
@@ -227,8 +229,9 @@ export default function ConsultingPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-24 bg-white overflow-hidden">
+        <TechnicalGrid />
+        <div className="container relative mx-auto px-4 z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -277,32 +280,36 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Contact Form Section */}
       <section className="py-24 bg-dark text-white relative overflow-hidden">
+        <TechnicalGrid />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full" />
 
-        <div className="container relative mx-auto px-4 text-center">
+        <div className="container relative mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
               Ready to Start Your <span className="text-gradient-accent">Project</span>?
             </h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Let's discuss how our consulting services can help bring your vision to life.
             </p>
-            <Button
-              as={NextLink}
-              href="/work-with-us"
-              className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
-              endContent={<ArrowRight className="w-5 h-5" />}
-            >
-              Request a Consultation
-            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <ContactForm />
           </motion.div>
         </div>
       </section>

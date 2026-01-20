@@ -120,7 +120,7 @@ export default function StrategicPartnersPage() {
               <Button
                 as={NextLink}
                 href="#contact"
-                className="h-14 px-10 bg-secondary text-white hover:bg-secondary/90 font-bold rounded-full transition-all group shadow-xl shadow-secondary/30"
+                className="h-14 px-10 bg-secondary text-white hover:bg-secondary/90 font-bold rounded-none transition-all group shadow-xl shadow-secondary/30"
                 endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               >
                 Schedule Consultation
@@ -129,7 +129,7 @@ export default function StrategicPartnersPage() {
                 as={NextLink}
                 href="#benefits"
                 variant="bordered"
-                className="h-14 px-10 border-white/30 text-white hover:bg-white/10 font-bold rounded-full"
+                className="h-14 px-10 border-white/30 text-white hover:bg-white/10 font-bold rounded-none"
               >
                 Explore Benefits
               </Button>
@@ -197,42 +197,6 @@ export default function StrategicPartnersPage() {
         </div>
       </section>
 
-      {/* Barcelona Connectivity Section */}
-      <section className="py-24 bg-dark text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,111,0,0.05),transparent_70%)]" />
-
-        <div className="container relative mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-              The Barcelona <span className="text-gradient-accent">Technical Stamp</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              We bridge the gap between Esade's business excellence, Barcelona's 22@ innovation district,
-              and global industry leaders. Your partnership connects you to an entire ecosystem.
-            </p>
-          </motion.div>
-
-          <BarcelonaConnectivityMap />
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Access to {departments.length}+ engineering departments spanning the full technical spectrum
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Co-Innovation Projects */}
       <section className="py-24 bg-gradient-to-br from-gray-50 to-white">

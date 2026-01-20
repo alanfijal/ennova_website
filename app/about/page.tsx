@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { ArrowRight, Users, Target, Lightbulb, TrendingUp, Briefcase, Code, Cpu, Zap, Wrench, Database, Mail } from "lucide-react";
 import { Button } from "@heroui/button";
+import { MajesticLineage } from "@/components/ui/MajesticLineage";
 
 // LinkedIn Icon Component
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -111,17 +112,6 @@ const stats = [
   { value: "15", label: "Departments" },
   { value: "70+", label: "Projects Completed" },
   { value: "30+", label: "Industry Partners" },
-];
-
-const milestones = [
-  { year: "2019", title: "Founded", description: "Ennova established by engineering students" },
-  { year: "2020", title: "First Partnership", description: "Secured first corporate collaboration with local tech firm" },
-  { year: "2021", title: "Expansion", description: "Grew to 200+ members across 10 departments" },
-  { year: "2022", title: "Innovation Hub", description: "Launched dedicated makerspace and prototyping lab" },
-  { year: "2023", title: "Startup Success", description: "First student venture acquired for $2.5M" },
-  { year: "2024", title: "National Recognition", description: "Named Top Student Engineering Organization in Canada" },
-  { year: "2026", title: "Future", description: "Big Things" },
-
 ];
 
 const boardMembers = [
@@ -325,8 +315,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Departments */}
-      <section className="py-24 bg-gray-50">
+      {/* Departments - Industrial Grid */}
+      <section id="departments" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -343,60 +333,47 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {departments.map((dept, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-gray-200 border border-gray-200">
+            {departments.map((dept) => {
               const Icon = dept.icon;
               return (
-                <NextLink key={index} href={`/about/departments/${dept.slug}`}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="group relative bg-white rounded-3xl p-8 border border-gray-200 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer h-full"
-                  >
-                    {/* Gradient Glow on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-6">
-                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${dept.color} group-hover:scale-110 transition-transform duration-500`}>
-                          <Icon className="w-8 h-8 text-white" />
-                        </div>
-                        <div className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold uppercase tracking-wider">
-                          {dept.focus}
-                        </div>
-                      </div>
-
-                      <h3 className="text-2xl font-bold mb-3 text-dark group-hover:text-secondary transition-colors duration-300">
-                        {dept.name}
-                      </h3>
-
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        {dept.description}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-secondary">{dept.members}</div>
-                          <div className="text-xs text-gray-500 uppercase">Members</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-secondary">{dept.projects}</div>
-                          <div className="text-xs text-gray-500 uppercase">Projects</div>
-                        </div>
-                      </div>
-
-                      {/* View Team Link */}
-                      <div className="mt-6 flex items-center text-secondary font-semibold text-sm group-hover:gap-2 transition-all">
-                        <span>View Team</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </div>
+                <NextLink
+                  key={dept.slug}
+                  href={`/about/departments/${dept.slug}`}
+                  className="bg-white p-8 group hover:bg-primary transition-all duration-500 cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 border border-gray-200 flex items-center justify-center group-hover:border-white/10 group-hover:bg-white/5 transition-all">
+                      <Icon className="w-6 h-6 text-secondary" />
                     </div>
+                    <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-secondary/10 text-secondary group-hover:bg-white/10 group-hover:text-white transition-all">
+                      {dept.focus}
+                    </span>
+                  </div>
 
-                    {/* Bottom Accent Line */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-                  </motion.div>
+                  <h3 className="text-2xl font-bold mb-3 text-dark group-hover:text-white transition-colors">
+                    {dept.name}
+                  </h3>
+
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors text-sm">
+                    {dept.description}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-6 border-t border-gray-200 group-hover:border-white/10 transition-colors mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-secondary group-hover:text-white transition-colors">{dept.members}</div>
+                      <div className="text-xs text-gray-500 group-hover:text-gray-400 uppercase transition-colors">Members</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-secondary group-hover:text-white transition-colors">{dept.projects}</div>
+                      <div className="text-xs text-gray-500 group-hover:text-gray-400 uppercase transition-colors">Projects</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-secondary group-hover:text-white font-semibold text-sm transition-all">
+                    <span>View Team</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </NextLink>
               );
             })}
@@ -404,52 +381,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark tracking-tight">
-              Our <span className="text-gradient-accent">Journey</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Key milestones in our growth and evolution
-            </p>
-          </motion.div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-secondary to-purple-500" />
-
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative pl-20 pb-12 last:pb-0"
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-6 top-0 w-5 h-5 rounded-full bg-secondary border-4 border-white shadow-lg" />
-
-                  <div className="glass-card p-6 rounded-2xl">
-                    <div className="text-2xl font-bold text-secondary mb-2">{milestone.year}</div>
-                    <h3 className="text-xl font-bold text-dark mb-2">{milestone.title}</h3>
-                    <p className="text-gray-600">{milestone.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Majestic Lineage - Strategic Timeline */}
+      <MajesticLineage />
 
       {/* Institutional Board Section */}
       <section className="py-24 bg-white">
@@ -561,7 +494,7 @@ export default function AboutPage() {
               <Button
                 as={NextLink}
                 href="/join"
-                className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
+                className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all"
                 endContent={<ArrowRight className="w-5 h-5" />}
               >
                 Join Ennova
@@ -570,7 +503,7 @@ export default function AboutPage() {
                 as={NextLink}
                 href="/events"
                 variant="bordered"
-                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
+                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-none"
               >
                 Explore Events
               </Button>

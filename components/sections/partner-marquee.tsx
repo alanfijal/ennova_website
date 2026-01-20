@@ -80,8 +80,8 @@ export function PartnerMarquee() {
           Interested in a partnership?
         </p>
         <a
-          href="/work-with-us/partners"
-          className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 text-sm font-bold text-dark transition-all hover:bg-secondary hover:text-white"
+          href="/work-with-us"
+          className="group relative flex items-center gap-2 overflow-hidden rounded-none bg-white px-8 py-4 text-sm font-bold text-dark transition-all hover:bg-secondary hover:text-white"
         >
           Explore Collaboration
           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />

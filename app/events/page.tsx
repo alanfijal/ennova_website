@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { siteConfig } from "@/config/site";
 import {
@@ -12,27 +12,21 @@ import {
   FileText,
   ExternalLink,
   Target,
-  Users
+  Fingerprint
 } from "lucide-react";
 import { Button } from "@heroui/button";
+import { TechnicalGrid } from "@/components/ui/TechnicalGrid";
 
-// Mock activity data - replace with Sanity CMS data later
-// Structured to highlight impact and outcomes over logistics
-const activitiesData = [
+// Industrial Specs: Events as Engineering Initiatives
+const initiatives = [
   {
-    id: 1,
+    id: "INIT-001",
     slug: "sustainable-energy-summit",
-    title: "Sustainable Energy Innovation Summit",
-    description: "A deep-dive into renewable energy solutions with industry leaders, resulting in 3 startup pitches and 15+ corporate partnerships.",
-    domain: "sustainability",
-    impact: {
-      partnerships: 15,
-      participants: 250,
-      outcomes: "3 startups formed",
-    },
-    date: "March 2026",
-    featured: true,
-    image: "https://placehold.co/1200x600/13182e/00AEEF?text=Sustainability+Summit",
+    title: "Sustainable Energy Summit",
+    domain: "SUSTAINABILITY",
+    description: "Architecting renewable energy frameworks with Fortune 500 corporations and emerging technical founders.",
+    specs: { reach: "250+ ENGAGED", conversion: "15 PARTNERS", status: "3 VENTURES_FORMED" },
+    image: "https://placehold.co/1200x800/13182e/white?text=ENERGY_INITIATIVE",
     keyHighlights: [
       "Corporate partner engagement from Fortune 500 companies",
       "Technical workshops on solar and wind technology",
@@ -40,19 +34,13 @@ const activitiesData = [
     ],
   },
   {
-    id: 2,
+    id: "INIT-002",
     slug: "ai-consulting-bootcamp",
-    title: "AI Strategy Consulting Bootcamp",
-    description: "Intensive consulting training where students delivered AI transformation roadmaps to 5 SME clients.",
-    domain: "consulting",
-    impact: {
-      partnerships: 5,
-      participants: 40,
-      outcomes: "5 client deliverables",
-    },
-    date: "February 2026",
-    featured: false,
-    image: "https://placehold.co/1200x600/00AEEF/ffffff?text=AI+Consulting",
+    title: "AI Strategy Bootcamp",
+    domain: "CONSULTING",
+    description: "Intensive deployment protocol where technical teams delivered transformation roadmaps to SME partners.",
+    specs: { reach: "40+ DEPLOYED", conversion: "5 DELIVERABLES", status: "ACTIVE_CYCLE" },
+    image: "https://placehold.co/1200x800/13182e/white?text=AI_PROTOCOL",
     keyHighlights: [
       "Real client engagements with measurable ROI",
       "Faculty-supervised consulting methodologies",
@@ -60,19 +48,13 @@ const activitiesData = [
     ],
   },
   {
-    id: 3,
+    id: "INIT-003",
     slug: "startup-pitch-competition",
-    title: "Entrepreneurship Pitch Competition",
-    description: "Annual competition showcasing student ventures, attracting $500K in seed funding commitments.",
-    domain: "entrepreneurship",
-    impact: {
-      partnerships: 12,
-      participants: 150,
-      outcomes: "$500K funding secured",
-    },
-    date: "April 2026",
-    featured: true,
-    image: "https://placehold.co/1200x600/13182e/EF4444?text=Pitch+Competition",
+    title: "Venture Capital Protocol",
+    domain: "ENTREPRENEURSHIP",
+    description: "Annual deployment showcasing technical ventures with global capital market participation.",
+    specs: { reach: "150+ FOUNDERS", conversion: "12 VC_FIRMS", status: "$500K_COMMITTED" },
+    image: "https://placehold.co/1200x800/13182e/white?text=VC_PROTOCOL",
     keyHighlights: [
       "Venture capital firm participation",
       "Mentorship from serial entrepreneurs",
@@ -80,19 +62,13 @@ const activitiesData = [
     ],
   },
   {
-    id: 4,
+    id: "INIT-004",
     slug: "circular-economy-workshop",
-    title: "Circular Economy Design Workshop",
-    description: "Collaborative design thinking session focused on waste reduction and sustainable manufacturing.",
-    domain: "sustainability",
-    impact: {
-      partnerships: 8,
-      participants: 60,
-      outcomes: "4 prototype solutions",
-    },
-    date: "January 2026",
-    featured: false,
-    image: "https://placehold.co/1200x600/00AEEF/13182e?text=Circular+Economy",
+    title: "Circular Economy Lab",
+    domain: "SUSTAINABILITY",
+    description: "Technical deployment focused on waste reduction frameworks and sustainable manufacturing protocols.",
+    specs: { reach: "60+ ENGINEERS", conversion: "8 PARTNERS", status: "4 PROTOTYPES" },
+    image: "https://placehold.co/1200x800/13182e/white?text=CIRCULAR_LAB",
     keyHighlights: [
       "Industry partner co-creation sessions",
       "Life cycle analysis training",
@@ -100,19 +76,13 @@ const activitiesData = [
     ],
   },
   {
-    id: 5,
+    id: "INIT-005",
     slug: "fintech-consulting-series",
-    title: "FinTech Consulting Series",
-    description: "Multi-week engagement with financial institutions exploring blockchain and digital banking solutions.",
-    domain: "consulting",
-    impact: {
-      partnerships: 3,
-      participants: 30,
-      outcomes: "3 white papers published",
-    },
-    date: "March 2026",
-    featured: false,
-    image: "https://placehold.co/1200x600/13182e/00AEEF?text=FinTech",
+    title: "FinTech Protocol Series",
+    domain: "CONSULTING",
+    description: "Multi-phase engagement with financial institutions deploying blockchain and digital banking frameworks.",
+    specs: { reach: "30+ DEPLOYED", conversion: "3 INSTITUTIONS", status: "3 PAPERS_PUBLISHED" },
+    image: "https://placehold.co/1200x800/13182e/white?text=FINTECH_PROTOCOL",
     keyHighlights: [
       "Blockchain technology implementation analysis",
       "Regulatory compliance consulting",
@@ -120,19 +90,13 @@ const activitiesData = [
     ],
   },
   {
-    id: 6,
+    id: "INIT-006",
     slug: "venture-builder-program",
-    title: "Venture Builder Accelerator",
-    description: "12-week intensive program transforming student ideas into market-ready startups.",
-    domain: "entrepreneurship",
-    impact: {
-      partnerships: 10,
-      participants: 45,
-      outcomes: "6 companies incorporated",
-    },
-    date: "May 2026",
-    featured: false,
-    image: "https://placehold.co/1200x400/00AEEF/ffffff?text=Venture+Builder",
+    title: "Venture Builder System",
+    domain: "ENTREPRENEURSHIP",
+    description: "12-week intensive protocol transforming technical concepts into incorporated market entities.",
+    specs: { reach: "45+ FOUNDERS", conversion: "10 PARTNERS", status: "6 INCORPORATED" },
+    image: "https://placehold.co/1200x800/13182e/white?text=BUILDER_SYSTEM",
     keyHighlights: [
       "Legal and incorporation support",
       "Go-to-market strategy development",
@@ -144,214 +108,163 @@ const activitiesData = [
 const domains = [
   {
     id: "all",
-    label: "All Activities",
-    count: activitiesData.length,
+    label: "ALL OPERATIONS",
+    count: initiatives.length,
     icon: Target,
   },
   {
-    id: "entrepreneurship",
-    label: "Entrepreneurship",
-    count: activitiesData.filter(a => a.domain === "entrepreneurship").length,
+    id: "ENTREPRENEURSHIP",
+    label: "ENTREPRENEURSHIP",
+    count: initiatives.filter(a => a.domain === "ENTREPRENEURSHIP").length,
     icon: Lightbulb,
   },
   {
-    id: "sustainability",
-    label: "Sustainability",
-    count: activitiesData.filter(a => a.domain === "sustainability").length,
+    id: "SUSTAINABILITY",
+    label: "SUSTAINABILITY",
+    count: initiatives.filter(a => a.domain === "SUSTAINABILITY").length,
     icon: Leaf,
   },
   {
-    id: "consulting",
-    label: "Consulting",
-    count: activitiesData.filter(a => a.domain === "consulting").length,
+    id: "CONSULTING",
+    label: "CONSULTING",
+    count: initiatives.filter(a => a.domain === "CONSULTING").length,
     icon: TrendingUp,
   },
 ];
 
-function ActivityCard({ activity, index }: { activity: typeof activitiesData[0]; index: number }) {
+function InitiativeSpec({ initiative, index }: { initiative: typeof initiatives[0]; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative glass-dark rounded-3xl overflow-hidden border border-white/10 hover:border-secondary/40 transition-all duration-500 ${
-        activity.featured ? "md:col-span-2" : ""
-      }`}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
+      className="relative w-full min-h-screen flex items-center justify-center group overflow-hidden py-20 border-b border-white/5"
     >
-      {/* Gradient Glow on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Background Grid - Only visible on hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-[radial-gradient(circle,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className={`relative z-10 ${activity.featured ? "md:flex" : ""}`}>
-        {/* Image Section */}
-        <div className={`relative overflow-hidden bg-dark ${activity.featured ? "md:w-1/2" : "h-56"}`}>
-          <div className="absolute inset-0 bg-gradient-to-br from-gradient/60 to-transparent z-10" />
-          <img
-            src={activity.image}
-            alt={activity.title}
-            className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700"
-          />
-          {activity.featured && (
-            <div className="absolute top-6 left-6 z-20">
-              <span className="px-4 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-secondary to-primary text-white uppercase tracking-wider">
-                Flagship Initiative
-              </span>
-            </div>
-          )}
-          <div className="absolute bottom-6 left-6 right-6 z-20">
-            <div className="glass-dark px-4 py-3 rounded-xl">
-              <div className="text-xs text-gray-400 mb-1">Impact Date</div>
-              <div className="font-bold text-white">{activity.date}</div>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl">
+
+        {/* Technical Label (1X Style) */}
+        <div className="lg:col-span-1 hidden lg:block">
+           <span className="font-mono text-[10px] text-gray-600 rotate-90 block whitespace-nowrap tracking-[0.5em]">
+             {initiative.id} // BCN_HUB
+           </span>
         </div>
 
-        {/* Content Section */}
-        <div className={`p-8 ${activity.featured ? "md:w-1/2 flex flex-col" : ""}`}>
-          {/* Domain Badge */}
-          <div className="mb-4">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-secondary/20 text-secondary border border-secondary/30 uppercase tracking-wider">
-              {activity.domain}
+        {/* Cinematic Slit Image (1X Playbook) */}
+        <div className="lg:col-span-5">
+           <div className="relative aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
+              <div className="absolute inset-0 bg-[#13182e]/40 z-10 group-hover:bg-transparent transition-colors duration-700" />
+              <img
+                src={initiative.image}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                alt={initiative.title}
+              />
+           </div>
+        </div>
+
+        {/* Content & Specs */}
+        <div className="lg:col-span-6">
+          <div className="flex items-center gap-4 mb-6">
+            <Fingerprint className="text-secondary w-5 h-5 opacity-40" />
+            <span className="font-black text-[10px] tracking-[0.4em] text-secondary uppercase italic">
+               {initiative.domain}
             </span>
           </div>
 
-          {/* Title */}
-          <h3 className={`font-extrabold text-white mb-3 group-hover:text-secondary transition-colors duration-300 tracking-tight ${
-            activity.featured ? "text-3xl" : "text-xl"
-          }`}>
-            {activity.title}
+          <h3 className="font-heading text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-none tracking-tighter uppercase">
+            {initiative.title}
           </h3>
 
-          {/* Description */}
-          <p className={`text-gray-400 mb-6 leading-relaxed ${activity.featured ? "text-base" : "text-sm"}`}>
-            {activity.description}
+          <p className="font-sans text-lg md:text-xl text-gray-500 mb-12 max-w-md leading-relaxed">
+            {initiative.description}
           </p>
 
-          {/* Impact Metrics */}
-          <div className="grid grid-cols-3 gap-4 mb-6 p-4 rounded-xl bg-white/5 border border-white/10">
-            <div>
-              <div className="text-2xl font-bold text-secondary">{activity.impact.partnerships}</div>
-              <div className="text-xs text-gray-500 uppercase">Partners</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-secondary">{activity.impact.participants}</div>
-              <div className="text-xs text-gray-500 uppercase">Participants</div>
-            </div>
-            <div className="col-span-3 border-t border-white/10 pt-2 mt-2">
-              <div className="text-xs text-gray-500 uppercase mb-1">Key Outcome</div>
-              <div className="text-sm font-semibold text-white">{activity.impact.outcomes}</div>
-            </div>
-          </div>
-
-          {/* Key Highlights */}
-          {activity.featured && (
-            <div className="mb-6">
-              <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">
-                Key Highlights
+          {/* Technical Data Block */}
+          <div className="grid grid-cols-3 gap-8 border-y border-white/5 py-8 mb-12">
+            {Object.entries(initiative.specs).map(([key, value]) => (
+              <div key={key}>
+                <div className="font-mono text-[10px] text-gray-600 uppercase tracking-widest mb-2">{key}</div>
+                <div className="font-bold text-white text-sm tracking-widest">{value}</div>
               </div>
-              <ul className="space-y-2">
-                {activity.keyHighlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
-                    <ArrowRight className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* CTA Buttons */}
-          <div className={`flex gap-3 ${activity.featured ? "mt-auto" : ""}`}>
-            <NextLink href={`/events/${activity.slug}`} className="flex-1">
-              <Button
-                className="w-full bg-white/10 text-white hover:bg-secondary hover:text-white border border-white/20 font-bold rounded-full transition-all duration-500 group/btn"
-                endContent={<FileText className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />}
-              >
-                View Case Study
-              </Button>
-            </NextLink>
+            ))}
           </div>
+
+          <Button
+            as={NextLink}
+            href={`/events/${initiative.slug}`}
+            className="h-14 px-10 bg-white text-primary rounded-none font-black text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all"
+            endContent={<ArrowRight className="w-4 h-4" />}
+          >
+            Open Initiative File
+          </Button>
         </div>
       </div>
 
-      {/* Bottom Accent Line */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+      {/* 1X-Style Corner Brackets */}
+      <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/10" />
+      <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/10" />
     </motion.div>
   );
 }
 
-export default function ActivityLibraryPage() {
+// Vertical Scrolling Layout Component
+function VerticalInitiativesLayout({ initiatives: initiativesList }: { initiatives: Array<typeof initiatives[0]> }) {
+  return (
+    <div className="relative bg-primary">
+      {/* Render all initiatives in a vertical stack */}
+      {initiativesList.map((initiative, index) => (
+        <InitiativeSpec key={initiative.id} initiative={initiative} index={index} />
+      ))}
+    </div>
+  );
+}
+
+export default function MajesticEventsPage() {
   const [selectedDomain, setSelectedDomain] = useState("all");
 
-  const filteredActivities = selectedDomain === "all"
-    ? activitiesData
-    : activitiesData.filter(activity => activity.domain === selectedDomain);
+  const filteredInitiatives = selectedDomain === "all"
+    ? initiatives
+    : initiatives.filter(init => init.domain === selectedDomain);
 
   return (
-    <main className="min-h-screen bg-primary">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-secondary/10 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/5 blur-[120px] rounded-full" />
-
-        <div className="container relative mx-auto px-4 z-10 pt-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card">
-                <Target className="w-4 h-4 text-secondary" />
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
-                  Ecosystem Impact Hub
+    <main className="min-h-screen bg-primary text-white overflow-hidden">
+      {/* 1. Industrial Hero */}
+      <section className="relative pt-40 pb-20 border-b border-white/5">
+        <TechnicalGrid />
+        <div className="container relative mx-auto px-4 z-10">
+           <div className="max-w-4xl">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex items-center gap-3 mb-8"
+              >
+                <div className="w-12 h-[1px] bg-secondary" />
+                <span className="font-mono text-[10px] tracking-[0.4em] text-gray-500 uppercase">
+                   Operations // 2026_Cycle
                 </span>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.05] tracking-tight text-white"
-            >
-              Activity Library &<br />
-              <span className="text-gradient-accent">Case Studies</span>
-            </motion.h1>
+              <h1 className="font-heading text-7xl md:text-[10rem] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+                Ecosystem<br />
+                <span className="italic text-gradient-accent">Initiatives</span>
+              </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed"
-            >
-              Explore how Ennova bridges the gap between engineering excellence and industry impact
-              across Entrepreneurship, Sustainability, and Consulting domains.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex items-center justify-center gap-8 text-sm text-gray-500"
-            >
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-secondary" />
-                <span>500+ Students Engaged</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-secondary" />
-                <span>45+ Corporate Partners</span>
-              </div>
-            </motion.div>
-          </div>
+              <p className="font-sans text-xl md:text-2xl text-gray-400 max-w-2xl leading-relaxed">
+                A high-fidelity record of Ennova&apos;s technical deployments and strategic
+                partnerships within the Barcelona engineering landscape.
+              </p>
+           </div>
         </div>
+
+        {/* Background Film Grain Overlay */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </section>
 
-      {/* Domain Filtering */}
-      <section className="sticky top-20 z-40 glass-dark backdrop-blur-xl border-b border-white/10 py-6">
+      {/* Domain Filtering - Industrial Style */}
+      <section className="sticky top-20 z-40 bg-primary/95 backdrop-blur-xl border-b border-white/5 py-6">
         <div className="container mx-auto px-4">
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {domains.map((domain) => {
@@ -360,18 +273,18 @@ export default function ActivityLibraryPage() {
                 <button
                   key={domain.id}
                   onClick={() => setSelectedDomain(domain.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-500 ${
+                  className={`flex items-center gap-2 px-6 py-3 font-black text-[10px] uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-500 border ${
                     selectedDomain === domain.id
-                      ? "bg-secondary text-white shadow-lg shadow-secondary/20 scale-105"
-                      : "bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10"
+                      ? "bg-white text-primary border-white"
+                      : "bg-transparent text-gray-500 hover:text-white border-white/10 hover:border-white/30"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3 h-3" />
                   {domain.label}
                   <span className={`${
-                    selectedDomain === domain.id ? "text-white/80" : "text-gray-600"
+                    selectedDomain === domain.id ? "text-primary/60" : "text-gray-700"
                   }`}>
-                    ({domain.count})
+                    [{domain.count}]
                   </span>
                 </button>
               );
@@ -380,86 +293,60 @@ export default function ActivityLibraryPage() {
         </div>
       </section>
 
-      {/* Activities Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedDomain}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8"
-            >
-              {filteredActivities.length > 0 ? (
-                filteredActivities.map((activity, index) => (
-                  <ActivityCard key={activity.id} activity={activity} index={index} />
-                ))
-              ) : (
-                <div className="col-span-2 text-center py-16">
-                  <FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-2">No activities found</h3>
-                  <p className="text-gray-500">
-                    Check back later for new initiatives in this domain.
-                  </p>
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      {/* 2. Vertical Scrolling Initiatives Section */}
+      <section className="relative">
+        {filteredInitiatives.length > 0 ? (
+          <VerticalInitiativesLayout key={selectedDomain} initiatives={filteredInitiatives} />
+        ) : (
+          <div className="py-40 text-center">
+            <FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-2">No initiatives found</h3>
+            <p className="text-gray-500">
+              Check back later for new deployments in this domain.
+            </p>
+          </div>
+        )}
       </section>
 
-      {/* Platform Separation CTA */}
-      <section className="py-24 relative overflow-hidden border-t border-white/10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full" />
+      {/* 3. Terminal Style CTA */}
+      <section className="py-40 bg-white text-primary relative overflow-hidden">
+        <TechnicalGrid />
+         <div className="container relative mx-auto px-4 text-center z-10">
+            <h2 className="font-heading text-5xl md:text-8xl font-black tracking-tighter uppercase mb-12">
+               Participate in the <br />Next Deployment
+            </h2>
 
-        <div className="container relative mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="glass-dark rounded-3xl p-12 text-center border border-white/10"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/20 text-secondary text-xs font-bold uppercase tracking-wider mb-6">
-                <ExternalLink className="w-4 h-4" />
-                Events Platform
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-white tracking-tight">
-                Ready to <span className="text-gradient-accent">Participate</span>?
-              </h2>
-              <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                While this hub showcases our ecosystem impact, <strong className="text-white">all event registrations
-                and logistics are managed through our dedicated Events Platform</strong>. Browse upcoming
-                opportunities, register instantly, and track your involvement.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  as="a"
-                  href={siteConfig.links.platform}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-14 px-10 bg-white text-primary hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
-                  endContent={<ExternalLink className="w-5 h-5" />}
-                >
-                  Visit Events Platform
-                </Button>
-                <Button
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+              While this hub showcases our ecosystem impact, <strong className="text-primary">all event registrations
+              and logistics are managed through our dedicated Events Platform</strong>. Browse upcoming
+              opportunities, register instantly, and track your involvement.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
+               <Button
+                as="a"
+                href={siteConfig.links.platform}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-16 px-12 bg-primary text-white rounded-none font-black text-xs uppercase tracking-widest hover:bg-secondary"
+                endContent={<ExternalLink className="w-5 h-5" />}
+               >
+                 Join Events
+               </Button>
+               <Button
                   as={NextLink}
                   href="/work-with-us"
-                  variant="bordered"
-                  className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
+                  className="h-16 px-12 bg-transparent text-primary rounded-none font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white border-2 border-primary transition-all"
                   endContent={<ArrowRight className="w-5 h-5" />}
                 >
                   Partner With Us
                 </Button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+            </div>
+
+            <div className="mt-20 font-mono text-[10px] text-gray-400 tracking-[0.5em] uppercase">
+               Authorized Access Only // Ennova Security Protocol
+            </div>
+         </div>
       </section>
     </main>
   );

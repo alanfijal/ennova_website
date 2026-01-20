@@ -149,7 +149,7 @@ export const Navbar = () => {
               <Button
                 as={NextLink}
                 href="https://ennova-events.com/"
-                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 px-6"
+                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all duration-500 px-6"
               >
                 Join Events
               </Button>
@@ -204,7 +204,7 @@ export const Navbar = () => {
                   as={NextLink}
                   href="https://ennova-events.com/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-full bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 h-12"
+                  className="w-full bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all duration-500 h-12"
                 >
                   Join Events
                 </Button>

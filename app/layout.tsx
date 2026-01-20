@@ -42,6 +42,7 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <div className="grain-overlay" />
           <div className="relative flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow pt-20">

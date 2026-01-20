@@ -8,6 +8,7 @@ import NextLink from "next/link";
 import { MasonryGallery } from "@/components/features/MasonryGallery";
 import { TallyFormEmbed } from "@/components/features/TallyFormEmbed";
 import { Marquee } from "@/components/magicui/marquee";
+import { WorldStudentMap } from "@/components/ui/WorldStudentMap";
 
 // Alumni success stories data
 const alumniStories = [
@@ -257,6 +258,9 @@ export default function JoinPage() {
         </div>
       </section>
 
+      {/* Global Student Network Map */}
+      <WorldStudentMap />
+
       {/* Section 4: Benefits Bento Grid */}
       <section className="relative w-full py-24 px-6 z-10 bg-gradient-to-b from-primary/5 via-primary/3 to-transparent">
         <div className="max-w-7xl mx-auto">
@@ -304,6 +308,35 @@ export default function JoinPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Explore Departments Section */}
+      <section className="relative w-full py-24 px-6 z-10 bg-gradient-to-br from-primary/10 via-primary/5 to-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-6">
+              Find Your <span className="text-secondary italic">Department</span>
+            </h2>
+            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+              Discover specialized teams working on cutting-edge projects across multiple disciplines.
+              From Software Engineering to AI, Mechanical to Data Science - find where you belong.
+            </p>
+            <Button
+              as={NextLink}
+              href="/about#departments"
+              className="h-16 px-12 bg-primary text-white hover:bg-secondary hover:text-white font-bold rounded-none transition-all shadow-lg"
+              endContent={<ArrowRight className="w-5 h-5" />}
+            >
+              Explore All Departments
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -373,7 +406,7 @@ export default function JoinPage() {
               as={NextLink}
               href="/about"
               variant="bordered"
-              className="border-primary/20 text-primary hover:bg-primary hover:text-white font-bold rounded-full px-8"
+              className="border-primary/20 text-primary hover:bg-primary hover:text-white font-bold rounded-none px-8"
               endContent={<ArrowRight className="w-4 h-4" />}
             >
               Learn More About Us

@@ -15,6 +15,7 @@ const getActivityBySlug = (slug: string) => {
       date: "March 15-16, 2026",
       location: "Sheridan College, Mississauga Campus",
       description: "A comprehensive two-day summit bringing together industry leaders, academic researchers, and student innovators to explore renewable energy solutions and sustainable technology.",
+      registrationUrl: "https://ennova-events.com/events/sustainable-energy-summit",
       impact: {
         partnerships: 15,
         participants: 250,
@@ -107,7 +108,7 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
               {activity.description}
             </p>
 
-            <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex flex-wrap gap-6 text-sm mb-8">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="text-gray-400">Date:</span>
@@ -119,6 +120,19 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
                 <span className="font-semibold">{activity.location}</span>
               </div>
             </div>
+
+            {/* Join Event Button */}
+            <Button
+              as="a"
+              href={activity.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              className="h-16 px-12 bg-secondary text-white hover:bg-white hover:text-primary font-bold rounded-none transition-all shadow-lg"
+              endContent={<ExternalLink className="w-5 h-5" />}
+            >
+              Join the Event
+            </Button>
           </div>
         </div>
       </section>
@@ -292,9 +306,9 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                as="a"
-                href="mailto:partnerships@ennova.org"
-                className="h-14 px-10 bg-white text-primary hover:bg-secondary hover:text-white font-bold rounded-full transition-all"
+                as={NextLink}
+                href="/work-with-us#contact"
+                className="h-14 px-10 bg-white text-primary hover:bg-secondary hover:text-white font-bold rounded-none transition-all"
               >
                 Contact Partnerships Team
               </Button>
@@ -304,7 +318,7 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="bordered"
-                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
+                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-none"
                 endContent={<ExternalLink className="w-5 h-5" />}
               >
                 Browse Upcoming Events

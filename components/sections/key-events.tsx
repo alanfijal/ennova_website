@@ -227,7 +227,7 @@ export function KeyEvents() {
           <Button
             as={NextLink}
             href="/events"
-            className="h-14 px-10 bg-white/10 text-white hover:bg-white hover:text-primary border border-white/20 font-bold text-base rounded-full shadow-lg transition-all group"
+            className="h-14 px-10 bg-white/10 text-white hover:bg-white hover:text-primary border border-white/20 font-bold text-base rounded-none shadow-lg transition-all group"
             endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />}
           >
             View All Events

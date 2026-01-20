@@ -26,12 +26,11 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
           {/* Brand Info */}
           <div className="max-w-xs">
-            <NextLink href="/" className="flex items-center gap-3 mb-4">
+            <NextLink href="/" className="flex items-center mb-4">
               <HolographicLogo
                 src="/images/community/ennova-logo-white copy.png"
                 size="sm"
               />
-              <span className="text-xl font-extrabold tracking-tight">Ennova</span>
             </NextLink>
             <p className="text-sm text-gray-400 leading-relaxed">
               Engineering Innovation at Sheridan College. Fostering excellence through industry collaboration.

@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import { ArrowRight, Briefcase, Handshake, Award, ChevronRight } from "lucide-react";
 import { Button } from "@heroui/button";
 import { ContactForm } from "@/components/features/ContactForm";
+import { BarcelonaConnectivityMap } from "@/components/ui/BarcelonaConnectivityMap";
 
 const services = [
   {
@@ -102,7 +103,7 @@ export default function WorkWithUsPage() {
               <Button
                 as={NextLink}
                 href="#services"
-                className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all group"
+                className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all group"
                 endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               >
                 Explore Services
@@ -111,7 +112,7 @@ export default function WorkWithUsPage() {
                 as={NextLink}
                 href="#contact"
                 variant="bordered"
-                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-full"
+                className="h-14 px-10 border-white/20 text-white hover:bg-white/5 font-bold rounded-none"
               >
                 Get in Touch
               </Button>
@@ -216,6 +217,30 @@ export default function WorkWithUsPage() {
         </div>
       </section>
 
+      {/* Barcelona Technical Stamp Section */}
+      <section className="py-24 bg-dark text-white relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+              The Barcelona <span className="text-gradient-accent">Technical Stamp</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              We bridge the gap between Esade's business excellence, Barcelona's 22@ innovation district,
+              and global industry leaders. Your partnership connects you to an entire ecosystem.
+            </p>
+          </motion.div>
+
+          <BarcelonaConnectivityMap />
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
@@ -270,7 +295,7 @@ export default function WorkWithUsPage() {
                   <Button
                     as={NextLink}
                     href="#contact"
-                    className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-full transition-all duration-500 px-8 h-12"
+                    className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all duration-500 px-8 h-12"
                     endContent={<ArrowRight className="w-5 h-5" />}
                   >
                     Schedule a Consultation

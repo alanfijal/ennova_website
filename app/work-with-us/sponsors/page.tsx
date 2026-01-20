@@ -133,7 +133,7 @@ export default function EventSponsorshipPage() {
               <Button
                 as={NextLink}
                 href="#events"
-                className="h-14 px-10 bg-secondary text-white hover:bg-secondary/90 font-bold rounded-full transition-all group shadow-xl shadow-secondary/30"
+                className="h-14 px-10 bg-secondary text-white hover:bg-secondary/90 font-bold rounded-none transition-all group shadow-xl shadow-secondary/30"
                 endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               >
                 Explore Events
@@ -142,7 +142,7 @@ export default function EventSponsorshipPage() {
                 as={NextLink}
                 href="#contact"
                 variant="bordered"
-                className="h-14 px-10 border-white/30 text-white hover:bg-white/10 font-bold rounded-full"
+                className="h-14 px-10 border-white/30 text-white hover:bg-white/10 font-bold rounded-none"
               >
                 Get in Touch
               </Button>

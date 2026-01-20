@@ -25,8 +25,17 @@ const departmentData = {
     stats: {
       members: 120,
       projects: 15,
-      technologies: ["React", "Next.js", "Node.js", "Python", "TypeScript"],
     },
+    whatWeDo: [
+      "Build full-stack web applications using modern frameworks and best practices",
+      "Develop mobile applications for iOS and Android platforms",
+      "Create RESTful APIs and microservices architectures",
+      "Implement cloud infrastructure and DevOps solutions",
+      "Conduct code reviews and maintain high code quality standards",
+      "Collaborate with clients to deliver custom software solutions"
+    ],
+    tools: ["React", "Next.js", "Node.js", "Python", "TypeScript", "Docker", "AWS", "PostgreSQL", "MongoDB", "Git"],
+    teamPhoto: "/images/departments/software-team.jpg",
     members: [
       {
         id: 1,
@@ -59,7 +68,6 @@ const departmentData = {
         linkedin: "https://linkedin.com/in/emmarodriguez",
         email: "emma@ennova.org",
         bio: "Creating beautiful and accessible user interfaces. Strong focus on performance and user experience.",
-        skills: ["React", "Tailwind CSS", "Figma", "Animation"],
       },
       {
         id: 4,
@@ -70,7 +78,6 @@ const departmentData = {
         linkedin: "https://linkedin.com/in/jamesanderson",
         email: "james@ennova.org",
         bio: "Building cross-platform mobile applications with React Native. Focused on delivering smooth user experiences.",
-        skills: ["React Native", "Swift", "Kotlin", "Firebase"],
       },
     ],
   },
@@ -81,8 +88,17 @@ const departmentData = {
     stats: {
       members: 45,
       projects: 18,
-      technologies: ["Strategy", "Analytics", "Project Management", "Business Analysis"],
     },
+    whatWeDo: [
+      "Deliver strategic consulting projects for Fortune 500 companies",
+      "Conduct market research and competitive analysis",
+      "Develop business cases and financial models",
+      "Design operational improvement strategies",
+      "Facilitate client workshops and stakeholder interviews",
+      "Create data-driven recommendations and presentations"
+    ],
+    tools: ["PowerPoint", "Excel", "Tableau", "SQL", "Python", "Miro", "Notion", "Figma"],
+    teamPhoto: "/images/departments/consulting-team.jpg",
     members: [
       {
         id: 1,
@@ -104,7 +120,6 @@ const departmentData = {
         linkedin: "https://linkedin.com/in/sophiemartin",
         email: "sophie@ennova.org",
         bio: "Data-driven analyst specializing in market research and competitive analysis. Passionate about turning insights into action.",
-        skills: ["Data Analysis", "Market Research", "SQL", "Tableau"],
       },
     ],
   },
@@ -115,8 +130,17 @@ const departmentData = {
     stats: {
       members: 60,
       projects: 7,
-      technologies: ["Business Development", "Pitch Design", "Fundraising", "Go-to-Market"],
     },
+    whatWeDo: [
+      "Support student founders in building their startups from idea to launch",
+      "Organize pitch competitions and demo days",
+      "Connect startups with investors and mentors",
+      "Provide workshops on fundraising and business development",
+      "Facilitate networking events with the startup ecosystem",
+      "Help teams validate ideas and find product-market fit"
+    ],
+    tools: ["Pitch Deck", "Lean Canvas", "Notion", "Airtable", "Figma", "Google Analytics", "LinkedIn", "Canva"],
+    teamPhoto: "/images/departments/entrepreneurship-team.jpg",
     members: [
       {
         id: 1,
@@ -138,7 +162,6 @@ const departmentData = {
         linkedin: "https://linkedin.com/in/lisapark",
         email: "lisa@ennova.org",
         bio: "Helping startups find product-market fit and scale efficiently. Background in growth marketing and operations.",
-        skills: ["Growth Marketing", "Product Management", "Analytics", "User Research"],
       },
     ],
   },
@@ -218,31 +241,131 @@ export default function DepartmentPage() {
         </div>
       </section>
 
-      {/* Technologies/Skills */}
-      <section className="py-12 bg-gray-50 border-b">
+      {/* What We Do Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3">
-            {department.stats.technologies.map((tech, index) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark">
+              What We <span className="text-gradient-accent">Do</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Our core activities and responsibilities
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {department.whatWeDo.map((activity, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-start gap-4 p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+              >
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-secondary to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                  {index + 1}
+                </div>
+                <p className="text-gray-700 leading-relaxed">{activity}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tools We Use Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark">
+              Tools We <span className="text-gradient-accent">Use</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Technologies and platforms that power our work
+            </p>
+          </motion.div>
+
+          <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
+            {department.tools.map((tool, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 <Chip
                   variant="flat"
                   color="primary"
                   size="lg"
                   classNames={{
-                    base: "bg-secondary/10",
-                    content: "text-secondary font-semibold",
+                    base: "bg-white border border-gray-200 hover:border-secondary/50 transition-colors",
+                    content: "text-gray-700 font-semibold",
                   }}
                 >
-                  {tech}
+                  {tool}
                 </Chip>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Team Photo Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-dark">
+              Our <span className="text-gradient-accent">Team</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Meet the people behind {department.name}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={department.teamPhoto}
+                alt={`${department.name} Team`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop";
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent flex items-end p-8">
+                <div className="text-white">
+                  <p className="text-2xl font-bold mb-2">{department.name} Team</p>
+                  <p className="text-gray-200">{department.stats.members} Members • {department.stats.projects} Active Projects</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -306,38 +429,9 @@ export default function DepartmentPage() {
                     </div>
 
                     {/* Bio */}
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                    <p className="text-sm text-gray-600 mb-6 line-clamp-3">
                       {member.bio}
                     </p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {member.skills.slice(0, 3).map((skill, idx) => (
-                        <Chip
-                          key={idx}
-                          size="sm"
-                          variant="flat"
-                          classNames={{
-                            base: "bg-gray-100",
-                            content: "text-gray-700 text-xs",
-                          }}
-                        >
-                          {skill}
-                        </Chip>
-                      ))}
-                      {member.skills.length > 3 && (
-                        <Chip
-                          size="sm"
-                          variant="flat"
-                          classNames={{
-                            base: "bg-gray-100",
-                            content: "text-gray-700 text-xs",
-                          }}
-                        >
-                          +{member.skills.length - 3}
-                        </Chip>
-                      )}
-                    </div>
 
                     {/* Contact Links */}
                     <div className="flex gap-2 pt-4 border-t border-gray-100">
@@ -393,17 +487,17 @@ export default function DepartmentPage() {
                 as={Link}
                 href="/join"
                 size="lg"
-                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold"
+                className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none"
                 endContent={<ExternalLink className="w-5 h-5" />}
               >
                 Apply Now
               </Button>
               <Button
                 as={Link}
-                href="/about"
+                href="/about#departments"
                 size="lg"
                 variant="bordered"
-                className="border-white/20 text-white hover:bg-white/5"
+                className="border-white/20 text-white hover:bg-white/5 rounded-none"
               >
                 Explore Other Departments
               </Button>
