@@ -7,42 +7,42 @@ import { Sparkles, ArrowUpRight, CircleDot } from "lucide-react";
 const eras = [
   {
     id: "01",
-    year: "2019",
+    year: "2018",
     era: "THE GENESIS",
     title: "The First Spark",
-    description: "A collective of engineering students at Sheridan decide to tear down the walls between the classroom and the real world. Ennova is born.",
-    metric: "12 Visionaries"
+    description: "Esade and 5 students create Ennova: The student association in charge of Esade's Rambla of Innovation.",
+    metric: "5 Visionaries"
   },
   {
     id: "02",
-    year: "2021",
+    year: "2020",
     era: "THE EXPANSION",
-    title: "Scaling the Network",
-    description: "From a small group to a 200-node ecosystem. We deployed our first 10 specialized departments, each a powerhouse of niche innovation.",
-    metric: "10 Departments"
+    title: "Scaling the Association",
+    description: "Ennova grows to 8 departments and a team of 80 students (30MSc).",
+    metric: "8 Departments"
   },
   {
     id: "03",
-    year: "2023",
+    year: "2024",
     era: "THE VALIDATION",
-    title: "Market Proof",
-    description: "The first Ennova-born venture is acquired for $2.5M. We proved that student intelligence isn't just potential—it's high-value capital.",
-    metric: "$2.5M Exit"
+    title: "The Success",
+    description: "IdeaUp, Ennova's flagship 6-month accelerator, reaches over 100 participants across 20 startups and a parallel program in Berlin.",
+    metric: "IdeaUp"
   },
   {
     id: "04",
-    year: "2024",
+    year: "2025",
     era: "THE STANDARD",
-    title: "Global Pings",
-    description: "Deloitte and global partners join the circle. Ennova is officially recognized as the premiere student innovation hub in the country.",
-    metric: "Global Impact"
+    title: "Present Ride",
+    description: "Largest entrepreneurial student organization in Barcelona, organizing 15+ events for 1000+ students every year with a Europe-wide impact.",
+    metric: "Local Presence"
   },
   {
     id: "05",
     year: "2026",
     era: "THE BEYOND",
     title: "Your Chapter",
-    description: "The system is ready. The next deployment isn't ours—it's yours. Join the lineage and define what happens next.",
+    description: "Join the lineage and define what happens next.",
     metric: "Unlimited"
   }
 ];
@@ -68,7 +68,7 @@ export function MajesticLineage() {
           </div>
           <div className="max-w-xs border-l border-white/10 pl-6 py-2">
             <p className="text-gray-500 font-mono text-[10px] leading-relaxed tracking-widest uppercase">
-              Chronological system upgrades that transformed Ennova into a professional powerhouse.
+              Chronological upgrades that transformed Ennova into a professional powerhouse.
             </p>
           </div>
         </div>

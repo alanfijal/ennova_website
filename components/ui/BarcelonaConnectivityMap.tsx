@@ -15,19 +15,28 @@ interface Node {
 }
 
 const nodes: Node[] = [
-  { id: "ennova", x: 50, y: 35, label: "ENNOVA_CENTRAL", type: "core", meta: "LAT: 41.3851 // HUB_01" },
-  { id: "esade", x: 45, y: 55, label: "ESADE_ACADEMIC", type: "academic", meta: "STRAT_PARTNER // V_ACAD" },
-  { id: "districte22", x: 75, y: 45, label: "BCN_22@_DISTRICT", type: "industrial", meta: "TECH_CLUSTER // IND_NODE" },
-  { id: "global_corps", x: 25, y: 45, label: "GLOBAL_CORPORATE", type: "corporate", meta: "DELOITTE // PARTNER_NODES" },
-  { id: "finance", x: 30, y: 70, label: "FINANCIAL_DISTRICT", type: "corporate", meta: "EQUITY // SECTOR_G" },
+  { id: "ennova", x: 50, y: 40, label: "ENNOVA", type: "core", meta: "LAT: 41.3851 // HUB_01" },
+  { id: "esade", x: 50, y: 60, label: "ESADE", type: "academic", meta: "STRAT_PARTNER // V_ACAD" },
+  { id: "deloitte", x: 20, y: 25, label: "DELOITTE", type: "corporate", meta: "CONSULTING // CORP_PARTNER" },
+  { id: "cocacola", x: 35, y: 20, label: "COCA-COLA", type: "corporate", meta: "BRAND_PARTNER // GLOBAL_CORP" },
+  { id: "notion", x: 65, y: 25, label: "NOTION", type: "corporate", meta: "TECH_PARTNER // PRODUCT_SUITE" },
+  { id: "fritravich", x: 80, y: 35, label: "FRIT_RAVICH", type: "corporate", meta: "LOCAL_BRAND // FOOD_SECTOR" },
+  { id: "sandwichez", x: 25, y: 55, label: "SANDWICHEZ", type: "corporate", meta: "HOSPITALITY // LOCAL_PARTNER" },
+  { id: "bcombinator", x: 20, y: 70, label: "BCOMBINATOR", type: "corporate", meta: "ACCELERATOR // VENTURE_NODE" },
+  { id: "connector", x: 70, y: 70, label: "CONNECTOR", type: "corporate", meta: "NETWORK_HUB // ECOSYSTEM" },
 ];
 
 const connections = [
   { from: "ennova", to: "esade" },
-  { from: "ennova", to: "districte22" },
-  { from: "ennova", to: "global_corps" },
-  { from: "ennova", to: "finance" },
-  { from: "esade", to: "global_corps" },
+  { from: "ennova", to: "deloitte" },
+  { from: "ennova", to: "cocacola" },
+  { from: "ennova", to: "notion" },
+  { from: "ennova", to: "fritravich" },
+  { from: "ennova", to: "sandwichez" },
+  { from: "ennova", to: "bcombinator" },
+  { from: "ennova", to: "connector" },
+  { from: "esade", to: "deloitte" },
+  { from: "bcombinator", to: "connector" },
 ];
 
 export function BarcelonaConnectivityMap() {
@@ -43,7 +52,7 @@ export function BarcelonaConnectivityMap() {
 
       {/* 2. UI Frame Overlays (1X Style) */}
       <div className="absolute top-4 left-4 font-mono text-[10px] text-gray-600 tracking-[0.3em] uppercase">
-        System_Map // Deployment_2026
+        System_Map // Ennova_2026
       </div>
       <div className="absolute top-4 right-4 flex gap-4 text-gray-600">
          <div className="flex items-center gap-1">
@@ -167,7 +176,7 @@ export function BarcelonaConnectivityMap() {
       <div className="absolute bottom-4 left-4 flex gap-6">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-secondary" />
-          <span className="font-mono text-[8px] text-gray-500 uppercase tracking-widest">Ennova_Central</span>
+          <span className="font-mono text-[8px] text-gray-500 uppercase tracking-widest">Ennova</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-white opacity-40" />

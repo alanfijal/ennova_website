@@ -12,38 +12,35 @@ const partnershipBenefits = [
   {
     icon: Users,
     title: "Exclusive Talent Access",
-    description: "First access to our top engineering students across 15+ technical departments before they hit the job market.",
+    description: "Gain early access to top emerging talent in Barcelona's innovation ecosystem while strengthening your employer brand as a supporter of student entrepreneurship.",
   },
   {
     icon: Rocket,
-    title: "Co-Innovation Labs",
-    description: "Propose technical challenges for our Software, AI, and Robotics departments to solve as capstone projects.",
+    title: "Hands-on engagement",
+    description: "Host innovation workshops or technical skill-building sessions, Provide real-world case challenges for our competitions, Serve as judges at our flagship pitch events and innovation competitions, Join panel discussions on industry trends, career paths, and entrepreneurship",
   },
   {
     icon: TrendingUp,
-    title: "Barcelona Tech Ecosystem",
-    description: "Bridge the gap between Esade business excellence and Barcelona's vibrant tech scene at 22@ innovation district.",
+    title: "Barcelona Entreprenurship Ecosystem",
+    description: "Position your brand at the forefront of Barcelona's student innovation movement and demonstrate genuine commitment to developing the next generation of entrepreneurs and leaders.",
   },
   {
     icon: Building2,
-    title: "Brand Prestige",
-    description: "Position your company as an innovation leader by associating with Canada's premier engineering student organization.",
+    title: "Tailored to your needs",
+    description: "Most engagements require minimal time commitment (typically 2-4 hours per event), with flexible scheduling tailored to your team's availability.",
   },
 ];
 
 const departments = [
-  "Software Engineering",
-  "Artificial Intelligence",
-  "Mechanical Engineering",
-  "Electrical Engineering",
-  "Civil Engineering",
-  "Robotics & Automation",
-  "Data Science",
-  "Computer Science",
-  "Aerospace Engineering",
-  "Chemical Engineering",
-  "Industrial Engineering",
-  "Biomedical Engineering",
+  "Consulting",
+  "Marketing",
+  "Ventures",
+  "Impact",
+  "Innovation",
+  "Data",
+  "Sports",
+  "Partnerships & Finance",
+  "HR",
 ];
 
 const successStories = [

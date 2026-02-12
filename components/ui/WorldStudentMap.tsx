@@ -15,84 +15,244 @@ const geoUrl =
 
 // Define your countries with real coordinates
 const countries = [
+  // Americas
   {
-    name: "Spain",
-    code: "ES",
-    students: "150+",
-    cities: "Barcelona, Madrid",
-    coordinates: [-3, 40] as [number, number], // lon, lat
+    name: "Canada",
+    code: "CA",
+    coordinates: [-106, 57] as [number, number],
     color: "#00AEEF",
   },
   {
     name: "United States",
     code: "US",
-    students: "40+",
-    cities: "NYC, San Francisco",
     coordinates: [-98, 39] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "Germany",
-    code: "DE",
-    students: "35+",
-    cities: "Berlin, Munich",
-    coordinates: [10, 51] as [number, number],
+    name: "Mexico",
+    code: "MX",
+    coordinates: [-102, 23] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "France",
-    code: "FR",
-    students: "25+",
-    cities: "Paris, Lyon",
-    coordinates: [2, 46] as [number, number],
+    name: "Guatemala",
+    code: "GT",
+    coordinates: [-90.5, 15.5] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "United Kingdom",
-    code: "GB",
-    students: "30+",
-    cities: "London, Manchester",
-    coordinates: [-1.5, 54] as [number, number],
+    name: "El Salvador",
+    code: "SV",
+    coordinates: [-88.9, 13.7] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "Italy",
-    code: "IT",
-    students: "20+",
-    cities: "Milan, Rome",
-    coordinates: [12.5, 42.5] as [number, number],
+    name: "Ecuador",
+    code: "EC",
+    coordinates: [-78.5, -1.8] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "Poland",
-    code: "PL",
-    students: "15+",
-    cities: "Warsaw, Krakow",
-    coordinates: [19, 52] as [number, number],
+    name: "Peru",
+    code: "PE",
+    coordinates: [-76, -10] as [number, number],
     color: "#00AEEF",
   },
   {
-    name: "Canada",
-    code: "CA",
-    students: "22+",
-    cities: "Toronto, Vancouver",
-    coordinates: [-106, 57] as [number, number],
+    name: "Venezuela",
+    code: "VE",
+    coordinates: [-66.6, 7.5] as [number, number],
     color: "#00AEEF",
   },
   {
     name: "Brazil",
     code: "BR",
-    students: "18+",
-    cities: "São Paulo, Rio",
     coordinates: [-51, -10] as [number, number],
+    color: "#00AEEF",
+  },
+  // Europe
+  {
+    name: "Portugal",
+    code: "PT",
+    coordinates: [-8.2, 39.4] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Spain",
+    code: "ES",
+    coordinates: [-3, 40] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "France",
+    code: "FR",
+    coordinates: [2, 46] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Belgium",
+    code: "BE",
+    coordinates: [4.5, 50.8] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Netherlands",
+    code: "NL",
+    coordinates: [5.3, 52.1] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "United Kingdom",
+    code: "GB",
+    coordinates: [-1.5, 54] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Ireland",
+    code: "IE",
+    coordinates: [-8, 53.4] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Germany",
+    code: "DE",
+    coordinates: [10, 51] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Austria",
+    code: "AT",
+    coordinates: [14.6, 47.5] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Italy",
+    code: "IT",
+    coordinates: [12.5, 42.5] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Czech Republic",
+    code: "CZ",
+    coordinates: [15.5, 49.8] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Slovakia",
+    code: "SK",
+    coordinates: [19.7, 48.7] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Poland",
+    code: "PL",
+    coordinates: [19, 52] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Hungary",
+    code: "HU",
+    coordinates: [19.5, 47.2] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Slovenia",
+    code: "SI",
+    coordinates: [14.8, 46.1] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Croatia",
+    code: "HR",
+    coordinates: [16.4, 45.1] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Serbia",
+    code: "RS",
+    coordinates: [21, 44.2] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Romania",
+    code: "RO",
+    coordinates: [25, 46] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Bulgaria",
+    code: "BG",
+    coordinates: [25.5, 42.7] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Greece",
+    code: "GR",
+    coordinates: [22, 39] as [number, number],
+    color: "#00AEEF",
+  },
+  // Africa
+  {
+    name: "Morocco",
+    code: "MA",
+    coordinates: [-6, 32] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Ghana",
+    code: "GH",
+    coordinates: [-1.2, 7.9] as [number, number],
+    color: "#00AEEF",
+  },
+  // Eurasia & Middle East
+  {
+    name: "Turkey",
+    code: "TR",
+    coordinates: [35, 39] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Russia",
+    code: "RU",
+    coordinates: [60, 60] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "Kazakhstan",
+    code: "KZ",
+    coordinates: [67, 48] as [number, number],
+    color: "#00AEEF",
+  },
+  // Asia
+  {
+    name: "Pakistan",
+    code: "PK",
+    coordinates: [69, 30] as [number, number],
     color: "#00AEEF",
   },
   {
     name: "India",
     code: "IN",
-    students: "28+",
-    cities: "Mumbai, Bangalore",
     coordinates: [78, 22] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "China",
+    code: "CN",
+    coordinates: [104, 35] as [number, number],
+    color: "#00AEEF",
+  },
+  {
+    name: "South Korea",
+    code: "KR",
+    coordinates: [127.8, 36] as [number, number],
+    color: "#00AEEF",
+  },
+  // Oceania
+  {
+    name: "Australia",
+    code: "AU",
+    coordinates: [134, -25] as [number, number],
     color: "#00AEEF",
   },
 ];
@@ -211,24 +371,13 @@ export const WorldStudentMap = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute top-8 right-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-100 min-w-[250px]"
+                className="absolute top-8 right-8 bg-white rounded-2xl p-5 shadow-xl border border-gray-100"
               >
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-secondary" />
                   <span className="text-xs font-black uppercase text-primary tracking-wider">
                     {hoveredCountry.name}
                   </span>
-                </div>
-                <div className="flex items-end justify-between mb-2">
-                  <span className="text-3xl font-black text-secondary">
-                    {hoveredCountry.students}
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1">
-                    Students
-                  </span>
-                </div>
-                <div className="text-xs text-slate-500 pt-2 border-t border-gray-100">
-                  {hoveredCountry.cities}
                 </div>
               </motion.div>
             )}
@@ -279,7 +428,7 @@ export const WorldStudentMap = () => {
             transition={{ delay: 0.2 }}
           >
             <div className="text-4xl md:text-5xl font-black text-primary mb-2">
-              10+
+              39+
             </div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
               Countries

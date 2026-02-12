@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Sparkles, Users, Award, Lightbulb, Heart, ArrowRight } from "lucide-react";
+import { Star, Sparkles, Users, Award, Lightbulb, Heart, ArrowRight, CalendarDays, GraduationCap } from "lucide-react";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
@@ -32,40 +32,50 @@ const alumniStories = [
 
 // Alumni company logos data
 const alumniCompanies = [
-  { name: "Google", logo: "https://cdn.simpleicons.org/google/4285F4" },
-  { name: "Deloitte", logo: "https://cdn.simpleicons.org/deloitte/86BC25" },
-  { name: "Amazon", logo: "https://cdn.simpleicons.org/amazon/FF9900" },
-  { name: "McKinsey", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/McKinsey_and_Company_Logo.svg" },
-  { name: "Microsoft", logo: "https://cdn.simpleicons.org/microsoft/5E5E5E" },
-  { name: "Meta", logo: "https://cdn.simpleicons.org/meta/0668E1" },
-  { name: "BCG", logo: "https://upload.wikimedia.org/wikipedia/commons/4/4b/The_Boston_Consulting_Group_Logo.svg" },
-  { name: "Goldman Sachs", logo: "https://cdn.simpleicons.org/goldmansachs/0033A0" },
+  { name: "Growth Capital", logo: "/images/alumni_companies_logos/gc_transparent.png" },
+  { name: "Deloitte", logo: "/images/alumni_companies_logos/DeloitteNewLogo_transparent.png" },
+  { name: "P&G", logo: "/images/alumni_companies_logos/pg_transparent.png" },
+  { name: "KPMG", logo: "/images/alumni_companies_logos/KPMG_transparent.png" },
+  { name: "Danone", logo: "/images/alumni_companies_logos/DANONE_LOGO_HORIZONTAL.png" },
+  { name: "CaixaBank", logo: "/images/alumni_companies_logos/CaixaBank_transparent.png" },
 ];
 
 // Benefits data for Bento grid
 const benefits = [
   {
-    icon: Users,
-    title: "Elite Network",
-    description: "Connect with 500+ ambitious peers and industry leaders across Europe.",
+    icon: CalendarDays,
+    title: "Vibrant Community Events",
+    description: "From BBQs and holiday dinners to department-led activities and weekly meetings, we cultivate a thriving community.",
     gradient: "from-secondary/10 to-secondary/5",
   },
   {
-    icon: Lightbulb,
-    title: "Technical Workshops",
-    description: "Master cutting-edge skills through hands-on workshops led by experts.",
+    icon: GraduationCap,
+    title: "Learning & Development",
+    description: "Grow through internal workshops, panel discussions, and skill-building sessions designed to push you further.",
     gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
   },
   {
     icon: Award,
-    title: "Real Projects",
-    description: "Work on consulting projects with Fortune 500 companies and startups.",
+    title: "Lead Real Projects",
+    description: "Develop project management, teamwork, and partnership outreach skills by leading hands-on initiatives.",
+    gradient: "from-secondary/10 to-secondary/5",
+  },
+  {
+    icon: Users,
+    title: "Highly Selective",
+    description: "This year, only 40 members were accepted from over 250 applicants — you'll be surrounded by the most ambitious peers.",
+    gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
+  },
+  {
+    icon: Lightbulb,
+    title: "Real-World Experience",
+    description: "Turn classroom theory into entrepreneurial practice. Bring your ideas to life in a hands-on environment.",
     gradient: "from-secondary/10 to-secondary/5",
   },
   {
     icon: Heart,
-    title: "Personal Mentorship",
-    description: "Get 1-on-1 guidance from successful alumni and industry veterans.",
+    title: "Lifelong Alumni Network",
+    description: "Current and past members in leadership positions gain access to exclusive events, networking opportunities, and lifelong support.",
     gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
   },
 ];
@@ -117,7 +127,7 @@ export default function JoinPage() {
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm">
               <Sparkles className="w-4 h-4 text-secondary" />
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary/70">
-                Join 500+ Members
+                Join 80+ Members
               </span>
             </div>
           </motion.div>
@@ -138,8 +148,9 @@ export default function JoinPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto leading-relaxed mb-12 font-medium"
           >
-            Join Europe's leading student engineering organization. Be part of a 500+ member community
-            bridging the gap between elite education and world-class careers.
+            Bring your ideas to life, surround yourself with ambitious peers and mentors, and turn
+            classroom theory into real-world experience. Lead real projects, grow as a leader, and
+            meet genuinely cool people.
           </motion.p>
 
           {/* Stats Bar */}
@@ -150,15 +161,15 @@ export default function JoinPage() {
             className="flex flex-wrap justify-center gap-12 mb-16"
           >
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">500+</div>
+              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">80+</div>
               <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Active Members</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-black text-[#A78BFA] mb-2">50+</div>
-              <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Projects Delivered</div>
+              <div className="text-4xl md:text-5xl font-black text-[#A78BFA] mb-2">10+</div>
+              <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Events Organised every year</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">15+</div>
+              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">9</div>
               <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Departments</div>
             </div>
           </motion.div>
@@ -191,7 +202,7 @@ export default function JoinPage() {
               <img
                 src={company.logo}
                 alt={company.name}
-                className="max-w-full max-h-full object-contain p-4"
+                className="max-w-full max-h-full object-contain p-4 mix-blend-multiply"
               />
             </div>
           ))}
@@ -275,11 +286,11 @@ export default function JoinPage() {
               Why Join Ennova?
             </h2>
             <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
-              Transform your university experience into a launchpad for your career
+              A safe, ambitious community where you lead real projects, grow as a leader, and meet genuinely cool people.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (

@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import NextLink from "next/link";
-import { ArrowRight, Users, Target, Lightbulb, TrendingUp, Briefcase, Code, Cpu, Zap, Wrench, Database, Mail } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Users, Briefcase, Zap, BookOpen, Sparkles, Code, Cpu, Wrench, Database } from "lucide-react";
 import { Button } from "@heroui/button";
 import { MajesticLineage } from "@/components/ui/MajesticLineage";
 
@@ -15,31 +17,31 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 
 const story = {
   founding: {
-    year: "2019",
-    story: "Ennova was founded by a group of ambitious engineering students at Sheridan College who saw a gap between academic learning and real-world industry experience. What started as informal study groups evolved into a structured organization dedicated to bridging the divide between classroom theory and professional practice."
+    year: "2018",
+    story: "It all began in September 2018, when five passionate students sat down with Esade and dared to dream bigger. Together, they founded Ennova, not just another student association, but the driving force behind Esade's Rambla of Innovation, a space where ideas come to life and the future of engineering takes shape."
   },
-  mission: "To empower engineering students by providing hands-on experience, industry connections, and entrepreneurial opportunities that prepare them for leadership roles in technology and innovation.",
-  vision: "To become Canada's premier student-led engineering innovation hub, recognized for producing industry-ready engineers and successful startups.",
+  mission: "To open the gates of the startup ecosystem to the best talents in Barcelona, empowering them to leave their mark and shape the future of innovation.",
+  vision: "To be the leading student-run entrepreneurial hub in Spain, recognized by top VCs, Founders and Corporates. To have assisted in creation of unicorns when they were still just ideas of talented students.",
   values: [
     {
-      icon: Target,
-      title: "Excellence",
-      description: "We maintain the highest standards in everything we do, from technical projects to partnerships.",
+      icon: Briefcase,
+      title: "Professionalism",
+      description: "We maintain the highest standards in everything we do, exceeding what is commonly expected from students.",
     },
     {
-      icon: Lightbulb,
-      title: "Innovation",
-      description: "We embrace new ideas and encourage creative problem-solving in all our initiatives.",
+      icon: Zap,
+      title: "Boldness",
+      description: "We keep raising our bar and doing things we've never done before.",
     },
     {
-      icon: Users,
-      title: "Collaboration",
-      description: "We believe the best solutions come from diverse teams working together toward common goals.",
+      icon: BookOpen,
+      title: "Learning",
+      description: "We treat every problem we encounter as an opportunity.",
     },
     {
-      icon: TrendingUp,
-      title: "Impact",
-      description: "We measure our success by the tangible difference we make in students' careers and the industry.",
+      icon: Sparkles,
+      title: "Fun",
+      description: "We maintain an upbeat, cheerful, and positive attitude because what we all do together simply brings us joy.",
     },
   ],
 };
@@ -108,70 +110,80 @@ const departments = [
 ];
 
 const stats = [
-  { value: "500+", label: "Active Members" },
-  { value: "15", label: "Departments" },
-  { value: "70+", label: "Projects Completed" },
-  { value: "30+", label: "Industry Partners" },
+  { value: "80+", label: "Active Members" },
+  { value: "10", label: "Departments" },
+  { value: "8", label: "Years of history" },
 ];
 
 const boardMembers = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Board Chair",
-    title: "Dean of Engineering",
-    bio: "Leading Ennova's strategic vision with 20+ years in engineering education and innovation.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=00AEEF",
-    email: "sarah.chen@sheridan.ca",
-    linkedin: "https://linkedin.com/in/sarahchen",
+    id: "member-1",
+    name: "Nuria Diaz Noguerol",
+    role: "Marketing Director",
+    linkedin: "https://www.linkedin.com/in/nuria-diaz-noguerol/",
+    hotspot: { x: 25, y: 75 },
   },
   {
-    name: "Michael Rodriguez",
-    role: "Vice Chair",
-    title: "CTO, TechCorp Inc.",
-    bio: "Bridging industry partnerships and ensuring real-world relevance in our programs.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael&backgroundColor=000313",
-    email: "m.rodriguez@techcorp.com",
-    linkedin: "https://linkedin.com/in/michaelrodriguez",
+    id: "member-2",
+    name: "María José Peralta",
+    role: "Vice President",
+    linkedin: "https://www.linkedin.com/in/marina-haeckel-blanke-81919728b/",
+    hotspot: { x: 40, y: 72 },
   },
   {
-    name: "Prof. James Wilson",
-    role: "Faculty Advisor",
-    title: "Professor of Software Engineering",
-    bio: "Providing academic guidance and mentorship to student leaders and project teams.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=00AEEF",
-    email: "james.wilson@sheridan.ca",
-    linkedin: "https://linkedin.com/in/jameswilson",
+    id: "member-3",
+    name: "Piotr Fiebig",
+    role: "President",
+    linkedin: "https://www.linkedin.com/in/piotr-fiebig-b54151268/",
+    hotspot: { x: 56, y: 65 },
   },
   {
-    name: "Emma Thompson",
-    role: "Alumni Representative",
-    title: "Founder, InnovateLabs",
-    bio: "Successful entrepreneur and Ennova alumna supporting the next generation of founders.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma&backgroundColor=000313",
-    email: "emma@innovatelabs.io",
-    linkedin: "https://linkedin.com/in/emmathompson",
+    id: "member-4",
+    name: "Marina Haeckel Blanke",
+    role: "Vice President",
+    linkedin: "https://www.linkedin.com/in/marina-haeckel-blanke-81919728b/",
+    hotspot: { x: 68, y: 72 },
   },
   {
-    name: "David Park",
-    role: "Industry Liaison",
-    title: "VP Engineering, StartupXYZ",
-    bio: "Connecting students with cutting-edge industry projects and career opportunities.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=David&backgroundColor=00AEEF",
-    email: "david.park@startupxyz.com",
-    linkedin: "https://linkedin.com/in/davidpark",
-  },
-  {
-    name: "Lisa Anderson",
-    role: "Community Advisor",
-    title: "Director, Innovation Hub",
-    bio: "Facilitating community partnerships and expanding Ennova's regional impact.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa&backgroundColor=000313",
-    email: "lisa.anderson@innovationhub.org",
-    linkedin: "https://linkedin.com/in/lisaanderson",
+    id: "member-5",
+    name: "Lucia Castillo Rodriguez",
+    role: "Internal Operations Director",
+    linkedin: "https://www.linkedin.com/in/lucia-castillo-rodriguez/ ",
+    hotspot: { x: 85, y: 75 },
   },
 ];
 
 export default function AboutPage() {
+  const [activeMember, setActiveMember] = useState<string | null>(null);
+  const leaveTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMouseEnter = useCallback((id: string) => {
+    if (leaveTimeout.current) {
+      clearTimeout(leaveTimeout.current);
+      leaveTimeout.current = null;
+    }
+    setActiveMember(id);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    leaveTimeout.current = setTimeout(() => {
+      setActiveMember(null);
+    }, 500);
+  }, []);
+
+  const handleCardMouseEnter = useCallback(() => {
+    if (leaveTimeout.current) {
+      clearTimeout(leaveTimeout.current);
+      leaveTimeout.current = null;
+    }
+  }, []);
+
+  const handleCardMouseLeave = useCallback(() => {
+    leaveTimeout.current = setTimeout(() => {
+      setActiveMember(null);
+    }, 150);
+  }, []);
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -180,40 +192,60 @@ export default function AboutPage() {
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-purple-500/10 blur-[120px] rounded-full" />
 
-        <div className="container relative mx-auto px-4 z-10 pt-20">
-          <div className="max-w-6xl mx-auto text-center">
+        <div className="container relative mx-auto px-4 sm:px-6 z-10 pt-20 pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
+            {/* Text Content */}
+            <div className="text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mb-6 lg:mb-8"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card">
+                  <Users className="w-4 h-4 text-secondary" />
+                  <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
+                    About Ennova
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 lg:mb-8 leading-[1.1] tracking-tight"
+              >
+                Building the{" "}
+                <span className="text-gradient-accent">Future of Entrepreneurship</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 lg:mb-12 leading-relaxed"
+              >
+                {story.mission}
+              </motion.p>
+            </div>
+
+            {/* Hero Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card">
-                <Users className="w-4 h-4 text-secondary" />
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
-                  About Ennova
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight"
-            >
-              Engineering the{" "}
-              <span className="text-gradient-accent">Future</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden"
             >
-              {story.mission}
-            </motion.p>
+              <Image
+                src="/images/community/Screenshot 2026-01-30 at 15.21.42.png"
+                alt="Ennova community event"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent" />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -221,7 +253,7 @@ export default function AboutPage() {
       {/* Stats Bar */}
       <section className="bg-white py-16 border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -398,77 +430,140 @@ export default function AboutPage() {
               Institutional <span className="text-gradient-accent">Board</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experienced leaders guiding Ennova's vision and strategic direction
+              Experienced leaders guiding Ennova&apos;s vision and strategic direction
+            </p>
+            <p className="text-sm text-gray-400 mt-2 md:hidden">
+              Tap a member to view their profile
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {boardMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white rounded-3xl p-8 border border-gray-200 hover:border-secondary/30 hover:shadow-2xl transition-all duration-500 h-full">
-                  {/* Profile Image */}
-                  <div className="relative mb-6">
-                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-secondary/20 group-hover:border-secondary transition-all duration-500 group-hover:scale-110">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
+          {/* Interactive Group Photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative max-w-5xl mx-auto"
+          >
+            <div className="relative aspect-[3/2] rounded-3xl overflow-hidden">
+              <Image
+                src="/images/community/Inst_Board.jpeg"
+                alt="Ennova Institutional Board members"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1024px"
+              />
+              {/* Bottom gradient for label readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/20 to-transparent" />
 
-                  {/* Member Info */}
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-dark mb-1 group-hover:text-secondary transition-colors duration-300">
+              {/* Mobile tap-outside dismiss backdrop */}
+              {activeMember && (
+                <div
+                  className="absolute inset-0 z-10 md:hidden"
+                  onClick={() => setActiveMember(null)}
+                />
+              )}
+
+              {/* Hotspot zones */}
+              {boardMembers.map((member) => (
+                <div
+                  key={member.id}
+                  className="absolute z-20 flex flex-col items-center"
+                  style={{
+                    left: `${member.hotspot.x}%`,
+                    top: `${member.hotspot.y}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View ${member.name}'s profile`}
+                  onMouseEnter={() => handleMouseEnter(member.id)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() =>
+                    setActiveMember(activeMember === member.id ? null : member.id)
+                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveMember(activeMember === member.id ? null : member.id);
+                    }
+                  }}
+                >
+                  {/* Pulsing ring indicator */}
+                  <motion.div
+                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-2 transition-colors duration-300 ${
+                      activeMember === member.id
+                        ? "border-secondary bg-secondary/10"
+                        : "border-secondary/50"
+                    }`}
+                    animate={{
+                      scale: activeMember === member.id ? 1 : [1, 1.15, 1],
+                      opacity: activeMember === member.id ? 1 : [0.6, 0.3, 0.6],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: activeMember === member.id ? 0 : Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  {/* Persistent name label */}
+                  <div
+                    className={`mt-1 px-2 py-1 md:px-3 md:py-1.5 glass-dark rounded-lg text-center transition-all duration-300 max-w-[90px] md:max-w-[140px] ${
+                      activeMember === member.id
+                        ? "ring-1 ring-secondary/50"
+                        : activeMember
+                          ? "opacity-60"
+                          : ""
+                    }`}
+                  >
+                    <p className="text-white text-[8px] md:text-xs font-bold leading-tight">
                       {member.name}
-                    </h3>
-                    <p className="text-sm font-semibold text-secondary mb-1">
+                    </p>
+                    <p className="text-secondary text-[7px] md:text-[10px] font-semibold hidden md:block leading-tight">
                       {member.role}
                     </p>
-                    <p className="text-sm text-gray-500 mb-4">
-                      {member.title}
-                    </p>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                      {member.bio}
-                    </p>
-
-                    {/* Contact Links */}
-                    <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-200">
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="flex items-center gap-2 text-xs text-gray-600 hover:text-secondary transition-colors duration-300"
-                        aria-label={`Email ${member.name}`}
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span className="hidden sm:inline">Email</span>
-                      </a>
-                      <div className="w-px h-4 bg-gray-300" />
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs text-gray-600 hover:text-secondary transition-colors duration-300"
-                        aria-label={`LinkedIn profile of ${member.name}`}
-                      >
-                        <LinkedInIcon className="w-4 h-4" />
-                        <span className="hidden sm:inline">LinkedIn</span>
-                      </a>
-                    </div>
                   </div>
-
-                  {/* Bottom Accent Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+
+            </div>
+
+            {/* Info card — below photo so it's always clickable */}
+            <AnimatePresence>
+              {activeMember && (() => {
+                const member = boardMembers.find((m) => m.id === activeMember);
+                if (!member) return null;
+                return (
+                  <motion.div
+                    key={member.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    onMouseEnter={handleCardMouseEnter}
+                    onMouseLeave={handleCardMouseLeave}
+                    className="mt-4 glass-dark rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                  >
+                    <div>
+                      <p className="text-white font-bold text-lg">{member.name}</p>
+                      <p className="text-secondary text-sm font-semibold">
+                        {member.role}
+                      </p>
+                    </div>
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary/20 hover:bg-secondary/30 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold transition-colors shrink-0"
+                    >
+                      <LinkedInIcon className="w-4 h-4" />
+                      View LinkedIn Profile
+                    </a>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
@@ -488,7 +583,7 @@ export default function AboutPage() {
               Ready to Join Our <span className="text-gradient-accent">Community</span>?
             </h2>
             <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-              Become part of Sheridan's most innovative student engineering organization
+              Become part of Esades's most innovative student association
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
