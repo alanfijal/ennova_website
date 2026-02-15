@@ -4,9 +4,10 @@ import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NextLink from "next/link";
 import Image from "next/image";
-import { ArrowRight, Users, Briefcase, Zap, BookOpen, Sparkles, Code, Cpu, Wrench, Database } from "lucide-react";
+import { ArrowRight, Users, Briefcase, Zap, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@heroui/button";
 import { MajesticLineage } from "@/components/ui/MajesticLineage";
+import { departments } from "@/data";
 
 // LinkedIn Icon Component
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -46,68 +47,6 @@ const story = {
   ],
 };
 
-const departments = [
-  {
-    icon: Code,
-    name: "Software Engineering",
-    slug: "software-engineering",
-    description: "Full-stack development, mobile apps, web applications, and software architecture.",
-    members: 120,
-    projects: 15,
-    color: "from-secondary to-gradient",
-    focus: "Software",
-  },
-  {
-    icon: Cpu,
-    name: "Electrical Engineering",
-    slug: "electrical-engineering",
-    description: "Circuit design, embedded systems, PCB development, and hardware integration.",
-    members: 85,
-    projects: 12,
-    color: "from-purple-500 to-gradient",
-    focus: "Hardware",
-  },
-  {
-    icon: Wrench,
-    name: "Mechanical Engineering",
-    slug: "mechanical-engineering",
-    description: "CAD design, prototyping, manufacturing, and mechanical systems integration.",
-    members: 95,
-    projects: 10,
-    color: "from-[#FFD700] to-secondary",
-    focus: "Hardware",
-  },
-  {
-    icon: Database,
-    name: "Data Science & AI",
-    slug: "data-science-ai",
-    description: "Machine learning, data analysis, predictive modeling, and AI applications.",
-    members: 75,
-    projects: 8,
-    color: "from-green-500 to-secondary",
-    focus: "Software",
-  },
-  {
-    icon: Briefcase,
-    name: "Consulting",
-    slug: "consulting",
-    description: "Business solutions, technical consulting, and strategic advisory services.",
-    members: 45,
-    projects: 18,
-    color: "from-orange-500 to-purple-500",
-    focus: "Business",
-  },
-  {
-    icon: Zap,
-    name: "Entrepreneurship",
-    slug: "entrepreneurship",
-    description: "Startup incubation, business development, and venture creation support.",
-    members: 60,
-    projects: 7,
-    color: "from-pink-500 to-[#FFD700]",
-    focus: "Business",
-  },
-];
 
 const stats = [
   { value: "80+", label: "Active Members" },
