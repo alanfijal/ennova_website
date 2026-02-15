@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Sparkles, Users, Award, Lightbulb, Heart, ArrowRight, CalendarDays, GraduationCap } from "lucide-react";
+import { StarIcon, SparkleIcon, UsersIcon, TrophyIcon, LightbulbIcon, HeartIcon, ArrowRightIcon, CalendarDotsIcon, GraduationCapIcon } from "@phosphor-icons/react";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
@@ -43,37 +43,37 @@ const alumniCompanies = [
 // Benefits data for Bento grid
 const benefits = [
   {
-    icon: CalendarDays,
+    icon: CalendarDotsIcon,
     title: "Vibrant Community Events",
     description: "From BBQs and holiday dinners to department-led activities and weekly meetings, we cultivate a thriving community.",
     gradient: "from-secondary/10 to-secondary/5",
   },
   {
-    icon: GraduationCap,
+    icon: GraduationCapIcon,
     title: "Learning & Development",
     description: "Grow through internal workshops, panel discussions, and skill-building sessions designed to push you further.",
     gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
   },
   {
-    icon: Award,
+    icon: TrophyIcon,
     title: "Lead Real Projects",
     description: "Develop project management, teamwork, and partnership outreach skills by leading hands-on initiatives.",
     gradient: "from-secondary/10 to-secondary/5",
   },
   {
-    icon: Users,
+    icon: UsersIcon,
     title: "Highly Selective",
     description: "This year, only 40 members were accepted from over 250 applicants — you'll be surrounded by the most ambitious peers.",
     gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
   },
   {
-    icon: Lightbulb,
+    icon: LightbulbIcon,
     title: "Real-World Experience",
     description: "Turn classroom theory into entrepreneurial practice. Bring your ideas to life in a hands-on environment.",
     gradient: "from-secondary/10 to-secondary/5",
   },
   {
-    icon: Heart,
+    icon: HeartIcon,
     title: "Lifelong Alumni Network",
     description: "Current and past members in leadership positions gain access to exclusive events, networking opportunities, and lifelong support.",
     gradient: "from-[#A78BFA]/10 to-[#A78BFA]/5",
@@ -125,7 +125,7 @@ export default function JoinPage() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm">
-              <Sparkles className="w-4 h-4 text-secondary" />
+              <SparkleIcon className="w-4 h-4 text-secondary" />
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary/70">
                 Join 80+ Members
               </span>
@@ -250,7 +250,7 @@ export default function JoinPage() {
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="text-xl font-bold text-primary">{alumni.name}</h3>
                           {alumni.elite && (
-                            <Star className="w-5 h-5 text-red-500 fill-red-500" />
+                            <StarIcon className="w-5 h-5 text-red-500 fill-red-500" />
                           )}
                         </div>
                         <p className="text-sm font-semibold text-secondary">{alumni.role}</p>
@@ -343,7 +343,7 @@ export default function JoinPage() {
               as={NextLink}
               href="/about#departments"
               className="h-16 px-12 bg-primary text-white hover:bg-secondary hover:text-white font-bold rounded-none transition-all shadow-lg"
-              endContent={<ArrowRight className="w-5 h-5" />}
+              endContent={<ArrowRightIcon className="w-5 h-5" />}
             >
               Explore All Departments
             </Button>
@@ -418,7 +418,7 @@ export default function JoinPage() {
               href="/about"
               variant="bordered"
               className="border-primary/20 text-primary hover:bg-primary hover:text-white font-bold rounded-none px-8"
-              endContent={<ArrowRight className="w-4 h-4" />}
+              endContent={<ArrowRightIcon className="w-4 h-4" />}
             >
               Learn More About Us
             </Button>

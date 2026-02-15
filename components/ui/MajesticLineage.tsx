@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowUpRight, CircleDot } from "lucide-react";
+import { SparkleIcon, ArrowUpRightIcon, CircleIcon } from "@phosphor-icons/react";
 
 const eras = [
   {
@@ -59,7 +59,7 @@ export function MajesticLineage() {
         <div className="mb-32 flex flex-col md:flex-row items-end justify-between gap-8">
           <div className="relative">
             <div className="flex items-center gap-2 mb-4">
-              <CircleDot className="text-secondary w-4 h-4 animate-pulse" />
+              <CircleIcon className="text-secondary w-4 h-4 animate-pulse" />
               <span className="font-mono text-[10px] tracking-[0.4em] text-gray-500 uppercase">Operational History // Deployment Log</span>
             </div>
             <h2 className="font-heading text-7xl md:text-[10rem] font-black uppercase tracking-tighter text-white leading-[0.8]">
@@ -116,7 +116,7 @@ export function MajesticLineage() {
                       
                       <div className="flex items-center gap-6">
                         <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-                           <Sparkles className="w-4 h-4 text-secondary" />
+                           <SparkleIcon className="w-4 h-4 text-secondary" />
                            <span className="font-mono text-[10px] text-white tracking-[0.3em] uppercase font-bold">{era.metric}</span>
                         </div>
                         <motion.div 
@@ -124,7 +124,7 @@ export function MajesticLineage() {
                           transition={{ repeat: Infinity, duration: 2 }}
                           className="text-secondary hidden sm:flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase font-black"
                         >
-                          System Log Verified <ArrowUpRight size={14} />
+                          System Log Verified <ArrowUpRightIcon size={14} />
                         </motion.div>
                       </div>
                     </div>

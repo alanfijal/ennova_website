@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Mail, ExternalLink } from "lucide-react";
+import { ArrowLeftIcon, EnvelopeIcon, ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { Avatar } from "@heroui/avatar";
@@ -55,7 +55,7 @@ export default function DepartmentPage() {
               as={Link}
               href="/about"
               variant="light"
-              startContent={<ArrowLeft className="w-4 h-4" />}
+              startContent={<ArrowLeftIcon className="w-4 h-4" />}
               className="text-white mb-8"
             >
               Back to About
@@ -304,7 +304,7 @@ export default function DepartmentPage() {
                         href={`mailto:${member.email}`}
                         size="sm"
                         variant="bordered"
-                        startContent={<Mail className="w-4 h-4" />}
+                        startContent={<EnvelopeIcon className="w-4 h-4" />}
                         className="flex-1"
                       >
                         Email
@@ -339,7 +339,7 @@ export default function DepartmentPage() {
                 href="/join"
                 size="lg"
                 className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none"
-                endContent={<ExternalLink className="w-5 h-5" />}
+                endContent={<ArrowSquareOutIcon className="w-5 h-5" />}
               >
                 Apply Now
               </Button>

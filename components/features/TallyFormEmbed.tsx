@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Clock, Bell } from "lucide-react";
+import { ClockIcon, BellIcon } from "@phosphor-icons/react";
 
 interface TallyFormEmbedProps {
   showComingSoon?: boolean;
@@ -36,7 +36,7 @@ export function TallyFormEmbed({
             transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
             className="inline-flex items-center justify-center w-24 h-24 mb-6 bg-gradient-to-br from-primary to-secondary rounded-full"
           >
-            <Clock className="w-12 h-12 text-white" />
+            <ClockIcon className="w-12 h-12 text-white" />
           </motion.div>
 
           <motion.h3
@@ -70,7 +70,7 @@ export function TallyFormEmbed({
           >
             <div className="p-6 rounded-xl bg-background/50 backdrop-blur-sm border border-primary/20">
               <div className="flex items-center gap-3 mb-2">
-                <Bell className="w-5 h-5 text-primary" />
+                <BellIcon className="w-5 h-5 text-primary" />
                 <h4 className="font-semibold">Get Notified</h4>
               </div>
               <p className="text-sm text-foreground/60">
@@ -80,7 +80,7 @@ export function TallyFormEmbed({
 
             <div className="p-6 rounded-xl bg-background/50 backdrop-blur-sm border border-secondary/20">
               <div className="flex items-center gap-3 mb-2">
-                <Clock className="w-5 h-5 text-secondary" />
+                <ClockIcon className="w-5 h-5 text-secondary" />
                 <h4 className="font-semibold">Stay Tuned</h4>
               </div>
               <p className="text-sm text-foreground/60">

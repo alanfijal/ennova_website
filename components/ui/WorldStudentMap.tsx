@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, MapPin } from "lucide-react";
+import { GlobeIcon, MapPinIcon } from "@phosphor-icons/react";
 import {
   ComposableMap,
   Geographies,
@@ -275,7 +275,7 @@ export const WorldStudentMap = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 mb-6"
           >
-            <Globe className="w-4 h-4 text-secondary" />
+            <GlobeIcon className="w-4 h-4 text-secondary" />
             <span className="text-[10px] font-black tracking-[0.2em] uppercase text-secondary">
               International Community
             </span>
@@ -374,7 +374,7 @@ export const WorldStudentMap = () => {
                 className="absolute top-8 right-8 bg-white rounded-2xl p-5 shadow-xl border border-gray-100"
               >
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-secondary" />
+                  <MapPinIcon className="w-4 h-4 text-secondary" />
                   <span className="text-xs font-black uppercase text-primary tracking-wider">
                     {hoveredCountry.name}
                   </span>

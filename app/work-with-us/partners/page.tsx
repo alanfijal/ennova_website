@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { ArrowRight, Users, Rocket, TrendingUp, Building2, GraduationCap, Lightbulb } from "lucide-react";
+import { ArrowRightIcon, UsersIcon, RocketIcon, TrendUpIcon, BuildingsIcon, GraduationCapIcon, LightbulbIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { ContactForm } from "@/components/features/ContactForm";
 import { BarcelonaConnectivityMap } from "@/components/ui/BarcelonaConnectivityMap";

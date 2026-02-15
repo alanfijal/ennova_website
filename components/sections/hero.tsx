@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Sparkles, Globe } from "lucide-react";
+import { ArrowRightIcon, SparkleIcon, GlobeIcon } from "@phosphor-icons/react";
 import { Particles } from "@/components/magicui/particles";
 import NextLink from "next/link";
 
@@ -94,7 +94,7 @@ export function Hero() {
             className="mb-10"
           >
             <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
-              <Sparkles className="w-4 h-4 text-secondary animate-pulse" />
+              <SparkleIcon className="w-4 h-4 text-secondary animate-pulse" />
               <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
                 The Future of Engineering is Here
               </span>
@@ -142,14 +142,14 @@ export function Hero() {
               as={Link}
               href="/work-with-us"
               className="h-16 px-12 bg-white text-dark hover:bg-secondary hover:text-white font-black text-lg rounded-none shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all group"
-              endContent={<ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />}
+              endContent={<ArrowRightIcon className="w-6 h-6 group-hover:translate-x-2 transition-transform" />}
             >
               Work With Us
             </Button>
             
             <NextLink href="/join" className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors">
               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
-                 <Globe className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
+                 <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
               </div>
               Join the Community
             </NextLink>

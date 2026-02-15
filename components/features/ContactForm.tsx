@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@heroui/button";
 import { Input, Textarea } from "@heroui/input";
-import { Send, CheckCircle } from "lucide-react";
+import { PaperPlaneRightIcon, CheckCircleIcon } from "@phosphor-icons/react";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -46,7 +46,7 @@ export function ContactForm() {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center py-12"
         >
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+          <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
           <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
           <p className="text-gray-400">
             Thank you for reaching out. We'll get back to you within 24 hours.
@@ -126,7 +126,7 @@ export function ContactForm() {
             disabled={isSubmitting}
             className="w-full h-14 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all disabled:opacity-50"
             endContent={
-              isSubmitting ? null : <Send className="w-5 h-5" />
+              isSubmitting ? null : <PaperPlaneRightIcon className="w-5 h-5" />
             }
           >
             {isSubmitting ? "Sending..." : "Send Message"}

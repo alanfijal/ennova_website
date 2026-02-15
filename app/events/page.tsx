@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { siteConfig } from "@/config/site";
 import {
-  TrendingUp,
-  Leaf,
-  Lightbulb,
-  ArrowRight,
-  FileText,
-  ExternalLink,
-  Target,
-  Fingerprint
-} from "lucide-react";
+  TrendUpIcon,
+  LeafIcon,
+  LightbulbIcon,
+  ArrowRightIcon,
+  FileTextIcon,
+  ArrowSquareOutIcon,
+  TargetIcon,
+  FingerprintIcon
+} from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { TechnicalGrid } from "@/components/ui/TechnicalGrid";
 import { events as initiatives } from "@/data";
@@ -23,25 +23,25 @@ const domains = [
     id: "all",
     label: "ALL OPERATIONS",
     count: initiatives.length,
-    icon: Target,
+    icon: TargetIcon,
   },
   {
     id: "ENTREPRENEURSHIP",
     label: "ENTREPRENEURSHIP",
     count: initiatives.filter(a => a.domain === "ENTREPRENEURSHIP").length,
-    icon: Lightbulb,
+    icon: LightbulbIcon,
   },
   {
     id: "SUSTAINABILITY",
     label: "SUSTAINABILITY",
     count: initiatives.filter(a => a.domain === "SUSTAINABILITY").length,
-    icon: Leaf,
+    icon: LeafIcon,
   },
   {
     id: "CONSULTING",
     label: "CONSULTING",
     count: initiatives.filter(a => a.domain === "CONSULTING").length,
-    icon: TrendingUp,
+    icon: TrendUpIcon,
   },
 ];
 
@@ -81,7 +81,7 @@ function InitiativeSpec({ initiative, index }: { initiative: typeof initiatives[
         {/* Content & Specs */}
         <div className="lg:col-span-6">
           <div className="flex items-center gap-4 mb-6">
-            <Fingerprint className="text-secondary w-5 h-5 opacity-40" />
+            <FingerprintIcon className="text-secondary w-5 h-5 opacity-40" />
             <span className="font-black text-[10px] tracking-[0.4em] text-secondary uppercase italic">
                {initiative.domain}
             </span>
@@ -109,7 +109,7 @@ function InitiativeSpec({ initiative, index }: { initiative: typeof initiatives[
             as={NextLink}
             href={`/events/${initiative.slug}`}
             className="h-14 px-10 bg-white text-primary rounded-none font-black text-xs uppercase tracking-widest hover:bg-secondary hover:text-white transition-all"
-            endContent={<ArrowRight className="w-4 h-4" />}
+            endContent={<ArrowRightIcon className="w-4 h-4" />}
           >
             Open Initiative File
           </Button>
@@ -212,7 +212,7 @@ export default function MajesticEventsPage() {
           <VerticalInitiativesLayout key={selectedDomain} initiatives={filteredInitiatives} />
         ) : (
           <div className="py-40 text-center">
-            <FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+            <FileTextIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-2">No initiatives found</h3>
             <p className="text-gray-500">
               Check back later for new deployments in this domain.
@@ -242,7 +242,7 @@ export default function MajesticEventsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-16 px-12 bg-primary text-white rounded-none font-black text-xs uppercase tracking-widest hover:bg-secondary"
-                endContent={<ExternalLink className="w-5 h-5" />}
+                endContent={<ArrowSquareOutIcon className="w-5 h-5" />}
                >
                  Join Events
                </Button>
@@ -250,7 +250,7 @@ export default function MajesticEventsPage() {
                   as={NextLink}
                   href="/work-with-us"
                   className="h-16 px-12 bg-transparent text-primary rounded-none font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white border-2 border-primary transition-all"
-                  endContent={<ArrowRight className="w-5 h-5" />}
+                  endContent={<ArrowRightIcon className="w-5 h-5" />}
                 >
                   Partner With Us
                 </Button>

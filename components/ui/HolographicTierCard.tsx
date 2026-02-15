@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRightIcon, CheckIcon } from "@phosphor-icons/react";
 import NextLink from "next/link";
 import { Button } from "@heroui/button";
 
@@ -174,7 +174,7 @@ export function HolographicTierCard({
                     recommended ? "bg-secondary/10" : "bg-white/10"
                   }`}
                 >
-                  <Check
+                  <CheckIcon
                     className={`w-4 h-4 ${
                       recommended ? "text-secondary" : "text-secondary"
                     }`}
@@ -201,7 +201,7 @@ export function HolographicTierCard({
             }`}
             style={{ transform: "translateZ(20px)" }}
             endContent={
-              <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+              <ArrowRightIcon className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
             }
           >
             Choose {tier}

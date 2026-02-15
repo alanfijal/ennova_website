@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Users, ArrowRight, Sparkles } from "lucide-react";
+import { CalendarIcon, UsersIcon, ArrowRightIcon, SparkleIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import gsap from "gsap";
@@ -126,7 +126,7 @@ export function KeyEvents() {
             className="mb-6"
           >
             <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-dark border border-white/10">
-              <Sparkles className="w-4 h-4 text-secondary animate-pulse" />
+              <SparkleIcon className="w-4 h-4 text-secondary animate-pulse" />
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-400">
                 Upcoming Opportunities
               </span>
@@ -171,7 +171,7 @@ export function KeyEvents() {
                 {/* Category Badge */}
                 <div className="mb-4">
                   <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10 ${event.iconColor} uppercase tracking-wider`}>
-                    <Calendar className="w-3 h-3" />
+                    <CalendarIcon className="w-3 h-3" />
                     {event.category}
                   </span>
                 </div>
@@ -195,7 +195,7 @@ export function KeyEvents() {
                   <div className="text-right">
                     <div className="text-xs text-gray-500 uppercase mb-1">Expected</div>
                     <div className="flex items-center gap-1.5 text-sm font-bold text-secondary">
-                      <Users className="w-4 h-4" />
+                      <UsersIcon className="w-4 h-4" />
                       {event.participants.split(" ")[0]}
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export function KeyEvents() {
                 <NextLink href={`/events/${event.slug}`} className="block">
                   <div className="flex items-center justify-between text-white group-hover:text-secondary transition-colors duration-300">
                     <span className="font-bold text-sm">Learn More</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                    <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
                 </NextLink>
               </div>
@@ -228,7 +228,7 @@ export function KeyEvents() {
             as={NextLink}
             href="/events"
             className="h-14 px-10 bg-white/10 text-white hover:bg-white hover:text-primary border border-white/20 font-bold text-base rounded-none shadow-lg transition-all group"
-            endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />}
+            endContent={<ArrowRightIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform" />}
           >
             View All Events
           </Button>

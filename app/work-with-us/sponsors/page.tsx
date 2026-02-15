@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { ArrowRight, Award, Users, TrendingUp, Megaphone, Camera, Trophy, Sparkles } from "lucide-react";
+import { ArrowRightIcon, TrophyIcon, UsersIcon, TrendUpIcon, MegaphoneIcon, CameraIcon, CrownIcon, SparkleIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { ContactForm } from "@/components/features/ContactForm";
 

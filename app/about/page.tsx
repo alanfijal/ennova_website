@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import NextLink from "next/link";
 import Image from "next/image";
-import { ArrowRight, Users, Briefcase, Zap, BookOpen, Sparkles } from "lucide-react";
+import { ArrowRightIcon, UsersIcon, BriefcaseIcon, LightningIcon, BookOpenIcon, SparkleIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { MajesticLineage } from "@/components/ui/MajesticLineage";
 import { departments } from "@/data";
@@ -25,22 +25,22 @@ const story = {
   vision: "To be the leading student-run entrepreneurial hub in Spain, recognized by top VCs, Founders and Corporates. To have assisted in creation of unicorns when they were still just ideas of talented students.",
   values: [
     {
-      icon: Briefcase,
+      icon: BriefcaseIcon,
       title: "Professionalism",
       description: "We maintain the highest standards in everything we do, exceeding what is commonly expected from students.",
     },
     {
-      icon: Zap,
+      icon: LightningIcon,
       title: "Boldness",
       description: "We keep raising our bar and doing things we've never done before.",
     },
     {
-      icon: BookOpen,
+      icon: BookOpenIcon,
       title: "Learning",
       description: "We treat every problem we encounter as an opportunity.",
     },
     {
-      icon: Sparkles,
+      icon: SparkleIcon,
       title: "Fun",
       description: "We maintain an upbeat, cheerful, and positive attitude because what we all do together simply brings us joy.",
     },
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 className="mb-6 lg:mb-8"
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card">
-                  <Users className="w-4 h-4 text-secondary" />
+                  <UsersIcon className="w-4 h-4 text-secondary" />
                   <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
                     About Ennova
                   </span>
@@ -343,7 +343,7 @@ export default function AboutPage() {
 
                   <div className="flex items-center gap-2 text-secondary group-hover:text-white font-semibold text-sm transition-all">
                     <span>View Team</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </NextLink>
               );
@@ -529,7 +529,7 @@ export default function AboutPage() {
                 as={NextLink}
                 href="/join"
                 className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all"
-                endContent={<ArrowRight className="w-5 h-5" />}
+                endContent={<ArrowRightIcon className="w-5 h-5" />}
               >
                 Join Ennova
               </Button>

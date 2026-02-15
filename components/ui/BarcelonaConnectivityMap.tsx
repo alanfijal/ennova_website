@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TechnicalGrid } from "./TechnicalGrid";
-import { Crosshair } from "lucide-react";
+import { CrosshairIcon } from "@phosphor-icons/react";
 
 interface Node {
   id: string;
@@ -150,7 +150,7 @@ export function BarcelonaConnectivityMap() {
             className="absolute bottom-8 right-8 w-64 glass-dark border-l-2 border-secondary p-6 z-30"
           >
             <div className="flex items-center gap-2 mb-4">
-               <Crosshair className="text-secondary w-4 h-4" />
+               <CrosshairIcon className="text-secondary w-4 h-4" />
                <span className="font-mono text-[10px] text-white tracking-widest uppercase">Target_Data</span>
             </div>
             <h4 className="font-heading text-xl text-white mb-2 uppercase">

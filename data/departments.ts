@@ -1,10 +1,10 @@
-import { Code, Cpu, Wrench, Database, Briefcase, Zap } from "lucide-react";
+import { CodeIcon, CpuIcon, WrenchIcon, DatabaseIcon, BriefcaseIcon, LightningIcon } from "@phosphor-icons/react";
 import type { Department, DepartmentDetail } from "./types";
 
 
 export const departments: Department[] = [
   {
-    icon: Code,
+    icon: CodeIcon,
     name: "Software Engineering",
     slug: "software-engineering",
     description: "Full-stack development, mobile apps, web applications, and software architecture.",
@@ -14,7 +14,7 @@ export const departments: Department[] = [
     focus: "Software",
   },
   {
-    icon: Cpu,
+    icon: CpuIcon,
     name: "Electrical Engineering",
     slug: "electrical-engineering",
     description: "Circuit design, embedded systems, PCB development, and hardware integration.",
@@ -24,7 +24,7 @@ export const departments: Department[] = [
     focus: "Hardware",
   },
   {
-    icon: Wrench,
+    icon: WrenchIcon,
     name: "Mechanical Engineering",
     slug: "mechanical-engineering",
     description: "CAD design, prototyping, manufacturing, and mechanical systems integration.",
@@ -34,7 +34,7 @@ export const departments: Department[] = [
     focus: "Hardware",
   },
   {
-    icon: Database,
+    icon: DatabaseIcon,
     name: "Data Science & AI",
     slug: "data-science-ai",
     description: "Machine learning, data analysis, predictive modeling, and AI applications.",
@@ -44,7 +44,7 @@ export const departments: Department[] = [
     focus: "Software",
   },
   {
-    icon: Briefcase,
+    icon: BriefcaseIcon,
     name: "Consulting",
     slug: "consulting",
     description: "Business solutions, technical consulting, and strategic advisory services.",
@@ -54,7 +54,7 @@ export const departments: Department[] = [
     focus: "Business",
   },
   {
-    icon: Zap,
+    icon: LightningIcon,
     name: "Entrepreneurship",
     slug: "entrepreneurship",
     description: "Startup incubation, business development, and venture creation support.",

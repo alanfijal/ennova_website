@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 import NextLink from "next/link";
 import Image from "next/image";
-import { ArrowRight, Briefcase, Handshake, Award, ChevronRight } from "lucide-react";
+import { ArrowRightIcon, BriefcaseIcon, HandshakeIcon, TrophyIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { ContactForm } from "@/components/features/ContactForm";
 import { BarcelonaConnectivityMap } from "@/components/ui/BarcelonaConnectivityMap";
 
 const services = [
   {
-    icon: Briefcase,
+    icon: BriefcaseIcon,
     title: "Consulting Services",
     description: "Ennova Consulting is powered by highly motivated, competent students who thrive on real-world challenges—if you need agile, hands-on teams to tackle operational issues or market research, we're the right people to work with.",
     href: "/work-with-us/consulting",
@@ -18,7 +18,7 @@ const services = [
     features: ["Operational Consulting", "Market Research", "Business Solutions"],
   },
   {
-    icon: Handshake,
+    icon: HandshakeIcon,
     title: "Strategic Partnerships",
     description: "Strategic Partnerships with Ennova offer long-term brand exposure within ESADE's student community. Choose this option if you want continuous visibility across our events, social media, and ecosystem through a sustained partnership with Ennova.",
     href: "/work-with-us/partners",
@@ -26,7 +26,7 @@ const services = [
     features: ["Brand Visibility", "Event Presence", "Social Media Exposure"],
   },
   {
-    icon: Award,
+    icon: TrophyIcon,
     title: "Event Sponsorship",
     description: "Be an Event Sponsor if you are looking for focused, high-impact visibility through a specific Ennova event, with opportunities to engage on-site, promote your brand, and participate as a mentor, speaker, or judge.",
     href: "/work-with-us/sponsors",
@@ -70,7 +70,7 @@ export default function WorkWithUsPage() {
                 className="mb-6 lg:mb-8"
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card">
-                  <Briefcase className="w-4 h-4 text-secondary" />
+                  <BriefcaseIcon className="w-4 h-4 text-secondary" />
                   <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
                     Corporate Partnerships
                   </span>
@@ -109,7 +109,7 @@ export default function WorkWithUsPage() {
                   as={NextLink}
                   href="#services"
                   className="h-12 sm:h-14 px-8 sm:px-10 w-full sm:w-auto bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all group"
-                  endContent={<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+                  endContent={<ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 >
                   Explore Services
                 </Button>
@@ -217,7 +217,7 @@ export default function WorkWithUsPage() {
                         <ul className="space-y-2 mb-6">
                           {service.features.map((feature, idx) => (
                             <li key={idx} className="flex items-center text-sm text-gray-600">
-                              <ChevronRight className="w-4 h-4 text-secondary mr-2 flex-shrink-0" />
+                              <CaretRightIcon className="w-4 h-4 text-secondary mr-2 flex-shrink-0" />
                               {feature}
                             </li>
                           ))}
@@ -225,7 +225,7 @@ export default function WorkWithUsPage() {
 
                         <div className="flex items-center text-secondary font-bold group-hover:gap-2 transition-all duration-300">
                           Learn More
-                          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </div>
                       </div>
 
@@ -295,7 +295,7 @@ export default function WorkWithUsPage() {
                     className="flex items-start"
                   >
                     <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
-                      <ChevronRight className="w-4 h-4 text-secondary" />
+                      <CaretRightIcon className="w-4 h-4 text-secondary" />
                     </div>
                     <span className="text-gray-700 leading-relaxed">{benefit}</span>
                   </motion.li>
@@ -322,7 +322,7 @@ export default function WorkWithUsPage() {
                     as={NextLink}
                     href="#contact"
                     className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all duration-500 px-8 h-12"
-                    endContent={<ArrowRight className="w-5 h-5" />}
+                    endContent={<ArrowRightIcon className="w-5 h-5" />}
                   >
                     Schedule a Consultation
                   </Button>

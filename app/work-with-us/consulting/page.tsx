@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { ArrowRight, Building2, CheckCircle2, ExternalLink } from "lucide-react";
+import { ArrowRightIcon, BuildingsIcon, CheckCircleIcon, ArrowSquareOutIcon } from "@phosphor-icons/react";
 import { TechnicalGrid } from "@/components/ui/TechnicalGrid";
 import { ContactForm } from "@/components/features/ContactForm";
 

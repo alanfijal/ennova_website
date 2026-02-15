@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Users, Briefcase, Award, TrendingUp } from "lucide-react";
+import { UsersIcon, BriefcaseIcon, TrophyIcon, TrendUpIcon } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { NumberTicker } from "@/components/magicui/number-ticker";
@@ -12,28 +12,28 @@ if (typeof window !== "undefined") {
 
 const stats = [
   {
-    icon: Users,
+    icon: UsersIcon,
     value: 500,
     suffix: "+",
     label: "Active Members",
     description: "Engineering students collaborating",
   },
   {
-    icon: Briefcase,
+    icon: BriefcaseIcon,
     value: 50,
     suffix: "+",
     label: "Projects Completed",
     description: "Innovative solutions delivered",
   },
   {
-    icon: Award,
+    icon: TrophyIcon,
     value: 15,
     suffix: "+",
     label: "Departments",
     description: "Specialized technical teams",
   },
   {
-    icon: TrendingUp,
+    icon: TrendUpIcon,
     value: 98,
     suffix: "%",
     label: "Success Rate",

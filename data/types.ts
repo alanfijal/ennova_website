@@ -1,9 +1,9 @@
-import type { LucideIcon } from "lucide-react";
+import type { Icon } from "@phosphor-icons/react";
 
 // ─── Departments ─────────────────────────────────────────────
 
 export interface Department {
-  icon: LucideIcon;
+  icon: Icon;
   name: string;
   slug: string;
   description: string;

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import NextLink from "next/link";
-import { ArrowLeft, Users, Target, TrendingUp, ExternalLink, Camera } from "lucide-react";
+import { ArrowLeftIcon, UsersIcon, TargetIcon, TrendUpIcon, ArrowSquareOutIcon, CameraIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import Image from "next/image";
 import { getEventBySlug } from "@/data";
@@ -27,7 +27,7 @@ export default async function ActivityDetailPage({ params }: { params: Promise<{
               href="/events"
               className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeftIcon className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to Activity Library
             </NextLink>
           </div>
