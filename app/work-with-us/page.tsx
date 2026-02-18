@@ -14,7 +14,7 @@ const services = [
     title: "Consulting Services",
     description: "Ennova Consulting is powered by highly motivated, competent students who thrive on real-world challenges—if you need agile, hands-on teams to tackle operational issues or market research, we're the right people to work with.",
     href: "/work-with-us/consulting",
-    color: "from-secondary to-gradient",
+    color: "bg-secondary",
     features: ["Operational Consulting", "Market Research", "Business Solutions"],
   },
   {
@@ -22,7 +22,7 @@ const services = [
     title: "Strategic Partnerships",
     description: "Strategic Partnerships with Ennova offer long-term brand exposure within ESADE's student community. Choose this option if you want continuous visibility across our events, social media, and ecosystem through a sustained partnership with Ennova.",
     href: "/work-with-us/partners",
-    color: "from-purple-500 to-gradient",
+    color: "bg-secondary",
     features: ["Brand Visibility", "Event Presence", "Social Media Exposure"],
   },
   {
@@ -30,7 +30,7 @@ const services = [
     title: "Event Sponsorship",
     description: "Be an Event Sponsor if you are looking for focused, high-impact visibility through a specific Ennova event, with opportunities to engage on-site, promote your brand, and participate as a mentor, speaker, or judge.",
     href: "/work-with-us/sponsors",
-    color: "from-[#FFD700] to-secondary",
+    color: "bg-secondary",
     features: ["On-Site Engagement", "Mentorship & Speaking", "Targeted Brand Promotion"],
   },
 ];
@@ -202,7 +202,7 @@ export default function WorkWithUsPage() {
                       <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       <div className="relative z-10">
-                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${service.color} mb-6 group-hover:scale-110 transition-transform duration-500`}>
                           <Icon className="w-8 h-8 text-white" />
                         </div>
 

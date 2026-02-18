@@ -6,6 +6,12 @@ export const eventType = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'eventId',
+      title: 'Event ID',
+      type: 'string',
+      description: 'e.g. ENNOVA-001',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -22,33 +28,24 @@ export const eventType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'date',
-      title: 'Event Date',
-      type: 'datetime',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'endDate',
-      title: 'End Date',
-      type: 'datetime',
-      description: 'Optional end date for multi-day events',
-    }),
-    defineField({
-      name: 'location',
-      title: 'Location',
+      name: 'domain',
+      title: 'Domain',
       type: 'string',
+      options: {
+        list: [
+          { title: 'Competition', value: 'COMPETITION' },
+          { title: 'Conference', value: 'CONFERENCE' },
+          { title: 'Sports', value: 'SPORTS' },
+          { title: 'Impact', value: 'IMPACT' },
+        ],
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
       rows: 4,
-    }),
-    defineField({
-      name: 'content',
-      title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'image',
@@ -66,9 +63,105 @@ export const eventType = defineType({
       ],
     }),
     defineField({
-      name: 'registrationLink',
-      title: 'Registration Link',
+      name: 'keyHighlights',
+      title: 'Key Highlights',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'specs',
+      title: 'Specs',
+      type: 'object',
+      fields: [
+        defineField({ name: 'reach', title: 'Reach', type: 'string' }),
+        defineField({ name: 'conversion', title: 'Conversion', type: 'string' }),
+        defineField({ name: 'status', title: 'Status', type: 'string' }),
+      ],
+    }),
+
+    // ─── Event Detail Fields ──────────────────────────────────
+    defineField({
+      name: 'date',
+      title: 'Event Date',
+      type: 'string',
+      description: 'Display date, e.g. "March 15-16, 2026"',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+    }),
+    defineField({
+      name: 'registrationUrl',
+      title: 'Registration URL',
       type: 'url',
+    }),
+    defineField({
+      name: 'overview',
+      title: 'Overview',
+      type: 'text',
+      rows: 6,
+    }),
+    defineField({
+      name: 'objectives',
+      title: 'Objectives',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'impact',
+      title: 'Impact',
+      type: 'object',
+      fields: [
+        defineField({ name: 'partnerships', title: 'Partnerships', type: 'number' }),
+        defineField({ name: 'participants', title: 'Participants', type: 'number' }),
+        defineField({ name: 'outcomes', title: 'Outcomes', type: 'string' }),
+        defineField({ name: 'funding', title: 'Funding', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'outcomes',
+      title: 'Outcomes',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+            defineField({ name: 'description', title: 'Description', type: 'text' }),
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'testimonial',
+      title: 'Testimonial',
+      type: 'object',
+      fields: [
+        defineField({ name: 'quote', title: 'Quote', type: 'text' }),
+        defineField({ name: 'author', title: 'Author', type: 'string' }),
+        defineField({ name: 'role', title: 'Role', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'media',
+      title: 'Media Gallery',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Alternative text' },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'partners',
+      title: 'Partners',
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'featured',
@@ -80,14 +173,14 @@ export const eventType = defineType({
   preview: {
     select: {
       title: 'title',
-      date: 'date',
+      domain: 'domain',
       media: 'image',
     },
     prepare(selection) {
-      const { title, date } = selection
+      const { title, domain } = selection
       return {
         ...selection,
-        subtitle: date ? new Date(date).toLocaleDateString() : 'No date',
+        subtitle: domain || 'No domain',
       }
     },
   },

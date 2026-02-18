@@ -5,54 +5,41 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/modal";
 
-// Sample community images - Replace these with actual Sanity CMS data
 const communityImages = [
   {
     id: 1,
-    src: "/images/community/ski-trip.jpg",
-    alt: "Team ski trip in the Alps",
+    src: "/images/life_at_ennova/IMG_1302.JPG",
+    alt: "Ennova team event",
     span: "row-span-2",
   },
   {
     id: 2,
-    src: "/images/community/networking-dinner.jpg",
-    alt: "Networking dinner event",
+    src: "/images/life_at_ennova/100_2119.JPG",
+    alt: "Community gathering",
     span: "row-span-1",
   },
   {
     id: 3,
-    src: "/images/community/workshop.jpg",
-    alt: "Workshop session",
+    src: "/images/life_at_ennova/IMG_1156.JPG",
+    alt: "Team activity",
     span: "row-span-1",
   },
   {
     id: 4,
-    src: "/images/community/team-photo.jpg",
-    alt: "Team photo at Esade",
+    src: "/images/life_at_ennova/02df2b70-15bc-4a27-b8a3-72b18ae3e44a.JPG",
+    alt: "Life at Ennova",
     span: "row-span-2",
   },
   {
     id: 5,
-    src: "/images/community/hackathon.jpg",
-    alt: "Hackathon weekend",
+    src: "/images/life_at_ennova/IMG_9042.jpg",
+    alt: "Ennova community",
     span: "row-span-1",
   },
   {
     id: 6,
-    src: "/images/community/conference.jpg",
-    alt: "Speaking at conference",
-    span: "row-span-2",
-  },
-  {
-    id: 7,
-    src: "/images/community/social-event.jpg",
-    alt: "Social gathering",
-    span: "row-span-1",
-  },
-  {
-    id: 8,
-    src: "/images/community/project-work.jpg",
-    alt: "Collaborative project work",
+    src: "/images/life_at_ennova/IMG_9089.jpg",
+    alt: "Ennova experience",
     span: "row-span-1",
   },
 ];
@@ -86,21 +73,13 @@ export function MasonryGallery() {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-            {/* Placeholder with gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-              <span className="text-foreground/40 text-sm font-medium">
-                {image.alt}
-              </span>
-            </div>
-
-            {/* Uncomment when actual images are available */}
-            {/* <Image
+            <Image
               src={image.src}
               alt={image.alt}
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-500"
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-            /> */}
+            />
 
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
               <p className="text-sm font-medium drop-shadow-lg">{image.alt}</p>
@@ -123,26 +102,13 @@ export function MasonryGallery() {
           <ModalBody className="p-0">
             {selectedImage && (
               <div className="relative w-full h-[80vh] rounded-2xl overflow-hidden">
-                {/* Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="text-foreground/60 text-lg font-medium block mb-2">
-                      {selectedImage.alt}
-                    </span>
-                    <span className="text-foreground/40 text-sm">
-                      Image preview
-                    </span>
-                  </div>
-                </div>
-
-                {/* Uncomment when actual images are available */}
-                {/* <Image
+                <Image
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   fill
                   className="object-contain"
                   sizes="90vw"
-                /> */}
+                />
 
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                   <p className="text-white text-lg font-medium">

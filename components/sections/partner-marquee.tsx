@@ -1,19 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Marquee } from "@/components/magicui/marquee";
+import { allPartners, type Partner } from "@/data/partners";
 
-const partners = [
-  { name: "Sheridan College", logo: "/logos/sheridan.svg" },
-  { name: "Deloitte", logo: "/logos/deloitte.svg" },
-  { name: "Esade", logo: "/logos/esade.svg" },
-  { name: "Google", logo: "/logos/google.svg" },
-  { name: "Microsoft", logo: "/logos/microsoft.svg" },
-  { name: "Amazon", logo: "/logos/amazon.svg" },
-];
-
-function PartnerCard({ partner }: { partner: typeof partners[0] }) {
+function PartnerCard({ partner }: { partner: Partner }) {
   return (
     <div className="group relative mx-4 flex h-32 w-64 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-secondary/50 hover:bg-white/10">
       {/* 1. Subtle Background Glow on Hover */}
@@ -58,7 +49,7 @@ export function PartnerMarquee() {
       {/* The Marquee with Edge Fades */}
       <div className="relative flex flex-col items-center justify-center gap-4 py-10">
         <Marquee pauseOnHover className="[--duration:40s]">
-          {partners.map((partner, index) => (
+          {allPartners.map((partner, index) => (
             <PartnerCard key={index} partner={partner} />
           ))}
         </Marquee>

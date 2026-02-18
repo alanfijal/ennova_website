@@ -33,7 +33,7 @@ export const Footer = () => {
               />
             </NextLink>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Engineering Innovation at Sheridan College. Fostering excellence through industry collaboration.
+              ESADE&apos;s student-led entrepreneurship and innovation association based in Barcelona.
             </p>
           </div>
 
@@ -78,11 +78,7 @@ export const Footer = () => {
 
         {/* Legal & Copyright */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© {currentYear} Ennova Engineering Club. All rights reserved.</p>
-          <div className="flex gap-6">
-            <NextLink href="/privacy" className="hover:text-white transition-colors">Privacy</NextLink>
-            <NextLink href="/terms" className="hover:text-white transition-colors">Terms</NextLink>
-          </div>
+          <p>© {currentYear} Ennova. All rights reserved.</p>
         </div>
       </div>
     </footer>

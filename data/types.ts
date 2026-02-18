@@ -17,11 +17,11 @@ export interface DepartmentMember {
   id: number;
   name: string;
   role: string;
-  position: string;
-  image: string;
-  linkedin: string;
-  email: string;
-  bio: string;
+  position?: string;
+  image?: string;
+  linkedin?: string;
+  email?: string;
+  bio?: string;
   skills?: string[];
 }
 
@@ -29,14 +29,14 @@ export interface DepartmentDetail {
   name: string;
   description: string;
   color: string;
-  stats: {
+  stats?: {
     members: number;
     projects: number;
   };
-  whatWeDo: string[];
-  tools: string[];
-  teamPhoto: string;
-  members: DepartmentMember[];
+  whatWeDo?: string[];
+  tools?: string[];
+  teamPhoto?: string;
+  members?: DepartmentMember[];
 }
 
 // ─── Events ──────────────────────────────────────────────────
@@ -56,27 +56,27 @@ export interface EventDetail {
   slug: string;
   title: string;
   domain: string;
-  date: string;
-  location: string;
-  description: string;
-  registrationUrl: string;
-  impact: {
+  date?: string;
+  location?: string;
+  description?: string;
+  registrationUrl?: string;
+  impact?: {
     partnerships: number;
     participants: number;
     outcomes: string;
     funding: string;
   };
-  overview: string;
-  objectives: string[];
-  outcomes: {
+  overview?: string;
+  objectives?: string[];
+  outcomes?: {
     title: string;
     description: string;
   }[];
-  testimonial: {
+  testimonial?: {
     quote: string;
     author: string;
     role: string;
   };
-  media: string[];
-  partners: string[];
+  media?: string[];
+  partners?: string[];
 }

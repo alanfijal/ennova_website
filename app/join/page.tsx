@@ -374,55 +374,10 @@ export default function JoinPage() {
         </div>
       </section>
 
-      {/* Section 5: Application Funnel - Mega Card */}
-      <section className="relative w-full py-24 px-6 z-10 bg-gradient-to-b from-transparent via-primary/5 to-primary/10">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">
-              Apply Now
-            </h2>
-            <p className="text-lg md:text-xl text-slate-500">
-              Take the first step towards joining our community of future leaders
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {/* Mega Card Wrapper */}
-            <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-primary/20 border border-primary/20">
-              <TallyFormEmbed />
-            </div>
-          </motion.div>
-
-          {/* Extra CTA after form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
-          >
-            <p className="text-slate-500 mb-4">Have questions about the application process?</p>
-            <Button
-              as={NextLink}
-              href="/about"
-              variant="bordered"
-              className="border-primary/20 text-primary hover:bg-primary hover:text-white font-bold rounded-none px-8"
-              endContent={<ArrowRightIcon className="w-4 h-4" />}
-            >
-              Learn More About Us
-            </Button>
-          </motion.div>
+      {/* Section 5: Applications */}
+      <section className="relative w-full py-24 px-6 z-10">
+        <div className="max-w-md mx-auto">
+          <TallyFormEmbed />
         </div>
       </section>
     </div>

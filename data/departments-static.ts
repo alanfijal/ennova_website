@@ -1,10 +1,23 @@
-import {DatabaseIcon, BriefcaseIcon, LightningIcon, FootballIcon, RocketLaunchIcon, LightbulbIcon, LightbulbFilamentIcon, UsersIcon, CoinsIcon } from "@phosphor-icons/react";
-import type { Department, DepartmentDetail } from "./types";
+import type { DepartmentDetail } from "./types";
 
+// ─── Serializable department listing data (no React imports) ──────
+// This file mirrors departments.ts but without Phosphor icon imports,
+// making it safe for server-side rendering and static generation.
 
-export const departments: Department[] = [
+export interface StaticDepartment {
+  iconName: string
+  name: string
+  slug: string
+  description: string
+  members: number
+  projects: number
+  color: string
+  focus: string
+}
+
+export const staticDepartments: StaticDepartment[] = [
   {
-    icon: BriefcaseIcon,
+    iconName: "BriefcaseIcon",
     name: "Consulting",
     slug: "consulting",
     description: "Consulting services for startups.",
@@ -14,7 +27,7 @@ export const departments: Department[] = [
     focus: "Services",
   },
   {
-    icon: FootballIcon,
+    iconName: "FootballIcon",
     name: "Sports",
     slug: "sports",
     description: "Sports-tech & management events.",
@@ -24,7 +37,7 @@ export const departments: Department[] = [
     focus: "Events",
   },
   {
-    icon: RocketLaunchIcon,
+    iconName: "RocketLaunchIcon",
     name: "Ventures",
     slug: "ventures",
     description: "Events that offer students an entry to the startup ecosystem.",
@@ -34,7 +47,7 @@ export const departments: Department[] = [
     focus: "Events",
   },
   {
-    icon: LightbulbIcon,
+    iconName: "LightbulbIcon",
     name: "Innovation",
     slug: "Innovation",
     description: "Connecting students to most accomplished professionals in the startup ecosystem.",
@@ -44,7 +57,7 @@ export const departments: Department[] = [
     focus: "Events",
   },
   {
-    icon: LightbulbFilamentIcon,
+    iconName: "LightbulbFilamentIcon",
     name: "Impact",
     slug: "impact",
     description: "Social entrepreneurship & sustainability events.",
@@ -54,7 +67,7 @@ export const departments: Department[] = [
     focus: "Events",
   },
   {
-    icon: UsersIcon,
+    iconName: "UsersIcon",
     name: "Human Resources",
     slug: "hr",
     description: "Assuring success of each member.",
@@ -64,7 +77,7 @@ export const departments: Department[] = [
     focus: "Core",
   },
   {
-    icon: LightningIcon,
+    iconName: "LightningIcon",
     name: "Marketing",
     slug: "marketing",
     description: "Brand management, content creation & leading Ennova's growth.",
@@ -74,7 +87,7 @@ export const departments: Department[] = [
     focus: "Core",
   },
   {
-    icon: DatabaseIcon,
+    iconName: "DatabaseIcon",
     name: "Data Analytics",
     slug: "data",
     description: "Developing digital solutions to improve the experience of all stakeholders.",
@@ -83,8 +96,8 @@ export const departments: Department[] = [
     color: "from-pink-500 to-[#FFD700]",
     focus: "Core",
   },
-    {
-    icon: CoinsIcon,
+  {
+    iconName: "CoinsIcon",
     name: "Finance & Partnerships",
     slug: "finance-partnerships",
     description: "Budget control & financial planning. Establishing relationships with corporate partners.",
@@ -95,16 +108,14 @@ export const departments: Department[] = [
   },
 ];
 
+// ─── Department details (no React imports) ──────
 
 const departmentDetails: Record<string, DepartmentDetail> = {
   "software-engineering": {
     name: "Software Engineering",
     description: "Our software engineering team builds cutting-edge web and mobile applications, develops robust backend systems, and creates innovative software solutions for clients and internal projects.",
     color: "from-secondary to-gradient",
-    stats: {
-      members: 120,
-      projects: 15,
-    },
+    stats: { members: 120, projects: 15 },
     whatWeDo: [
       "Build full-stack web applications using modern frameworks and best practices",
       "Develop mobile applications for iOS and Android platforms",
@@ -116,58 +127,17 @@ const departmentDetails: Record<string, DepartmentDetail> = {
     tools: ["React", "Next.js", "Node.js", "Python", "TypeScript", "Docker", "AWS", "PostgreSQL", "MongoDB", "Git"],
     teamPhoto: "/images/departments/software-team.jpg",
     members: [
-      {
-        id: 1,
-        name: "Sarah Johnson",
-        role: "Head of Software Engineering",
-        position: "Lead Developer",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/sarahjohnson",
-        email: "sarah@ennova.org",
-        bio: "Full-stack developer with 3 years of experience in building scalable web applications. Passionate about clean code and mentoring junior developers.",
-        skills: ["React", "Node.js", "TypeScript", "AWS"],
-      },
-      {
-        id: 2,
-        name: "Michael Chen",
-        role: "Backend Developer",
-        position: "Senior Developer",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/michaelchen",
-        email: "michael@ennova.org",
-        bio: "Specialized in building high-performance APIs and microservices architecture. Love working with databases and optimization.",
-        skills: ["Python", "PostgreSQL", "Docker", "Redis"],
-      },
-      {
-        id: 3,
-        name: "Emma Rodriguez",
-        role: "Frontend Developer",
-        position: "UI/UX Developer",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/emmarodriguez",
-        email: "emma@ennova.org",
-        bio: "Creating beautiful and accessible user interfaces. Strong focus on performance and user experience.",
-      },
-      {
-        id: 4,
-        name: "James Anderson",
-        role: "Mobile Developer",
-        position: "iOS/Android Developer",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/jamesanderson",
-        email: "james@ennova.org",
-        bio: "Building cross-platform mobile applications with React Native. Focused on delivering smooth user experiences.",
-      },
+      { id: 1, name: "Sarah Johnson", role: "Head of Software Engineering", position: "Lead Developer", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/sarahjohnson", email: "sarah@ennova.org", bio: "Full-stack developer with 3 years of experience in building scalable web applications. Passionate about clean code and mentoring junior developers.", skills: ["React", "Node.js", "TypeScript", "AWS"] },
+      { id: 2, name: "Michael Chen", role: "Backend Developer", position: "Senior Developer", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/michaelchen", email: "michael@ennova.org", bio: "Specialized in building high-performance APIs and microservices architecture. Love working with databases and optimization.", skills: ["Python", "PostgreSQL", "Docker", "Redis"] },
+      { id: 3, name: "Emma Rodriguez", role: "Frontend Developer", position: "UI/UX Developer", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/emmarodriguez", email: "emma@ennova.org", bio: "Creating beautiful and accessible user interfaces. Strong focus on performance and user experience." },
+      { id: 4, name: "James Anderson", role: "Mobile Developer", position: "iOS/Android Developer", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/jamesanderson", email: "james@ennova.org", bio: "Building cross-platform mobile applications with React Native. Focused on delivering smooth user experiences." },
     ],
   },
   "consulting": {
     name: "Consulting",
     description: "Our consulting team provides strategic advisory services to businesses, helping them solve complex challenges and drive growth through data-driven insights and innovative solutions.",
     color: "from-orange-500 to-purple-500",
-    stats: {
-      members: 45,
-      projects: 18,
-    },
+    stats: { members: 45, projects: 18 },
     whatWeDo: [
       "Deliver strategic consulting projects for Fortune 500 companies",
       "Conduct market research and competitive analysis",
@@ -179,37 +149,15 @@ const departmentDetails: Record<string, DepartmentDetail> = {
     tools: ["PowerPoint", "Excel", "Tableau", "SQL", "Python", "Miro", "Notion", "Figma"],
     teamPhoto: "/images/departments/consulting-team.jpg",
     members: [
-      {
-        id: 1,
-        name: "David Williams",
-        role: "Head of Consulting",
-        position: "Lead Consultant",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/davidwilliams",
-        email: "david@ennova.org",
-        bio: "Strategic consultant with experience in digital transformation and operational excellence. Delivered 20+ successful projects.",
-        skills: ["Strategy", "Business Analysis", "Change Management", "Stakeholder Management"],
-      },
-      {
-        id: 2,
-        name: "Sophie Martin",
-        role: "Business Analyst",
-        position: "Senior Analyst",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/sophiemartin",
-        email: "sophie@ennova.org",
-        bio: "Data-driven analyst specializing in market research and competitive analysis. Passionate about turning insights into action.",
-      },
+      { id: 1, name: "David Williams", role: "Head of Consulting", position: "Lead Consultant", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/davidwilliams", email: "david@ennova.org", bio: "Strategic consultant with experience in digital transformation and operational excellence. Delivered 20+ successful projects.", skills: ["Strategy", "Business Analysis", "Change Management", "Stakeholder Management"] },
+      { id: 2, name: "Sophie Martin", role: "Business Analyst", position: "Senior Analyst", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/sophiemartin", email: "sophie@ennova.org", bio: "Data-driven analyst specializing in market research and competitive analysis. Passionate about turning insights into action." },
     ],
   },
   "entrepreneurship": {
     name: "Entrepreneurship",
     description: "Our entrepreneurship team supports aspiring founders in building and scaling their startups, providing mentorship, resources, and connections to bring innovative ideas to life.",
     color: "from-pink-500 to-[#FFD700]",
-    stats: {
-      members: 60,
-      projects: 7,
-    },
+    stats: { members: 60, projects: 7 },
     whatWeDo: [
       "Support student founders in building their startups from idea to launch",
       "Organize pitch competitions and demo days",
@@ -221,32 +169,12 @@ const departmentDetails: Record<string, DepartmentDetail> = {
     tools: ["Pitch Deck", "Lean Canvas", "Notion", "Airtable", "Figma", "Google Analytics", "LinkedIn", "Canva"],
     teamPhoto: "/images/departments/entrepreneurship-team.jpg",
     members: [
-      {
-        id: 1,
-        name: "Alex Thompson",
-        role: "Head of Entrepreneurship",
-        position: "Venture Lead",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/alexthompson",
-        email: "alex@ennova.org",
-        bio: "Serial entrepreneur with 2 successful exits. Passionate about helping students build their dream companies.",
-        skills: ["Business Strategy", "Fundraising", "Pitch Design", "Network Building"],
-      },
-      {
-        id: 2,
-        name: "Lisa Park",
-        role: "Venture Developer",
-        position: "Growth Specialist",
-        image: "/images/team/placeholder.jpg",
-        linkedin: "https://linkedin.com/in/lisapark",
-        email: "lisa@ennova.org",
-        bio: "Helping startups find product-market fit and scale efficiently. Background in growth marketing and operations.",
-      },
+      { id: 1, name: "Alex Thompson", role: "Head of Entrepreneurship", position: "Venture Lead", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/alexthompson", email: "alex@ennova.org", bio: "Serial entrepreneur with 2 successful exits. Passionate about helping students build their dream companies.", skills: ["Business Strategy", "Fundraising", "Pitch Design", "Network Building"] },
+      { id: 2, name: "Lisa Park", role: "Venture Developer", position: "Growth Specialist", image: "/images/team/placeholder.jpg", linkedin: "https://linkedin.com/in/lisapark", email: "lisa@ennova.org", bio: "Helping startups find product-market fit and scale efficiently. Background in growth marketing and operations." },
     ],
   },
 };
 
-
-export function getDepartmentBySlug(slug: string): DepartmentDetail | undefined {
+export function getStaticDepartmentBySlug(slug: string): DepartmentDetail | undefined {
   return departmentDetails[slug];
 }

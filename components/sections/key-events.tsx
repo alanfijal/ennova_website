@@ -7,49 +7,13 @@ import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { SerializableEvent } from "@/sanity/lib/fetch";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Featured key events data
-const keyEvents = [
-  {
-    id: 1,
-    title: "Sustainable Energy Innovation Summit",
-    description: "Join industry leaders for a deep-dive into renewable energy solutions. Network with Fortune 500 companies and witness student-led innovation showcases.",
-    date: "March 2026",
-    participants: "250+ Participants",
-    category: "Sustainability",
-    slug: "sustainable-energy-summit",
-    gradient: "from-emerald-500/20 to-green-500/10",
-    iconColor: "text-emerald-400",
-  },
-  {
-    id: 2,
-    title: "Entrepreneurship Pitch Competition",
-    description: "Annual competition showcasing student ventures with $500K in seed funding commitments. Get mentorship from serial entrepreneurs and VCs.",
-    date: "April 2026",
-    participants: "150+ Participants",
-    category: "Entrepreneurship",
-    slug: "startup-pitch-competition",
-    gradient: "from-amber-500/20 to-yellow-500/10",
-    iconColor: "text-amber-400",
-  },
-  {
-    id: 3,
-    title: "AI Strategy Consulting Bootcamp",
-    description: "Intensive training where students deliver AI transformation roadmaps to real SME clients under faculty supervision.",
-    date: "February 2026",
-    participants: "40+ Participants",
-    category: "Consulting",
-    slug: "ai-consulting-bootcamp",
-    gradient: "from-blue-500/20 to-cyan-500/10",
-    iconColor: "text-blue-400",
-  },
-];
-
-export function KeyEvents() {
+export function KeyEvents({ events }: { events: SerializableEvent[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -57,7 +21,6 @@ export function KeyEvents() {
     if (typeof window === "undefined" || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Stagger animation for event cards
       gsap.fromTo(
         cardsRef.current,
         {
@@ -84,6 +47,8 @@ export function KeyEvents() {
 
     return () => ctx.revert();
   }, []);
+
+  if (events.length === 0) return null;
 
   return (
     <section ref={sectionRef} className="relative py-32 bg-dark overflow-hidden">
@@ -156,7 +121,7 @@ export function KeyEvents() {
 
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {keyEvents.map((event, index) => (
+          {events.map((event, index) => (
             <div
               key={event.id}
               ref={(el) => {
@@ -165,14 +130,14 @@ export function KeyEvents() {
               className="group relative glass-dark rounded-3xl p-8 transition-all duration-500 hover:border-secondary/40 hover:-translate-y-2 overflow-hidden"
             >
               {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${event.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
                 {/* Category Badge */}
                 <div className="mb-4">
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10 ${event.iconColor} uppercase tracking-wider`}>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10 text-secondary uppercase tracking-wider">
                     <CalendarIcon className="w-3 h-3" />
-                    {event.category}
+                    {event.domain}
                   </span>
                 </div>
 
@@ -188,17 +153,21 @@ export function KeyEvents() {
 
                 {/* Event Meta */}
                 <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/10">
-                  <div>
-                    <div className="text-xs text-gray-500 uppercase mb-1">Date</div>
-                    <div className="text-sm font-bold text-white">{event.date}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs text-gray-500 uppercase mb-1">Expected</div>
-                    <div className="flex items-center gap-1.5 text-sm font-bold text-secondary">
-                      <UsersIcon className="w-4 h-4" />
-                      {event.participants.split(" ")[0]}
+                  {event.date && (
+                    <div>
+                      <div className="text-xs text-gray-500 uppercase mb-1">Date</div>
+                      <div className="text-sm font-bold text-white">{event.date}</div>
                     </div>
-                  </div>
+                  )}
+                  {event.expectedParticipants && (
+                    <div className="text-right">
+                      <div className="text-xs text-gray-500 uppercase mb-1">Expected</div>
+                      <div className="flex items-center gap-1.5 text-sm font-bold text-secondary">
+                        <UsersIcon className="w-4 h-4" />
+                        {event.expectedParticipants}+
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* CTA */}

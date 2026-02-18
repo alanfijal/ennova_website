@@ -3,9 +3,9 @@ import type { Event, EventDetail } from "./types";
 
 export const events: Event[] = [
   {
-    id: "INIT-001",
-    slug: "sustainable-energy-summit",
-    title: "Sustainable Energy Summit",
+    id: "ENNOVA-001",
+    slug: "vc101",
+    title: "VC101",
     domain: "SUSTAINABILITY",
     description: "Architecting renewable energy frameworks with Fortune 500 corporations and emerging technical founders.",
     specs: { reach: "250+ ENGAGED", conversion: "15 PARTNERS", status: "3 VENTURES_FORMED" },
@@ -17,13 +17,13 @@ export const events: Event[] = [
     ],
   },
   {
-    id: "INIT-002",
-    slug: "ai-consulting-bootcamp",
-    title: "AI Strategy Bootcamp",
+    id: "ENNOVA-002",
+    slug: "case-cracking",
+    title: "Case Cracking Competition",
     domain: "CONSULTING",
     description: "Intensive deployment protocol where technical teams delivered transformation roadmaps to SME partners.",
     specs: { reach: "40+ DEPLOYED", conversion: "5 DELIVERABLES", status: "ACTIVE_CYCLE" },
-    image: "https://placehold.co/1200x800/13182e/white?text=AI_PROTOCOL",
+    image: "/images/events/case_cracking.png",
     keyHighlights: [
       "Real client engagements with measurable ROI",
       "Faculty-supervised consulting methodologies",
@@ -31,13 +31,13 @@ export const events: Event[] = [
     ],
   },
   {
-    id: "INIT-003",
-    slug: "startup-pitch-competition",
-    title: "Venture Capital Protocol",
+    id: "ENNOVA-003",
+    slug: "f4x",
+    title: "F4X",
     domain: "ENTREPRENEURSHIP",
     description: "Annual deployment showcasing technical ventures with global capital market participation.",
     specs: { reach: "150+ FOUNDERS", conversion: "12 VC_FIRMS", status: "$500K_COMMITTED" },
-    image: "https://placehold.co/1200x800/13182e/white?text=VC_PROTOCOL",
+    image: "/images/events/f4x.png",
     keyHighlights: [
       "Venture capital firm participation",
       "Mentorship from serial entrepreneurs",
@@ -45,13 +45,13 @@ export const events: Event[] = [
     ],
   },
   {
-    id: "INIT-004",
-    slug: "circular-economy-workshop",
-    title: "Circular Economy Lab",
+    id: "ENNOVA-004",
+    slug: "female-founders-night",
+    title: "Female Founders Night",
     domain: "SUSTAINABILITY",
     description: "Technical deployment focused on waste reduction frameworks and sustainable manufacturing protocols.",
     specs: { reach: "60+ ENGINEERS", conversion: "8 PARTNERS", status: "4 PROTOTYPES" },
-    image: "https://placehold.co/1200x800/13182e/white?text=CIRCULAR_LAB",
+    image: "/images/events/female_founders_night.png",
     keyHighlights: [
       "Industry partner co-creation sessions",
       "Life cycle analysis training",
@@ -59,13 +59,13 @@ export const events: Event[] = [
     ],
   },
   {
-    id: "INIT-005",
-    slug: "fintech-consulting-series",
-    title: "FinTech Protocol Series",
+    id: "ENNOVA-005",
+    slug: "ideaup",
+    title: "IdeaUp",
     domain: "CONSULTING",
     description: "Multi-phase engagement with financial institutions deploying blockchain and digital banking frameworks.",
     specs: { reach: "30+ DEPLOYED", conversion: "3 INSTITUTIONS", status: "3 PAPERS_PUBLISHED" },
-    image: "https://placehold.co/1200x800/13182e/white?text=FINTECH_PROTOCOL",
+    image: "/images/events/IdeaUp.png",
     keyHighlights: [
       "Blockchain technology implementation analysis",
       "Regulatory compliance consulting",
@@ -73,9 +73,9 @@ export const events: Event[] = [
     ],
   },
   {
-    id: "INIT-006",
-    slug: "venture-builder-program",
-    title: "Venture Builder System",
+    id: "ENNOVA-006",
+    slug: "inside-the-game",
+    title: "Inside The Game",
     domain: "ENTREPRENEURSHIP",
     description: "12-week intensive protocol transforming technical concepts into incorporated market entities.",
     specs: { reach: "45+ FOUNDERS", conversion: "10 PARTNERS", status: "6 INCORPORATED" },
@@ -145,7 +145,6 @@ const eventDetails: Record<string, EventDetail> = {
   },
 };
 
-// ─── Helpers ─────────────────────────────────────────────────
 
 export function getEventBySlug(slug: string): EventDetail | undefined {
   return eventDetails[slug];
