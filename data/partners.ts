@@ -47,6 +47,20 @@ export const studentAssociations: Partner[] = [
   { name: "ESCP Agora", logo: "/images/partners/escp-agora.png", category: "student-association" },
 ];
 
+// ─── Strategic Partners (Homepage) ──────────────────────────
+// Logos go in: public/images/partners/
+export const strategicPartners: Partner[] = [
+  { name: "ESADE", logo: "/images/partners/esade.png", category: "esade" },
+  { name: "Conector", logo: "/images/partners/conector.png", category: "corporate" },
+  { name: "BCombinator", logo: "/images/partners/bcombinator.png", category: "corporate" },
+  { name: "22@", logo: "/images/partners/22at.svg", category: "corporate" },
+  { name: "Coca-Cola", logo: "/images/partners/coca-cola.png", category: "corporate" },
+  { name: "Deloitte", logo: "/images/partners/deloitte.png", category: "corporate" },
+  { name: "Notion", logo: "/images/partners/notion.png", category: "corporate" },
+  { name: "eWorks", logo: "/images/partners/eworks.png", category: "esade" },
+  { name: "ESADE BAN", logo: "/images/partners/esade-ban.png", category: "esade" },
+];
+
 // ─── Convenience exports ────────────────────────────────────
 export const allPartners: Partner[] = [
   ...corporatePartners,

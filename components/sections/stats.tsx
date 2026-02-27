@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { UsersIcon, BriefcaseIcon, TrophyIcon, TrendUpIcon } from "@phosphor-icons/react";
+import { RocketLaunchIcon, UsersThreeIcon, GraduationCapIcon, SquaresFourIcon, StudentIcon } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { NumberTicker } from "@/components/magicui/number-ticker";
@@ -12,32 +12,39 @@ if (typeof window !== "undefined") {
 
 const stats = [
   {
-    icon: UsersIcon,
-    value: 500,
-    suffix: "+",
+    icon: RocketLaunchIcon,
+    value: 151,
+    suffix: "",
+    label: "Initiatives Launched",
+    description: "Successful events and projects completed",
+  },
+  {
+    icon: UsersThreeIcon,
+    value: 84,
+    suffix: "",
     label: "Active Members",
-    description: "Engineering students collaborating",
+    description: "A force of collaborating Esade students",
   },
   {
-    icon: BriefcaseIcon,
-    value: 50,
+    icon: GraduationCapIcon,
+    value: 300,
     suffix: "+",
-    label: "Projects Completed",
-    description: "Innovative solutions delivered",
+    label: "Alumni",
+    description: "Members actively contributing throughout the years",
   },
   {
-    icon: TrophyIcon,
-    value: 15,
-    suffix: "+",
+    icon: SquaresFourIcon,
+    value: 10,
+    suffix: "",
     label: "Departments",
-    description: "Specialized technical teams",
+    description: "Specialized executive teams",
   },
   {
-    icon: TrendUpIcon,
-    value: 98,
-    suffix: "%",
-    label: "Success Rate",
-    description: "Project completion rate",
+    icon: StudentIcon,
+    value: 5500,
+    suffix: "+",
+    label: "Students Impacted",
+    description: "Talented young people we helped",
   },
 ];
 
@@ -86,11 +93,11 @@ export function Stats() {
             Our Impact in <span className="italic text-gradient-accent">Numbers</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-            Quantifying the engineering excellence we bring to the Sheridan ecosystem.
+            The numbers behind our community, initiatives, and the impact we create at Esade.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (

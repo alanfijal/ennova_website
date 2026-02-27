@@ -1,92 +1,73 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRightIcon, SparkleIcon, GlobeIcon } from "@phosphor-icons/react";
-import { Particles } from "@/components/magicui/particles";
+import { ArrowRightIcon, SparkleIcon, GlobeIcon, CalendarIcon } from "@phosphor-icons/react";
 import NextLink from "next/link";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const letterSpacing = useTransform(scrollYProgress, [0, 1], ["0em", "0.15em"]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-dark text-white"
+      className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-[#030712] text-white"
     >
-      {/* 1. The "Ethereal" Background Layer - Breathing Effect */}
-      <div className="absolute inset-0 z-0">
-        <Particles
-          className="absolute inset-0"
-          quantity={200}
-          ease={80}
-          color="rgb(0, 174, 239)"
-          size={0.8}
-          staticity={30}
-        />
-        {/* Animated Gradient Orbs - Breathing & Moving */}
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1],
-            x: [0, 50, 0],
-            y: [0, 30, 0]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-secondary/20 blur-[150px] rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.15, 0.05],
-            x: [0, -40, 0],
-            y: [0, -30, 0]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 blur-[150px] rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.08, 0.12, 0.08],
-            rotate: [0, 180, 360]
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-cyan-500/10 blur-[120px] rounded-full"
-        />
-      </div>
+      {/* Background: Mouse-following light source */}
+      <motion.div
+        animate={{ x: mousePos.x, y: mousePos.y }}
+        transition={{ type: "spring", damping: 30, stiffness: 200 }}
+        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_rgba(0,174,239,0.15)_0%,transparent_70%)] blur-[120px] pointer-events-none"
+      />
 
-      {/* 2. Interactive Content Layer */}
+      {/* Grid overlay — fades to edges */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+          maskImage:
+            "radial-gradient(ellipse 60% 60% at 50% 50%, black 0%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 60% 60% at 50% 50%, black 0%, transparent 100%)",
+        }}
+      />
+
+      {/* Interactive content layer */}
       <motion.div
         style={{ y: y1, opacity, scale }}
         className="container relative z-10 mx-auto px-4 w-full"
       >
-        <div className="max-w-6xl mx-auto text-center w-full overflow-hidden">
-          
-          {/* Badge: High-Energy Intro */}
+        <div className="max-w-6xl mx-auto text-center w-full">
+
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,42 +77,35 @@ export function Hero() {
             <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
               <SparkleIcon className="w-4 h-4 text-secondary animate-pulse" />
               <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
-                The Future of Engineering is Here
+                Inspiring the Next Wave of Innovators
               </span>
             </div>
           </motion.div>
 
-          {/* Majestic Heading: Using Cal Sans + Kinetic Split Text */}
-          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black mb-10 leading-[0.85] tracking-tighter uppercase px-4">
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="block"
+          {/* Kinetic heading */}
+          <div className="overflow-hidden mb-10">
+            <motion.h1
+              style={{ letterSpacing }}
+              initial={{ y: "100%", skewY: 10 }}
+              animate={{ y: 0, skewY: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] font-black leading-[0.85] tracking-tighter uppercase px-4"
             >
-              Engineering
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="text-gradient-accent block italic"
-            >
-              Excellence
-            </motion.span>
-          </h1>
+              Ennova
+            </motion.h1>
+          </div>
 
-          {/* Refined Subtext: Geist Sans Precision */}
+          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
             className="font-sans text-lg md:text-2xl text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            Bridging the gap between Esade&apos;s brightest minds and the global innovation ecosystem.
+            Bridging the gap between Barcelona's brightest talents and the global innovation ecosystem.
           </motion.p>
 
-          {/* Action Group: High Contrast */}
+          {/* CTA buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -146,18 +120,34 @@ export function Hero() {
             >
               Work With Us
             </Button>
-            
+
             <NextLink href="/join" className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors">
               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
-                 <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
+                <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
               </div>
               Join the Community
+            </NextLink>
+          </motion.div>
+
+          {/* View Events — discreet tertiary link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.3 }}
+            className="mt-6"
+          >
+            <NextLink
+              href="/events"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/15 text-sm text-gray-300 hover:text-white hover:border-white/35 transition-all"
+            >
+              <CalendarIcon className="w-4 h-4" />
+              View Events
             </NextLink>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* 3. Cinematic Bottom Mask */}
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gradient to-transparent z-20 pointer-events-none" />
     </section>
   );

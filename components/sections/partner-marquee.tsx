@@ -2,23 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Marquee } from "@/components/magicui/marquee";
-import { allPartners, type Partner } from "@/data/partners";
+import { strategicPartners, type Partner } from "@/data/partners";
 
 function PartnerCard({ partner }: { partner: Partner }) {
   return (
-    <div className="group relative mx-4 flex h-32 w-64 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:border-secondary/50 hover:bg-white/10">
-      {/* 1. Subtle Background Glow on Hover */}
-      <div className="absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-secondary/10" />
-
-      {/* 2. Logo Container with Grayscale-to-Color logic */}
-      <div className="relative z-10 flex flex-col items-center gap-2">
-        <div className="relative h-12 w-40 filter grayscale opacity-50 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110">
-           {/* In reality, use your real logos here. For now, text fallback. */}
-           <span className="text-xl font-bold tracking-tight text-white/80 group-hover:text-white">
-            {partner.name}
-           </span>
-        </div>
-      </div>
+    <div className="mx-10 flex items-center justify-center w-48 h-16 flex-shrink-0">
+      <img
+        src={partner.logo}
+        alt={partner.name}
+        className="w-full h-full object-contain brightness-0 invert opacity-40 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-500"
+      />
     </div>
   );
 }
@@ -49,7 +42,7 @@ export function PartnerMarquee() {
       {/* The Marquee with Edge Fades */}
       <div className="relative flex flex-col items-center justify-center gap-4 py-10">
         <Marquee pauseOnHover className="[--duration:40s]">
-          {allPartners.map((partner, index) => (
+          {strategicPartners.map((partner, index) => (
             <PartnerCard key={index} partner={partner} />
           ))}
         </Marquee>
