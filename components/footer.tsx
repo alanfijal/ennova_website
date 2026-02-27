@@ -79,6 +79,14 @@ export const Footer = () => {
         {/* Legal & Copyright */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
           <p>© {currentYear} Ennova. All rights reserved.</p>
+          <div className="flex gap-6">
+            <NextLink href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </NextLink>
+            <NextLink href="/terms" className="hover:text-white transition-colors">
+              Terms of Use
+            </NextLink>
+          </div>
         </div>
       </div>
     </footer>
