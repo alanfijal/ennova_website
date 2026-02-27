@@ -29,6 +29,7 @@ export interface DepartmentDetail {
   name: string;
   description: string;
   color: string;
+  logoUrl?: string;
   stats?: {
     members: number;
     projects: number;

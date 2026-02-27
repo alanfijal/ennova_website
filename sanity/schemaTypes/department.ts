@@ -80,6 +80,15 @@ export const departmentType = defineType({
 
     // ─── Department Detail Fields ─────────────────────────────
     defineField({
+      name: 'logo',
+      title: 'Department Logo (SVG)',
+      type: 'file',
+      description: 'SVG logo file for the department hero section',
+      options: {
+        accept: '.svg',
+      },
+    }),
+    defineField({
       name: 'whatWeDo',
       title: 'What We Do',
       type: 'array',

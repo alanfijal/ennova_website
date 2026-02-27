@@ -213,6 +213,7 @@ export async function fetchDepartmentBySlug(slug: string): Promise<DepartmentDet
         name: dept.name || '',
         description: dept.description || '',
         color: dept.color || 'from-secondary to-gradient',
+        logoUrl: (dept.logoUrl as string) || undefined,
         stats: (dept.stats?.members || dept.stats?.projects) ? dept.stats : undefined,
         whatWeDo: dept.whatWeDo?.length ? dept.whatWeDo : undefined,
         tools: dept.tools?.length ? dept.tools : undefined,

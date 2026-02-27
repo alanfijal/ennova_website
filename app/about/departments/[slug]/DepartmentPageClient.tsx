@@ -42,36 +42,58 @@ export function DepartmentPageClient({ department }: { department: DepartmentDet
               Back to About
             </Button>
 
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+              {/* Left: text content */}
+              <div className="flex-1">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                  {department.name}
+                </h1>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              {department.name}
-            </h1>
+                <p className="text-xl text-gray-300 max-w-3xl mb-12">
+                  {department.description}
+                </p>
 
-            <p className="text-xl text-gray-300 max-w-3xl mb-12">
-              {department.description}
-            </p>
-
-            {/* Stats */}
-            {department.stats && (department.stats.members || department.stats.projects) && (
-              <div className="flex flex-wrap gap-8">
-                {!!department.stats.members && (
-                  <div>
-                    <div className="text-4xl font-bold text-secondary mb-1">
-                      {department.stats.members}
-                    </div>
-                    <div className="text-sm text-gray-400">Members</div>
-                  </div>
-                )}
-                {!!department.stats.projects && (
-                  <div>
-                    <div className="text-4xl font-bold text-secondary mb-1">
-                      {department.stats.projects}
-                    </div>
-                    <div className="text-sm text-gray-400">Active Projects</div>
+                {/* Stats */}
+                {department.stats && (department.stats.members || department.stats.projects) && (
+                  <div className="flex flex-wrap gap-8">
+                    {!!department.stats.members && (
+                      <div>
+                        <div className="text-4xl font-bold text-secondary mb-1">
+                          {department.stats.members}
+                        </div>
+                        <div className="text-sm text-gray-400">Members</div>
+                      </div>
+                    )}
+                    {!!department.stats.projects && (
+                      <div>
+                        <div className="text-4xl font-bold text-secondary mb-1">
+                          {department.stats.projects}
+                        </div>
+                        <div className="text-sm text-gray-400">Active Projects</div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
+
+              {/* Right: department logo */}
+              {department.logoUrl && (
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="flex-shrink-0 flex items-center justify-center lg:justify-end"
+                >
+                  <div className="w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                    <img
+                      src={department.logoUrl}
+                      alt={`${department.name} logo`}
+                      className="w-full h-full object-contain opacity-90"
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         </div>
       </section>

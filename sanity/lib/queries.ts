@@ -79,6 +79,7 @@ export const DEPARTMENT_BY_SLUG_QUERY = groq`
     },
     whatWeDo,
     tools,
+    "logoUrl": logo.asset->url,
     teamPhoto,
     "members": teamMembers[] {
       name,
