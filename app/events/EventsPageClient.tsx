@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import NextLink from "next/link";
 import { siteConfig } from "@/config/site";
 import {
@@ -20,16 +20,20 @@ import { TechnicalGrid } from "@/components/ui/TechnicalGrid";
 import type { SerializableEvent } from "@/sanity/lib/fetch";
 
 function InitiativeSpec({ initiative, index }: { initiative: SerializableEvent; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { margin: "-30% 0px -30% 0px" });
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
       className="relative w-full min-h-screen flex items-center justify-center group overflow-hidden py-20 border-b border-white/5"
     >
-      {/* Background Grid - Only visible on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-[radial-gradient(circle,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      {/* Background Grid - Visible on hover or when in view on mobile */}
+      <div className={`absolute inset-0 transition-opacity duration-700 bg-[radial-gradient(circle,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] ${isInView ? "opacity-10" : "opacity-0 group-hover:opacity-10"}`} />
 
       <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl">
 
@@ -42,11 +46,11 @@ function InitiativeSpec({ initiative, index }: { initiative: SerializableEvent; 
 
         {/* Cinematic Slit Image (1X Playbook) */}
         <div className="lg:col-span-5">
-           <div className="relative aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
-              <div className="absolute inset-0 bg-[#13182e]/40 z-10 group-hover:bg-transparent transition-colors duration-700" />
+           <div className={`relative aspect-[4/5] overflow-hidden transition-all duration-1000 ${isInView ? "grayscale-0" : "grayscale hover:grayscale-0"}`}>
+              <div className={`absolute inset-0 bg-[#13182e]/40 z-10 transition-colors duration-700 ${isInView ? "bg-transparent" : "group-hover:bg-transparent"}`} />
               <img
                 src={initiative.image}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                className={`w-full h-full object-cover transition-transform duration-[2s] ease-out ${isInView ? "scale-105" : "group-hover:scale-105"}`}
                 alt={initiative.title}
               />
            </div>
@@ -167,7 +171,7 @@ export function EventsPageClient({ initiatives }: { initiatives: SerializableEve
                 </span>
               </motion.div>
 
-              <h1 className="font-heading text-7xl md:text-[10rem] font-black leading-[0.85] tracking-tighter uppercase mb-12">
+              <h1 className="font-heading text-5xl sm:text-7xl md:text-[10rem] font-black leading-[0.85] tracking-tighter uppercase mb-12">
                 Ennova<br />
                 <span className="italic text-gradient-accent">Initiatives</span>
               </h1>

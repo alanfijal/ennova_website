@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { TechnicalGrid } from "./TechnicalGrid";
 import { CrosshairIcon, BuildingsIcon, GraduationCapIcon, UsersThreeIcon } from "@phosphor-icons/react";
@@ -99,21 +99,11 @@ export function BarcelonaConnectivityMap() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("corporate");
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
-  // IntersectionObserver to trigger animation on scroll
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
   useEffect(() => {
-    if (!containerRef.current || hasAnimated) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasAnimated(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [hasAnimated]);
+    if (isInView && !hasAnimated) setHasAnimated(true);
+  }, [isInView, hasAnimated]);
 
   const nodes = useMemo(() => buildCategoryNodes(activeCategory), [activeCategory]);
   const connections = useMemo(
@@ -125,7 +115,7 @@ export function BarcelonaConnectivityMap() {
   const activeCfg = categories.find((c) => c.key === activeCategory)!;
 
   return (
-    <div ref={containerRef} className="relative w-full aspect-[16/10] bg-primary border border-white/5 overflow-hidden">
+    <div ref={containerRef} className="relative w-full aspect-[3/4] sm:aspect-[16/10] bg-primary border border-white/5 overflow-hidden">
       {/* Tactical Backdrop */}
       <TechnicalGrid />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,174,239,0.05)_0%,transparent_70%)]" />
@@ -142,7 +132,7 @@ export function BarcelonaConnectivityMap() {
       </div>
 
       {/* Category Tabs */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 z-20 flex gap-1">
+      <div className="absolute top-10 sm:top-12 left-1/2 -translate-x-1/2 z-20 flex gap-1">
         {categories.map((cat) => {
           const Icon = cat.icon;
           const isActive = activeCategory === cat.key;
@@ -150,7 +140,7 @@ export function BarcelonaConnectivityMap() {
             <button
               key={cat.key}
               onClick={() => { setActiveCategory(cat.key); setHoveredNode(null); }}
-              className={`flex items-center gap-2 px-4 py-2 font-mono text-[9px] uppercase tracking-[0.2em] transition-all duration-300 border ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-all duration-300 border ${
                 isActive
                   ? "bg-secondary/10 text-secondary border-secondary/40"
                   : "bg-white/[0.02] text-gray-600 border-white/5 hover:text-gray-400 hover:border-white/10"
@@ -164,7 +154,7 @@ export function BarcelonaConnectivityMap() {
       </div>
 
       {/* SVG Map */}
-      <svg viewBox="0 0 100 84" className="absolute inset-0 w-full h-full px-8 pt-16 pb-8">
+      <svg viewBox="0 0 100 84" className="absolute inset-0 w-full h-full px-2 sm:px-8 pt-14 pb-4 sm:pt-16 sm:pb-8">
         <defs>
           <filter id="mapGlow">
             <feGaussianBlur stdDeviation="0.5" result="blur" />
@@ -197,7 +187,7 @@ export function BarcelonaConnectivityMap() {
                     fill="none"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={hasAnimated ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 + ci * 0.04, ease: "easeOut" }}
+                    transition={{ duration: 2, delay: 0.4 + ci * 0.08, ease: "easeOut" }}
                     className="transition-colors duration-500"
                   />
                   {isActive && (
@@ -225,7 +215,7 @@ export function BarcelonaConnectivityMap() {
                   key={node.id}
                   initial={{ opacity: 0 }}
                   animate={hasAnimated ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.4, delay: isCore ? 0.1 : 0.3 + 0.05 * i }}
+                  transition={{ duration: 0.6, delay: isCore ? 0.2 : 0.6 + 0.1 * i }}
                   onMouseEnter={() => setHoveredNode(node.id)}
                   onMouseLeave={() => setHoveredNode(null)}
                   className="cursor-crosshair"
@@ -272,7 +262,7 @@ export function BarcelonaConnectivityMap() {
                         opacity={isHovered ? 1 : 0.5}
                         initial={{ r: 0 }}
                         animate={hasAnimated ? { r: 0.5 } : { r: 0 }}
-                        transition={{ duration: 0.4, delay: 0.4 + 0.05 * i, type: "spring", stiffness: 200 }}
+                        transition={{ duration: 0.6, delay: 0.8 + 0.1 * i, type: "spring", stiffness: 120 }}
                         className="transition-colors duration-300"
                       />
                       {/* Hover ring around dot */}
@@ -295,7 +285,7 @@ export function BarcelonaConnectivityMap() {
                         opacity={isHovered || isCore ? 1 : 0.6}
                         initial={{ r: 0 }}
                         animate={hasAnimated ? { r: isCore ? 1 : 0.6 } : { r: 0 }}
-                        transition={{ duration: 0.4, delay: isCore ? 0.1 : 0.4 + 0.05 * i, type: "spring", stiffness: 200 }}
+                        transition={{ duration: 0.6, delay: isCore ? 0.2 : 0.8 + 0.1 * i, type: "spring", stiffness: 120 }}
                         className="transition-colors duration-300"
                       />
 
@@ -315,7 +305,7 @@ export function BarcelonaConnectivityMap() {
                           opacity="0.3"
                           initial={{ opacity: 0 }}
                           animate={hasAnimated ? { opacity: 0.3 } : { opacity: 0 }}
-                          transition={{ duration: 0.6, delay: 0.5 }}
+                          transition={{ duration: 1, delay: 0.8 }}
                         >
                           <path d={`M ${node.x-3} ${node.y-1.5} L ${node.x-3} ${node.y-3} L ${node.x-1.5} ${node.y-3}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
                           <path d={`M ${node.x+1.5} ${node.y-3} L ${node.x+3} ${node.y-3} L ${node.x+3} ${node.y-1.5}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />

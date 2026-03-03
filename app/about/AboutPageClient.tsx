@@ -462,9 +462,9 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
                       ease: "easeInOut",
                     }}
                   />
-                  {/* Persistent name label */}
+                  {/* Persistent name label — desktop only; mobile shows info card below */}
                   <div
-                    className={`mt-1 px-2 py-1 md:px-3 md:py-1.5 glass-dark rounded-lg text-center transition-all duration-300 max-w-[90px] md:max-w-[140px] ${
+                    className={`mt-1 px-3 py-1.5 glass-dark rounded-lg text-center transition-all duration-300 max-w-[140px] hidden md:block ${
                       activeMember === member.id
                         ? "ring-1 ring-secondary/50"
                         : activeMember
@@ -472,10 +472,10 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
                           : ""
                     }`}
                   >
-                    <p className="text-white text-[8px] md:text-xs font-bold leading-tight">
+                    <p className="text-white text-xs font-bold leading-tight">
                       {member.name}
                     </p>
-                    <p className="text-secondary text-[7px] md:text-[10px] font-semibold hidden md:block leading-tight">
+                    <p className="text-secondary text-[10px] font-semibold leading-tight">
                       {member.role}
                     </p>
                   </div>

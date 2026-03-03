@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import { SparkleIcon, ArrowUpRightIcon, CircleIcon } from "@phosphor-icons/react";
 
 const eras = [
@@ -47,13 +47,102 @@ const eras = [
   }
 ];
 
+function EraRow({ era, index, isActive, onActivate }: {
+  era: typeof eras[number];
+  index: number;
+  isActive: boolean;
+  onActivate: (index: number) => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" });
+
+  useEffect(() => {
+    if (isInView) onActivate(index);
+  }, [isInView, index, onActivate]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => onActivate(index)}
+      className="group relative border-b border-white/5 py-16 transition-all duration-500"
+    >
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 relative z-10">
+
+        {/* Era Label & Year */}
+        <div className="flex items-center gap-12 min-w-[300px]">
+          <span className={`font-mono text-xs transition-colors duration-700 ${isActive ? 'text-secondary' : 'text-gray-700'}`}>
+            {era.id} // 05
+          </span>
+          <h3 className={`font-heading text-4xl sm:text-6xl md:text-9xl font-black transition-all duration-1000 uppercase tracking-tighter ${
+            isActive ? 'text-white' : 'text-white/5'
+          }`}>
+            {era.year}
+          </h3>
+        </div>
+
+        {/* Cinematic Content Reveal */}
+        <div className="max-w-2xl flex-grow">
+          <div className={`transition-all duration-700 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'}`}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-[1px] w-12 bg-secondary" />
+              <span className="font-mono text-[10px] text-secondary tracking-[0.4em] font-black uppercase">{era.era}</span>
+            </div>
+
+            <h4 className="text-3xl md:text-5xl font-bold text-white mb-8 uppercase tracking-tight italic text-balance">
+              {era.title}
+            </h4>
+
+            <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 font-light max-w-xl">
+              {era.description}
+            </p>
+
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+                <SparkleIcon className="w-4 h-4 text-secondary" />
+                <span className="font-mono text-[10px] text-white tracking-[0.3em] uppercase font-bold">{era.metric}</span>
+              </div>
+              <motion.div
+                animate={{ x: isActive ? [0, 5, 0] : 0 }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="text-secondary hidden sm:flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase font-black"
+              >
+                System Log Verified <ArrowUpRightIcon size={14} />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Status Brackets */}
+        <div className="hidden xl:flex flex-col items-end gap-2 text-right opacity-20">
+          <div className="text-[8px] font-mono text-white uppercase tracking-[0.5em]">Auth: BCN_HUB</div>
+          <div className="w-20 h-px bg-white/20" />
+          <div className="text-[8px] font-mono text-white uppercase tracking-[0.5em]">Sector: {era.id}</div>
+        </div>
+      </div>
+
+      {/* Massive Kinetic Ghost Text */}
+      <motion.div
+        animate={{
+          opacity: isActive ? 0.07 : 0,
+          x: isActive ? 50 : 150,
+          skewX: isActive ? -5 : 0
+        }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 font-heading text-[25rem] font-black text-white pointer-events-none select-none z-0 italic"
+      >
+        {era.year}
+      </motion.div>
+    </div>
+  );
+}
+
 export function MajesticLineage() {
   const [activeEra, setActiveEra] = useState<number>(0);
 
   return (
     <section className="relative py-40 bg-[#000313] overflow-hidden">
       {/* Background Glow removed for a clean, high-contrast aesthetic */}
-      
+
       <div className="container relative z-10 mx-auto px-4">
         {/* Header Section */}
         <div className="mb-32 flex flex-col md:flex-row items-end justify-between gap-8">
@@ -62,7 +151,7 @@ export function MajesticLineage() {
               <CircleIcon className="text-secondary w-4 h-4 animate-pulse" />
               <span className="font-mono text-[10px] tracking-[0.4em] text-gray-500 uppercase">Operational History // Deployment Log</span>
             </div>
-            <h2 className="font-heading text-7xl md:text-[10rem] font-black uppercase tracking-tighter text-white leading-[0.8]">
+            <h2 className="font-heading text-5xl sm:text-7xl md:text-[10rem] font-black uppercase tracking-tighter text-white leading-[0.8]">
               Strategic <br /> <span className="italic text-gradient-accent">Lineage</span>
             </h2>
           </div>
@@ -75,84 +164,15 @@ export function MajesticLineage() {
 
         {/* 2. The Era Scroller */}
         <div className="flex flex-col border-t border-white/5">
-          {eras.map((era, index) => {
-            const isActive = activeEra === index;
-
-            return (
-              <div
-                key={era.id}
-                onMouseEnter={() => setActiveEra(index)}
-                className="group relative border-b border-white/5 py-16 transition-all duration-500"
-              >
-                <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 relative z-10">
-                  
-                  {/* Era Label & Year */}
-                  <div className="flex items-center gap-12 min-w-[300px]">
-                    <span className={`font-mono text-xs transition-colors duration-700 ${isActive ? 'text-secondary' : 'text-gray-700'}`}>
-                      {era.id} // 05
-                    </span>
-                    <h3 className={`font-heading text-6xl md:text-9xl font-black transition-all duration-1000 uppercase tracking-tighter ${
-                      isActive ? 'text-white' : 'text-white/5'
-                    }`}>
-                      {era.year}
-                    </h3>
-                  </div>
-
-                  {/* Cinematic Content Reveal */}
-                  <div className="max-w-2xl flex-grow">
-                    <div className={`transition-all duration-700 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'}`}>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="h-[1px] w-12 bg-secondary" />
-                        <span className="font-mono text-[10px] text-secondary tracking-[0.4em] font-black uppercase">{era.era}</span>
-                      </div>
-                      
-                      <h4 className="text-3xl md:text-5xl font-bold text-white mb-8 uppercase tracking-tight italic text-balance">
-                        {era.title}
-                      </h4>
-                      
-                      <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 font-light max-w-xl">
-                        {era.description}
-                      </p>
-                      
-                      <div className="flex items-center gap-6">
-                        <div className="flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-                           <SparkleIcon className="w-4 h-4 text-secondary" />
-                           <span className="font-mono text-[10px] text-white tracking-[0.3em] uppercase font-bold">{era.metric}</span>
-                        </div>
-                        <motion.div 
-                          animate={{ x: isActive ? [0, 5, 0] : 0 }}
-                          transition={{ repeat: Infinity, duration: 2 }}
-                          className="text-secondary hidden sm:flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase font-black"
-                        >
-                          System Log Verified <ArrowUpRightIcon size={14} />
-                        </motion.div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Status Brackets */}
-                  <div className="hidden xl:flex flex-col items-end gap-2 text-right opacity-20">
-                     <div className="text-[8px] font-mono text-white uppercase tracking-[0.5em]">Auth: BCN_HUB</div>
-                     <div className="w-20 h-px bg-white/20" />
-                     <div className="text-[8px] font-mono text-white uppercase tracking-[0.5em]">Sector: {era.id}</div>
-                  </div>
-                </div>
-
-                {/* Massive Kinetic Ghost Text */}
-                <motion.div 
-                  animate={{ 
-                    opacity: isActive ? 0.07 : 0,
-                    x: isActive ? 50 : 150,
-                    skewX: isActive ? -5 : 0
-                  }}
-                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 font-heading text-[25rem] font-black text-white pointer-events-none select-none z-0 italic"
-                >
-                  {era.year}
-                </motion.div>
-              </div>
-            );
-          })}
+          {eras.map((era, index) => (
+            <EraRow
+              key={era.id}
+              era={era}
+              index={index}
+              isActive={activeEra === index}
+              onActivate={setActiveEra}
+            />
+          ))}
         </div>
       </div>
 

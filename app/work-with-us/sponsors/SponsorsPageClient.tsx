@@ -31,7 +31,7 @@ export function SponsorsPageClient({ events }: { events: SerializableEvent[] }) 
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-secondary/5 blur-[120px] rounded-full" />
 
-        <div className="container relative mx-auto px-4 z-10 pt-20">
+        <div className="container relative mx-auto px-4 z-10 pt-20 pb-16">
           <div className="max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

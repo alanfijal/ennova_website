@@ -193,20 +193,39 @@ export function JoinPageClient() {
           </p>
         </div>
 
-        <Marquee pauseOnHover className="[--duration:30s]">
+        {/* Mobile: swipeable scroll row */}
+        <div className="md:hidden flex gap-6 overflow-x-auto px-6 pb-2 scrollbar-hide snap-x snap-mandatory">
           {alumniCompanies.map((company, index) => (
             <div
               key={index}
-              className="flex items-center justify-center w-40 h-24 mx-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              className="flex-none snap-center flex items-center justify-center w-36 h-20 grayscale opacity-50"
             >
               <img
                 src={company.logo}
                 alt={company.name}
-                className="max-w-full max-h-full object-contain p-4 mix-blend-multiply"
+                className="max-w-full max-h-full object-contain p-3 mix-blend-multiply"
               />
             </div>
           ))}
-        </Marquee>
+        </div>
+
+        {/* Desktop: auto-scrolling marquee */}
+        <div className="hidden md:block">
+          <Marquee pauseOnHover className="[--duration:30s]">
+            {alumniCompanies.map((company, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-center w-40 h-24 mx-6 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              >
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  className="max-w-full max-h-full object-contain p-4 mix-blend-multiply"
+                />
+              </div>
+            ))}
+          </Marquee>
+        </div>
       </section>
 
       {/* Section 3: Alumni Success Stories */}

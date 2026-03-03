@@ -265,8 +265,8 @@ export const WorldStudentMap = () => {
     : null;
 
   return (
-    <section className="relative w-full py-24 bg-white overflow-hidden">
-      <div className="container relative mx-auto px-6 z-10">
+    <section className="relative w-full py-12 md:py-24 bg-white overflow-hidden">
+      <div className="container relative mx-auto px-3 md:px-6 z-10">
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-20">
           <motion.div
@@ -290,7 +290,7 @@ export const WorldStudentMap = () => {
         </div>
 
         {/* Map Visualization */}
-        <div className="relative w-full max-w-6xl mx-auto bg-gradient-to-br from-slate-50 to-white rounded-3xl p-8 border border-gray-100 shadow-lg">
+        <div className="relative w-full max-w-6xl mx-auto bg-gradient-to-br from-slate-50 to-white rounded-3xl p-2 sm:p-8 border border-gray-100 shadow-lg">
           {/* Subtle Grid Overlay */}
           <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#13182E_1px,transparent_1px)] bg-[size:30px_30px] rounded-3xl" />
 
@@ -346,18 +346,10 @@ export const WorldStudentMap = () => {
                   className="cursor-pointer"
                   fill={country.color}
                   initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
+                  whileInView={{ scale: 1, opacity: 0.85 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.3 }}
-                  animate={{
-                    scale: hoveredCode === country.code ? [1.1, 1.35, 1.1] : [1, 1.2, 1],
-                    opacity: [1, 0.6, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                  whileHover={{ scale: 1.5, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
                 />
               </Marker>
             ))}
@@ -395,13 +387,13 @@ export const WorldStudentMap = () => {
         </div>
 
         {/* Impact Stats */}
-        <div className="mt-16 flex justify-center gap-16 md:gap-32 text-center border-t border-gray-100 pt-16">
+        <div className="mt-16 grid grid-cols-3 gap-4 text-center border-t border-gray-100 pt-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-black text-primary mb-2">
               30+
             </div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
@@ -414,7 +406,7 @@ export const WorldStudentMap = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <div className="text-4xl md:text-5xl font-black text-secondary mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-black text-secondary mb-2">
               500+
             </div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
@@ -427,7 +419,7 @@ export const WorldStudentMap = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+            <div className="text-2xl sm:text-4xl md:text-5xl font-black text-primary mb-2">
               39+
             </div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
