@@ -2,6 +2,7 @@ export interface Partner {
   name: string;
   logo: string;
   category: "corporate" | "esade" | "student-association";
+  colorLogo?: boolean; // skip brightness(0) invert — logo has its own color/shape
 }
 
 // ─── Corporate & Brand Partners ─────────────────────────────
@@ -10,15 +11,15 @@ export const corporatePartners: Partner[] = [
   { name: "Deloitte", logo: "/images/partners/deloitte.png", category: "corporate" },
   { name: "Coca-Cola", logo: "/images/partners/coca-cola.png", category: "corporate" },
   { name: "Notion", logo: "/images/partners/notion.png", category: "corporate" },
-  { name: "Frit Ravich", logo: "/images/partners/frit-ravich.png", category: "corporate" },
+  { name: "Frit Ravich", logo: "/images/partners/frit-ravich.png", category: "corporate", colorLogo: true },
   { name: "Sandwichez", logo: "/images/partners/sandwichez.png", category: "corporate" },
   { name: "Bcombinator", logo: "/images/partners/bcombinator.png", category: "corporate" },
-  { name: "Connector", logo: "/images/partners/connector.png", category: "corporate" },
+  { name: "Conector", logo: "/images/partners/conector.png", category: "corporate" },
   { name: "Layali Pastry", logo: "/images/partners/layali-pastry.png", category: "corporate" },
   { name: "FabLab Sant Cugat", logo: "/images/partners/fablab-sant-cugat.png", category: "corporate" },
   { name: "Väcka", logo: "/images/partners/vacka.png", category: "corporate" },
   { name: "SheBlooms", logo: "/images/partners/sheblooms.png", category: "corporate" },
-  { name: "Grupo Billingham", logo: "/images/partners/grupo-billingham.png", category: "corporate" },
+  { name: "Grupo Billingham", logo: "/images/partners/grupo-billingham.svg", category: "corporate" },
   { name: "TéPone", logo: "/images/partners/tepone.png", category: "corporate" },
   { name: "Sertie", logo: "/images/partners/sertie.png", category: "corporate" },
   { name: "MOB", logo: "/images/partners/mob.png", category: "corporate" },

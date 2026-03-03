@@ -9,6 +9,22 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { SerializableEvent } from "@/sanity/lib/fetch";
 
+const domainColors: Record<string, {
+  badge: string;
+  hover: string;
+  accent: string;
+  gradient: string;
+}> = {
+  SPORTS:      { badge: "text-red-400",   hover: "group-hover:text-red-400",   accent: "via-red-400",   gradient: "from-red-500/10 to-red-500/5" },
+  CONFERENCE:  { badge: "text-sky-400",   hover: "group-hover:text-sky-400",   accent: "via-sky-400",   gradient: "from-sky-500/10 to-sky-500/5" },
+  COMPETITION: { badge: "text-emerald-400", hover: "group-hover:text-emerald-400", accent: "via-emerald-400", gradient: "from-emerald-500/10 to-emerald-500/5" },
+  IMPACT:      { badge: "text-amber-400", hover: "group-hover:text-amber-400", accent: "via-amber-400", gradient: "from-amber-500/10 to-amber-500/5" },
+};
+
+function getDomainColors(domain: string) {
+  return domainColors[domain?.toUpperCase()] ?? domainColors["CONFERENCE"];
+}
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -121,28 +137,30 @@ export function KeyEvents({ events }: { events: SerializableEvent[] }) {
 
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {events.map((event, index) => (
+          {events.map((event, index) => {
+            const colors = getDomainColors(event.domain);
+            return (
             <div
               key={event.id}
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="group relative glass-dark rounded-3xl p-8 transition-all duration-500 hover:border-secondary/40 hover:-translate-y-2 overflow-hidden"
+              className="group relative glass-dark rounded-3xl p-8 transition-all duration-500 hover:border-white/20 hover:-translate-y-2 overflow-hidden"
             >
               {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
               <div className="relative z-10">
                 {/* Category Badge */}
                 <div className="mb-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10 text-secondary uppercase tracking-wider">
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/5 border border-white/10 ${colors.badge} uppercase tracking-wider`}>
                     <CalendarIcon className="w-3 h-3" />
                     {event.domain}
                   </span>
                 </div>
 
                 {/* Event Title */}
-                <h3 className="text-2xl font-extrabold mb-3 text-white group-hover:text-secondary transition-colors duration-300 tracking-tight leading-tight">
+                <h3 className={`text-2xl font-extrabold mb-3 text-white ${colors.hover} transition-colors duration-300 tracking-tight leading-tight`}>
                   {event.title}
                 </h3>
 
@@ -162,7 +180,7 @@ export function KeyEvents({ events }: { events: SerializableEvent[] }) {
                   {event.expectedParticipants && (
                     <div className="text-right">
                       <div className="text-xs text-gray-500 uppercase mb-1">Expected</div>
-                      <div className="flex items-center gap-1.5 text-sm font-bold text-secondary">
+                      <div className={`flex items-center gap-1.5 text-sm font-bold ${colors.badge}`}>
                         <UsersIcon className="w-4 h-4" />
                         {event.expectedParticipants}+
                       </div>
@@ -172,7 +190,7 @@ export function KeyEvents({ events }: { events: SerializableEvent[] }) {
 
                 {/* CTA */}
                 <NextLink href={`/events/${event.slug}`} className="block">
-                  <div className="flex items-center justify-between text-white group-hover:text-secondary transition-colors duration-300">
+                  <div className={`flex items-center justify-between text-white ${colors.hover} transition-colors duration-300`}>
                     <span className="font-bold text-sm">Learn More</span>
                     <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
@@ -180,9 +198,10 @@ export function KeyEvents({ events }: { events: SerializableEvent[] }) {
               </div>
 
               {/* Accent Line */}
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+              <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent ${colors.accent} to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700`} />
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* View All Events CTA */}

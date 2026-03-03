@@ -28,6 +28,8 @@ interface Node {
   x: number;
   y: number;
   label: string;
+  logo?: string;
+  colorLogo?: boolean;
   type: "core" | CategoryKey;
   meta: string;
 }
@@ -82,6 +84,8 @@ function buildCategoryNodes(category: CategoryKey): Node[] {
     x: positions[i].x,
     y: positions[i].y,
     label: toLabel(p.name),
+    logo: p.logo,
+    colorLogo: p.colorLogo,
     type: category,
     meta: metaMap[category],
   }));
@@ -209,6 +213,12 @@ export function BarcelonaConnectivityMap() {
             {nodes.map((node, i) => {
               const isHovered = hoveredNode === node.id;
               const isCore = node.type === "core";
+              const showLogo = !isCore && node.logo && activeCategory === "corporate";
+              const restFilter = node.colorLogo
+                ? "grayscale(0.3) opacity(0.6)"
+                : "brightness(0) invert(1) opacity(0.45)";
+              // Logo floats above the dot; lw×lh in SVG units
+              const lw = 10, lh = 5;
 
               return (
                 <motion.g
@@ -220,56 +230,115 @@ export function BarcelonaConnectivityMap() {
                   onMouseLeave={() => setHoveredNode(null)}
                   className="cursor-crosshair"
                 >
-                  {/* Node Dot */}
-                  <motion.circle
-                    cx={node.x} cy={node.y}
-                    r={isCore ? 1 : 0.6}
-                    fill={isHovered || isCore ? "#00AEEF" : "white"}
-                    opacity={isHovered || isCore ? 1 : 0.6}
-                    initial={{ r: 0 }}
-                    animate={hasAnimated ? { r: isCore ? 1 : 0.6 } : { r: 0 }}
-                    transition={{ duration: 0.4, delay: isCore ? 0.1 : 0.4 + 0.05 * i, type: "spring", stiffness: 200 }}
-                    className="transition-colors duration-300"
-                  />
+                  {showLogo ? (
+                    <>
+                      {/* Logo floats above the dot — bottom of logo = dot y - 1 gap */}
+                      <foreignObject
+                        x={node.x - lw / 2}
+                        y={node.y - lh - 1.5}
+                        width={lw}
+                        height={lh}
+                        style={{ overflow: "visible" }}
+                      >
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={node.logo}
+                            alt={node.label}
+                            style={{
+                              maxWidth: "100%",
+                              maxHeight: "100%",
+                              objectFit: "contain",
+                              filter: isHovered
+                                ? "brightness(1) grayscale(0) opacity(1)"
+                                : restFilter,
+                              transition: "filter 0.3s",
+                            }}
+                          />
+                        </div>
+                      </foreignObject>
+                      {/* Connection anchor dot */}
+                      <motion.circle
+                        cx={node.x} cy={node.y}
+                        r={0.5}
+                        fill={isHovered ? "#00AEEF" : "white"}
+                        opacity={isHovered ? 1 : 0.5}
+                        initial={{ r: 0 }}
+                        animate={hasAnimated ? { r: 0.5 } : { r: 0 }}
+                        transition={{ duration: 0.4, delay: 0.4 + 0.05 * i, type: "spring", stiffness: 200 }}
+                        className="transition-colors duration-300"
+                      />
+                      {/* Hover ring around dot */}
+                      {isHovered && (
+                        <motion.circle
+                          cx={node.x} cy={node.y} r="2"
+                          fill="none" stroke="#00AEEF" strokeWidth="0.15"
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 0.4 }}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {/* Node Dot */}
+                      <motion.circle
+                        cx={node.x} cy={node.y}
+                        r={isCore ? 1 : 0.6}
+                        fill={isHovered || isCore ? "#00AEEF" : "white"}
+                        opacity={isHovered || isCore ? 1 : 0.6}
+                        initial={{ r: 0 }}
+                        animate={hasAnimated ? { r: isCore ? 1 : 0.6 } : { r: 0 }}
+                        transition={{ duration: 0.4, delay: isCore ? 0.1 : 0.4 + 0.05 * i, type: "spring", stiffness: 200 }}
+                        className="transition-colors duration-300"
+                      />
 
-                  {/* Hover ring */}
-                  {isHovered && !isCore && (
-                    <motion.circle
-                      cx={node.x} cy={node.y} r="2"
-                      fill="none" stroke="#00AEEF" strokeWidth="0.15"
-                      initial={{ scale: 0.5, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 0.4 }}
-                    />
+                      {/* Hover ring */}
+                      {isHovered && !isCore && (
+                        <motion.circle
+                          cx={node.x} cy={node.y} r="2"
+                          fill="none" stroke="#00AEEF" strokeWidth="0.15"
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 0.4 }}
+                        />
+                      )}
+
+                      {/* Core brackets */}
+                      {isCore && (
+                        <motion.g
+                          opacity="0.3"
+                          initial={{ opacity: 0 }}
+                          animate={hasAnimated ? { opacity: 0.3 } : { opacity: 0 }}
+                          transition={{ duration: 0.6, delay: 0.5 }}
+                        >
+                          <path d={`M ${node.x-3} ${node.y-1.5} L ${node.x-3} ${node.y-3} L ${node.x-1.5} ${node.y-3}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
+                          <path d={`M ${node.x+1.5} ${node.y-3} L ${node.x+3} ${node.y-3} L ${node.x+3} ${node.y-1.5}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
+                          <path d={`M ${node.x+3} ${node.y+1.5} L ${node.x+3} ${node.y+3} L ${node.x+1.5} ${node.y+3}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
+                          <path d={`M ${node.x-1.5} ${node.y+3} L ${node.x-3} ${node.y+3} L ${node.x-3} ${node.y+1.5}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
+                        </motion.g>
+                      )}
+
+                      {/* Labels */}
+                      <text
+                        x={node.x} y={node.y + (isCore ? 5 : 3.5)}
+                        textAnchor="middle"
+                        className={`font-mono pointer-events-none uppercase ${
+                          isCore
+                            ? "text-[2px] fill-secondary tracking-[0.3em] font-bold"
+                            : "text-[1.4px] fill-gray-500 tracking-[0.15em]"
+                        }`}
+                        style={{ opacity: isHovered || isCore ? 1 : 0.6 }}
+                      >
+                        {node.label}
+                      </text>
+                    </>
                   )}
-
-                  {/* Core brackets */}
-                  {isCore && (
-                    <motion.g
-                      opacity="0.3"
-                      initial={{ opacity: 0 }}
-                      animate={hasAnimated ? { opacity: 0.3 } : { opacity: 0 }}
-                      transition={{ duration: 0.6, delay: 0.5 }}
-                    >
-                      <path d={`M ${node.x-3} ${node.y-1.5} L ${node.x-3} ${node.y-3} L ${node.x-1.5} ${node.y-3}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
-                      <path d={`M ${node.x+1.5} ${node.y-3} L ${node.x+3} ${node.y-3} L ${node.x+3} ${node.y-1.5}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
-                      <path d={`M ${node.x+3} ${node.y+1.5} L ${node.x+3} ${node.y+3} L ${node.x+1.5} ${node.y+3}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
-                      <path d={`M ${node.x-1.5} ${node.y+3} L ${node.x-3} ${node.y+3} L ${node.x-3} ${node.y+1.5}`} fill="none" stroke="#00AEEF" strokeWidth="0.2" />
-                    </motion.g>
-                  )}
-
-                  {/* Labels */}
-                  <text
-                    x={node.x} y={node.y + (isCore ? 5 : 3.5)}
-                    textAnchor="middle"
-                    className={`font-mono pointer-events-none uppercase ${
-                      isCore
-                        ? "text-[2px] fill-secondary tracking-[0.3em] font-bold"
-                        : "text-[1.4px] fill-gray-500 tracking-[0.15em]"
-                    }`}
-                    style={{ opacity: isHovered || isCore ? 1 : 0.6 }}
-                  >
-                    {node.label}
-                  </text>
                 </motion.g>
               );
             })}

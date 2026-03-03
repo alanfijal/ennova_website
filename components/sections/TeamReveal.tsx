@@ -44,8 +44,8 @@ export const TeamReveal = () => {
             <h2 className="font-heading text-5xl md:text-7xl text-white uppercase tracking-tighter italic">
               The Humans Behind <span className="text-secondary">Innovation</span>
             </h2>
-            <p className="text-gray-400 font-mono text-sm mt-4 uppercase tracking-[0.4em]">
-              50+ Engineers & Visionaries
+            <p className="text-white-400 font-mono text-sm mt-4 uppercase tracking-[0.4em]">
+              80+ Entreprenuers & Visionaries
             </p>
           </div>
         </div>

@@ -301,8 +301,9 @@ export function JoinPageClient() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                  className="h-full"
                 >
-                  <Card className="bg-white/70 backdrop-blur-md border border-gray-200/80 shadow-lg hover:shadow-xl transition-all duration-500">
+                  <Card className="h-full bg-white/70 backdrop-blur-md border border-gray-200/80 shadow-lg hover:shadow-xl transition-all duration-500">
                     <CardBody className="p-8">
                       <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-5`}>
                         <Icon className="w-7 h-7 text-primary" />

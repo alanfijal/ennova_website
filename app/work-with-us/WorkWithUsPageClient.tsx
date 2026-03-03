@@ -12,7 +12,7 @@ const services = [
   {
     icon: BriefcaseIcon,
     title: "Consulting Services",
-    description: "Ennova Consulting is powered by highly motivated, competent students who thrive on real-world challenges—if you need agile, hands-on teams to tackle operational issues or market research, we're the right people to work with.",
+    description: "Ennova Consulting is powered by highly motivated, competent students who thrive on real-world challenges, if you need agile, hands-on teams to tackle operational issues or market research, we're the right people to work with.",
     href: "/work-with-us/consulting",
     color: "bg-secondary",
     features: ["Operational Consulting", "Market Research", "Business Solutions"],
@@ -44,8 +44,8 @@ const benefits = [
 ];
 
 const stats = [
-  { value: "2600+", label: "Social Media Followers" },
-  { value: "600+", label: "Students Reached per year" },
+  { value: "5000+", label: "Social Media Followers" },
+  { value: "1000+", label: "Students Reached per year" },
   { value: "85", label: "Active Ennova Members" },
   { value: "20+", label: "Corporate Partnerships" },
 ];
