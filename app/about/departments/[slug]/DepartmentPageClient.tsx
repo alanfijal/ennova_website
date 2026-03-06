@@ -84,7 +84,7 @@ export function DepartmentPageClient({ department }: { department: DepartmentDet
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="flex-shrink-0 flex items-center justify-center lg:justify-end"
                 >
-                  <div className="w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+                  <div className="w-28 h-28 md:w-64 md:h-64 flex items-center justify-center">
                     <img
                       src={department.logoUrl}
                       alt={`${department.name} logo`}

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import NextLink from "next/link";
+import Image from "next/image";
 import { ArrowRightIcon, UsersIcon, RocketIcon, TrendUpIcon, BuildingsIcon, LightbulbIcon, TargetIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { Button } from "@heroui/button";
 import { ContactForm } from "@/components/features/ContactForm";
@@ -93,7 +94,7 @@ export default function StrategicPartnersPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-8 justify-center items-center"
             >
               <Button
                 as={NextLink}
@@ -263,9 +264,16 @@ export default function StrategicPartnersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.02 }}
                 viewport={{ once: true }}
-                className="px-8 py-6 rounded-2xl bg-gray-50 border border-gray-200 hover:border-secondary/30 hover:shadow-lg transition-all duration-300"
+                className={`flex items-center justify-center px-6 py-5 rounded-2xl border hover:border-secondary/30 hover:shadow-lg transition-all duration-300 ${partner.logo.includes("grupo-billingham") ? "bg-dark border-dark/20" : "bg-white border-gray-200"}`}
               >
-                <span className="text-lg font-bold text-dark">{partner.name}</span>
+                <div className="relative w-28 h-10">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </motion.div>
             ))}
           </div>

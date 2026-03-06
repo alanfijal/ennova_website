@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import NextLink from "next/link";
 import Image from "next/image";
 import {
@@ -65,6 +65,9 @@ const stats = [
   { value: "80+", label: "Active Members" },
   { value: "10", label: "Departments" },
   { value: "8", label: "Years of history" },
+  { value: "135+", label: "Events organized" },
+  { value: "100+", label: "Professionals involved a year" },
+
 ];
 
 const boardMembers = [
@@ -123,20 +126,7 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
     }, 500);
   }, []);
 
-  const handleCardMouseEnter = useCallback(() => {
-    if (leaveTimeout.current) {
-      clearTimeout(leaveTimeout.current);
-      leaveTimeout.current = null;
-    }
-  }, []);
-
-  const handleCardMouseLeave = useCallback(() => {
-    leaveTimeout.current = setTimeout(() => {
-      setActiveMember(null);
-    }, 150);
-  }, []);
-
-  return (
+return (
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-dark text-white">
@@ -205,7 +195,7 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
       {/* Stats Bar */}
       <section className="bg-white py-16 border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -420,11 +410,11 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
                 />
               )}
 
-              {/* Hotspot zones */}
+              {/* Pulsing dot indicators only — no labels on the image */}
               {boardMembers.map((member) => (
                 <div
                   key={member.id}
-                  className="absolute z-20 flex flex-col items-center"
+                  className="absolute z-20"
                   style={{
                     left: `${member.hotspot.x}%`,
                     top: `${member.hotspot.y}%`,
@@ -445,16 +435,15 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
                     }
                   }}
                 >
-                  {/* Pulsing ring indicator */}
                   <motion.div
                     className={`w-8 h-8 md:w-10 md:h-10 rounded-full border-2 transition-colors duration-300 ${
                       activeMember === member.id
-                        ? "border-secondary bg-secondary/10"
-                        : "border-secondary/50"
+                        ? "border-secondary bg-secondary/20"
+                        : "border-secondary/60"
                     }`}
                     animate={{
                       scale: activeMember === member.id ? 1 : [1, 1.15, 1],
-                      opacity: activeMember === member.id ? 1 : [0.6, 0.3, 0.6],
+                      opacity: activeMember === member.id ? 1 : [0.7, 0.4, 0.7],
                     }}
                     transition={{
                       duration: 2,
@@ -462,63 +451,38 @@ export function AboutPageClient({ departments }: { departments: SerializableDepa
                       ease: "easeInOut",
                     }}
                   />
-                  {/* Persistent name label — desktop only; mobile shows info card below */}
-                  <div
-                    className={`mt-1 px-3 py-1.5 glass-dark rounded-lg text-center transition-all duration-300 max-w-[140px] hidden md:block ${
-                      activeMember === member.id
-                        ? "ring-1 ring-secondary/50"
-                        : activeMember
-                          ? "opacity-60"
-                          : ""
-                    }`}
-                  >
-                    <p className="text-white text-xs font-bold leading-tight">
-                      {member.name}
-                    </p>
-                    <p className="text-secondary text-[10px] font-semibold leading-tight">
-                      {member.role}
-                    </p>
-                  </div>
                 </div>
               ))}
 
             </div>
 
-            {/* Info card — below photo so it's always clickable */}
-            <AnimatePresence>
-              {activeMember && (() => {
-                const member = boardMembers.find((m) => m.id === activeMember);
-                if (!member) return null;
-                return (
-                  <motion.div
-                    key={member.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    onMouseEnter={handleCardMouseEnter}
-                    onMouseLeave={handleCardMouseLeave}
-                    className="mt-4 glass-dark rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-                  >
-                    <div>
-                      <p className="text-white font-bold text-lg">{member.name}</p>
-                      <p className="text-secondary text-sm font-semibold">
-                        {member.role}
-                      </p>
-                    </div>
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary/20 hover:bg-secondary/30 border border-secondary/30 rounded-lg text-secondary text-sm font-semibold transition-colors shrink-0"
-                    >
-                      <LinkedInIcon className="w-4 h-4" />
-                      View LinkedIn Profile
-                    </a>
-                  </motion.div>
-                );
-              })()}
-            </AnimatePresence>
+            {/* Member cards grid — always visible below photo */}
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3">
+              {boardMembers.map((member) => (
+                <a
+                  key={member.id}
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => handleMouseEnter(member.id)}
+                  onMouseLeave={handleMouseLeave}
+                  className={`group p-4 rounded-2xl border transition-all duration-300 text-center ${
+                    activeMember === member.id
+                      ? "border-secondary/50 bg-secondary/5"
+                      : "border-gray-200 bg-white hover:border-secondary/30 hover:shadow-md"
+                  }`}
+                >
+                  <p className="font-bold text-dark text-sm leading-tight mb-1 group-hover:text-secondary transition-colors">
+                    {member.name}
+                  </p>
+                  <p className="text-secondary text-xs font-semibold">{member.role}</p>
+                  <div className="mt-2 inline-flex items-center gap-1 text-gray-400 group-hover:text-secondary transition-colors text-xs">
+                    <LinkedInIcon className="w-3 h-3" />
+                    <span>LinkedIn</span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>

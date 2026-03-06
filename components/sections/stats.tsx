@@ -116,7 +116,7 @@ export function Stats() {
                     <Icon className="w-7 h-7 text-secondary" />
                   </div>
                   
-                  <div className="text-5xl font-extrabold mb-3 text-white tracking-tighter">
+                  <div className="inline-flex items-baseline text-5xl font-extrabold mb-3 text-white tracking-tighter">
                     <NumberTicker value={stat.value} className="text-white" />
                     <span className="text-secondary">{stat.suffix}</span>
                   </div>

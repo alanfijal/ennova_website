@@ -407,10 +407,10 @@ export const WorldStudentMap = () => {
             transition={{ delay: 0.1 }}
           >
             <div className="text-2xl sm:text-4xl md:text-5xl font-black text-secondary mb-2">
-              500+
+              300+
             </div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
-              Active Members
+              Alumni Network
             </div>
           </motion.div>
           <motion.div

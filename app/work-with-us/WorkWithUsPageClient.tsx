@@ -44,7 +44,7 @@ const benefits = [
 ];
 
 const stats = [
-  { value: "5000+", label: "Social Media Followers" },
+  { value: "5000+", label: "Annual Digital Reach" },
   { value: "1000+", label: "Students Reached per year" },
   { value: "85", label: "Active Ennova Members" },
   { value: "20+", label: "Corporate Partnerships" },
@@ -201,7 +201,7 @@ export function WorkWithUsPageClient() {
                       {/* Gradient Glow on Hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      <div className="relative z-10">
+                      <div className="relative z-10 flex flex-col h-full">
                         <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${service.color} mb-6 group-hover:scale-110 transition-transform duration-500`}>
                           <Icon className="w-8 h-8 text-white" />
                         </div>
@@ -223,7 +223,7 @@ export function WorkWithUsPageClient() {
                           ))}
                         </ul>
 
-                        <div className="flex items-center text-secondary font-bold group-hover:gap-2 transition-all duration-300">
+                        <div className="mt-auto flex items-center text-secondary font-bold group-hover:gap-2 transition-all duration-300">
                           Learn More
                           <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </div>
@@ -257,7 +257,7 @@ export function WorkWithUsPageClient() {
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               From global leaders like Deloitte, Coca-Cola, and Notion to local innovators like Frit Ravich
               and Sandwichez, we connect you with Barcelona's entrepreneurial ecosystem. Through partnerships
-              with Bcombinator and Connector, Ennova creates meaningful
+              with Bcombinator and Conector, Ennova creates meaningful
               collaborations that drive real business impact.
             </p>
           </motion.div>

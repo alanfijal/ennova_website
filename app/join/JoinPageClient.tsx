@@ -169,7 +169,7 @@ export function JoinPageClient() {
               <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Events Organised every year</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">9</div>
+              <div className="text-4xl md:text-5xl font-black text-secondary mb-2">10</div>
               <div className="text-sm font-semibold text-slate-600 uppercase tracking-wider">Departments</div>
             </div>
           </motion.div>
@@ -194,19 +194,25 @@ export function JoinPageClient() {
         </div>
 
         {/* Mobile: swipeable scroll row */}
-        <div className="md:hidden flex gap-6 overflow-x-auto px-6 pb-2 scrollbar-hide snap-x snap-mandatory">
-          {alumniCompanies.map((company, index) => (
-            <div
-              key={index}
-              className="flex-none snap-center flex items-center justify-center w-36 h-20 grayscale opacity-50"
-            >
-              <img
-                src={company.logo}
-                alt={company.name}
-                className="max-w-full max-h-full object-contain p-3 mix-blend-multiply"
-              />
-            </div>
-          ))}
+        <div className="md:hidden relative">
+          {/* Fade edges to hint scrollability */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-white/80 to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-white/80 to-transparent z-10" />
+          <div className="flex gap-6 overflow-x-auto px-6 pb-2 scrollbar-hide snap-x snap-mandatory">
+            {alumniCompanies.map((company, index) => (
+              <div
+                key={index}
+                className="flex-none snap-center flex items-center justify-center w-36 h-20"
+              >
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  className="max-w-full max-h-full object-contain p-3 mix-blend-multiply"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-slate-400 mt-2">Swipe to see more</p>
         </div>
 
         {/* Desktop: auto-scrolling marquee */}
