@@ -9,7 +9,9 @@ import NextLink from "next/link";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -20,6 +22,8 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
   const letterSpacing = useTransform(scrollYProgress, [0, 1], ["0em", "0.15em"]);
+  // Subtle parallax on the video itself — slower than content scroll
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -32,21 +36,82 @@ export function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Lazy-load the video only when the hero enters the viewport
+  useEffect(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video || !container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Trigger browser to load & play
+          video.load();
+          video.play().catch(() => {/* autoplay blocked — stays hidden */});
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       ref={containerRef}
       className="relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-[#030712] text-white"
     >
-      {/* Background: Mouse-following light source */}
+      {/* ── Full-bleed background video ── */}
+      <motion.div
+        style={{ y: videoY }}
+        className="absolute inset-0 z-0 will-change-transform"
+        aria-hidden="true"
+      >
+        <video
+          ref={videoRef}
+          preload="none"           // don't fetch a byte until IO fires
+          muted
+          loop
+          playsInline
+          disablePictureInPicture
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          onCanPlay={() => setVideoLoaded(true)}
+        >
+          {/* WebM first (smaller) — add hero.webm to /public for best perf */}
+          <source src="/hero.webm" type="video/webm" />
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark scrim so text always reads cleanly over any video content */}
+        <div className="absolute inset-0 bg-[#030712]/60" />
+
+        {/* Vignette — darkens edges, keeps centre bright */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(3,7,18,0.75) 100%)",
+          }}
+        />
+      </motion.div>
+
+      {/* Fallback gradient shown while video loads / if video absent */}
       <motion.div
         animate={{ x: mousePos.x, y: mousePos.y }}
         transition={{ type: "spring", damping: 30, stiffness: 200 }}
-        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_rgba(0,174,239,0.15)_0%,transparent_70%)] blur-[120px] pointer-events-none"
+        className={`absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_rgba(0,174,239,0.15)_0%,transparent_70%)] blur-[120px] pointer-events-none transition-opacity duration-1000 ${
+          videoLoaded ? "opacity-0" : "opacity-100"
+        }`}
       />
 
       {/* Grid overlay — fades to edges */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${
+          videoLoaded ? "opacity-0" : "opacity-100"
+        }`}
         style={{
           backgroundImage: `
             linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
