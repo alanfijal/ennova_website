@@ -86,14 +86,14 @@ export function Hero() {
         </video>
 
         {/* Dark scrim so text always reads cleanly over any video content */}
-        <div className="absolute inset-0 bg-[#030712]/60" />
+        <div className="absolute inset-0 bg-[#030712]/40" />
 
         {/* Vignette — darkens edges, keeps centre bright */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(3,7,18,0.75) 100%)",
+              "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(3,7,18,0.60) 100%)",
           }}
         />
       </motion.div>
