@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { StarIcon, SparkleIcon, UsersIcon, TrophyIcon, LightbulbIcon, HeartIcon, ArrowRightIcon, CalendarDotsIcon, GraduationCapIcon } from "@phosphor-icons/react";
+import { StarIcon, SparkleIcon, UsersIcon, TrophyIcon, LightbulbIcon, HeartIcon, ArrowRightIcon, CalendarDotsIcon, GraduationCapIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
@@ -13,12 +13,13 @@ import { WorldStudentMap } from "@/components/ui/WorldStudentMap";
 // Alumni success stories data
 const alumniStories = [
   {
-    name: "Sofia Rodriguez",
-    role: "Software Engineer",
-    company: "Google",
-    quote: "Ennova was the bridge between theory and industry.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia&backgroundColor=00AEEF",
+    name: "María de los Ángeles Carranza",
+    role: "VC analyst / Consultant",
+    company: "Masia / Peninsula",
+    quote: "Ennova is not only where i found my first job opportunities, but where i found a community and friends that will join me for life.",
+    avatar: "/images/alumni_stories/alumni_1.jpeg",
     elite: true,
+    linkedin: "https://www.linkedin.com/in/mar%C3%ADa-de-los-%C3%A1ngeles-carranza/",
   },
   {
     name: "Marc Jensen",
@@ -27,6 +28,7 @@ const alumniStories = [
     quote: "Leading the Consulting department taught me high-stakes results.",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marc&backgroundColor=A78BFA",
     elite: true,
+    linkedin: "https://www.linkedin.com/",
   },
 ];
 
@@ -276,6 +278,17 @@ export function JoinPageClient() {
                           <h3 className="text-xl font-bold text-primary">{alumni.name}</h3>
                           {alumni.elite && (
                             <StarIcon className="w-5 h-5 text-red-500 fill-red-500" />
+                          )}
+                          {alumni.linkedin && (
+                            <a
+                              href={alumni.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="ml-auto text-[#0A66C2] hover:opacity-75 transition-opacity"
+                              aria-label={`${alumni.name} on LinkedIn`}
+                            >
+                              <LinkedinLogoIcon className="w-5 h-5" weight="fill" />
+                            </a>
                           )}
                         </div>
                         <p className="text-sm font-semibold text-secondary">{alumni.role}</p>

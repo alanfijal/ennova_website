@@ -81,9 +81,6 @@ export function MasonryGallery() {
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             />
 
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-              <p className="text-sm font-medium drop-shadow-lg">{image.alt}</p>
-            </div>
           </motion.div>
         ))}
       </div>
@@ -110,11 +107,6 @@ export function MasonryGallery() {
                   sizes="90vw"
                 />
 
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-white text-lg font-medium">
-                    {selectedImage.alt}
-                  </p>
-                </div>
               </div>
             )}
           </ModalBody>

@@ -50,68 +50,103 @@ export default function StrategicPartnersPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-dark text-white">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-dark text-white">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-secondary/5 blur-[120px] rounded-full" />
 
-        <div className="container relative mx-auto px-4 z-10 pt-20">
-          <div className="max-w-5xl mx-auto text-center">
+        <div className="container relative mx-auto px-4 sm:px-6 z-10 pt-20 pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
+            {/* Text Content */}
+            <div className="text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
+              >
+                <NextLink
+                  href="/work-with-us"
+                  className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-8"
+                >
+                  <ArrowRightIcon className="w-4 h-4 mr-2 rotate-180" />
+                  Back to Work With Us
+                </NextLink>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card">
+                  <BuildingsIcon className="w-4 h-4 text-secondary" />
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-300">
+                    Strategic Partnerships
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 lg:mb-8 leading-[1.1] tracking-tight"
+              >
+                Long-Term Brand{" "}
+                <span className="text-gradient-accent">Exposure</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 lg:mb-12 leading-relaxed"
+              >
+                Strategic Partnerships with Ennova offer continuous visibility across our events, social media,
+                and ecosystem within ESADE&apos;s student community through a sustained collaboration.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              >
+                <Button
+                  as={NextLink}
+                  href="#contact"
+                  className="h-12 sm:h-14 px-8 sm:px-10 w-full sm:w-auto bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all group"
+                  endContent={<ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+                >
+                  Get in Touch
+                </Button>
+                <Button
+                  as={NextLink}
+                  href="#benefits"
+                  variant="bordered"
+                  className="h-12 sm:h-14 px-8 sm:px-10 w-full sm:w-auto border-white/20 text-white hover:bg-white/5 font-bold rounded-none"
+                >
+                  Explore Benefits
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Hero Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
-            >
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card">
-                <BuildingsIcon className="w-5 h-5 text-secondary" />
-                <span className="text-sm font-bold tracking-[0.2em] uppercase text-gray-200">
-                  Strategic Partnerships
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-8 leading-[1.05] tracking-tight"
-            >
-              Long-Term Brand{" "}
-              <span className="text-gradient-accent">Exposure</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+              className="relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden"
             >
-              Strategic Partnerships with Ennova offer continuous visibility across our events, social media,
-              and ecosystem within ESADE&apos;s student community through a sustained collaboration.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-8 justify-center items-center"
-            >
-              <Button
-                as={NextLink}
-                href="#contact"
-                className="h-14 px-10 bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none transition-all group"
-                endContent={<ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
-              >
-                Get in Touch
-              </Button>
-              <Button
-                as={NextLink}
-                href="#benefits"
-                variant="bordered"
-                className="h-14 px-10 border-white/30 text-white hover:bg-white/10 font-bold rounded-none"
-              >
-                Explore Benefits
-              </Button>
+              <Image
+                src="/images/partnerships/partnerships_hero.jpeg"
+                alt="Ennova strategic partnerships"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/50 to-transparent" />
             </motion.div>
           </div>
         </div>
