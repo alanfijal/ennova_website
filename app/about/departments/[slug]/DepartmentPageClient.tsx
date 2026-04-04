@@ -277,12 +277,6 @@ export function DepartmentPageClient({ department }: { department: DepartmentDet
                               </div>
                             }
                           />
-                          {/* Role Badge */}
-                          <div className={`absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br ${department.color} flex items-center justify-center border-4 border-white`}>
-                            <span className="text-white text-xs font-bold">
-                              {member.role.split(" ")[0][0]}
-                            </span>
-                          </div>
                         </div>
 
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
