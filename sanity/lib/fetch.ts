@@ -66,7 +66,7 @@ function sanityImageUrlSmall(image: unknown): string {
 
 export async function fetchEvents(): Promise<SerializableEvent[]> {
   try {
-    const sanityEvents = await client.fetch(ALL_EVENTS_QUERY)
+    const sanityEvents = await client.fetch(ALL_EVENTS_QUERY, {}, { next: { tags: ['event'] } })
 
     if (sanityEvents && sanityEvents.length > 0) {
       return sanityEvents.map((e: Record<string, unknown>) => ({
@@ -102,7 +102,7 @@ export async function fetchEvents(): Promise<SerializableEvent[]> {
 
 export async function fetchKeyEvents(): Promise<SerializableEvent[]> {
   try {
-    const sanityEvents = await client.fetch(KEY_EVENTS_QUERY)
+    const sanityEvents = await client.fetch(KEY_EVENTS_QUERY, {}, { next: { tags: ['event'] } })
 
     if (sanityEvents && sanityEvents.length > 0) {
       return sanityEvents.map((e: Record<string, unknown>) => ({
@@ -130,7 +130,7 @@ export async function fetchKeyEvents(): Promise<SerializableEvent[]> {
 
 export async function fetchEventBySlug(slug: string): Promise<EventDetail | undefined> {
   try {
-    const event = await client.fetch(EVENT_BY_SLUG_QUERY, { slug })
+    const event = await client.fetch(EVENT_BY_SLUG_QUERY, { slug }, { next: { tags: ['event'] } })
 
     if (event) {
       return {
@@ -173,7 +173,7 @@ export async function fetchEventBySlug(slug: string): Promise<EventDetail | unde
 
 export async function fetchDepartments(): Promise<SerializableDepartment[]> {
   try {
-    const sanityDepts = await client.fetch(ALL_DEPARTMENTS_QUERY)
+    const sanityDepts = await client.fetch(ALL_DEPARTMENTS_QUERY, {}, { next: { tags: ['department'] } })
 
     if (sanityDepts && sanityDepts.length > 0) {
       return sanityDepts.map((d: Record<string, unknown>) => ({
@@ -206,7 +206,7 @@ export async function fetchDepartments(): Promise<SerializableDepartment[]> {
 
 export async function fetchDepartmentBySlug(slug: string): Promise<DepartmentDetail | undefined> {
   try {
-    const dept = await client.fetch(DEPARTMENT_BY_SLUG_QUERY, { slug })
+    const dept = await client.fetch(DEPARTMENT_BY_SLUG_QUERY, { slug }, { next: { tags: ['department'] } })
 
     if (dept) {
       return {
