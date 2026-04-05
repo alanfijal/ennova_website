@@ -69,7 +69,7 @@ export function DepartmentPageClient({ department }: { department: DepartmentDet
                         <div className="text-4xl font-bold text-secondary mb-1">
                           {department.stats.projects}
                         </div>
-                        <div className="text-sm text-gray-400">Active Projects</div>
+                        <div className="text-sm text-gray-400">Active Events</div>
                       </div>
                     )}
                   </div>
