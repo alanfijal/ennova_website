@@ -223,37 +223,20 @@ export function BarcelonaConnectivityMap() {
                   {showLogo ? (
                     <>
                       {/* Logo floats above the dot — bottom of logo = dot y - 1 gap */}
-                      <foreignObject
+                      <image
+                        href={node.logo}
                         x={node.x - lw / 2}
                         y={node.y - lh - 1.5}
                         width={lw}
                         height={lh}
-                        style={{ overflow: "visible" }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <img
-                            src={node.logo}
-                            alt={node.label}
-                            style={{
-                              maxWidth: "100%",
-                              maxHeight: "100%",
-                              objectFit: "contain",
-                              filter: isHovered
-                                ? "brightness(1) grayscale(0) opacity(1)"
-                                : restFilter,
-                              transition: "filter 0.3s",
-                            }}
-                          />
-                        </div>
-                      </foreignObject>
+                        preserveAspectRatio="xMidYMid meet"
+                        style={{
+                          filter: isHovered
+                            ? "brightness(1) grayscale(0) opacity(1)"
+                            : restFilter,
+                          transition: "filter 0.3s",
+                        }}
+                      />
                       {/* Connection anchor dot */}
                       <motion.circle
                         cx={node.x} cy={node.y}

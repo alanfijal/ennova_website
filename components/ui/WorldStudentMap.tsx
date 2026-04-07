@@ -341,15 +341,11 @@ export const WorldStudentMap = () => {
                 onMouseEnter={() => setHoveredCode(country.code)}
                 onMouseLeave={() => setHoveredCode(null)}
               >
-                <motion.circle
+                <circle
                   r={4}
                   className="cursor-pointer"
                   fill={country.color}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 0.85 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.5, opacity: 1 }}
-                  transition={{ duration: 0.2 }}
+                  opacity={0.85}
                 />
               </Marker>
             ))}
