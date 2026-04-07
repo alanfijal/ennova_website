@@ -23,12 +23,12 @@ const alumniStories = [
   },
   {
     name: "Marc Jensen",
-    role: "Strategy Consultant",
-    company: "Deloitte",
-    quote: "Leading the Consulting department taught me high-stakes results.",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marc&backgroundColor=A78BFA",
+    role: "Marketing & Sales Development",
+    company: "Intelectium | Nova Talent",
+    quote: "Ennova was where I learned how to turn ideas into action, lead with intention, and work alongside people who challenged me to grow.",
+    avatar: "/images/alumni_stories/alumni_2.jpeg",
     elite: true,
-    linkedin: "https://www.linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/victoriaquinteroo/",
   },
 ];
 
