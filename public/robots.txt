@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://esade.ennova.club/sitemap.xml
+Sitemap: https://www.ennova.club/sitemap.xml

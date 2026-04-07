@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Ennova",
   description: "Empowering students to innovate, consult, and create sustainable ventures.",
-  url: "https://esade.ennova.club/",
+  url: "https://www.ennova.club/",
   ogImage: "/images/community/Screenshot 2026-01-30 at 15.21.56.png",
   navItems: [
     {

@@ -25,7 +25,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-bold text-primary mb-3">1. Acceptance</h2>
             <p>
-              By accessing or using <strong>esade.ennova.club</strong> ("the Site"), you agree to these Terms of Use.
+              By accessing or using <strong>www.ennova.club</strong> ("the Site"), you agree to these Terms of Use.
               If you do not agree, please do not use the Site.
             </p>
           </section>

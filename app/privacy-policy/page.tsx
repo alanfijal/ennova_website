@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-xl font-bold text-primary mb-3">1. Who We Are</h2>
             <p>
               Ennova is a student-led entrepreneurship and innovation association based at ESADE Business School, Barcelona, Spain.
-              This website is operated at <strong>esade.ennova.club</strong>.
+              This website is operated at <strong>www.ennova.club</strong>.
             </p>
             <p className="mt-2">
               For any privacy-related questions, contact us at:{" "}
