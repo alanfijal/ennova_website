@@ -177,7 +177,7 @@ export function EventsPageClient({ initiatives }: { initiatives: SerializableEve
               </h1>
 
               <p className="font-sans text-xl md:text-2xl text-gray-400 max-w-2xl leading-relaxed">
-                A high-fidelity record of Ennova&apos;s events, bringin in together the most talented future entreprenuers from Barcelona and more.
+                A high-fidelity record of Ennova&apos;s events, bringing in together the most talented future entreprenuers from Barcelona and more.
               </p>
            </div>
         </div>
