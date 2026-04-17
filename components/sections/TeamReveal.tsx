@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -34,10 +35,13 @@ export const TeamReveal = () => {
           {/* Overlay to match Ennova aesthetic */}
           <div className="absolute inset-0 bg-[#13182e]/40 z-10" />
 
-          <img
+          <Image
             src="/images/community/IMG_1178.JPG"
             alt="Ennova Team"
-            className="w-full h-full object-cover grayscale"
+            fill
+            sizes="100vw"
+            quality={80}
+            className="object-cover grayscale"
           />
 
           <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 text-center w-full px-4">

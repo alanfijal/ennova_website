@@ -32,23 +32,23 @@ export const Footer = () => {
                 size="sm"
               />
             </NextLink>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-300 leading-relaxed">
               ESADE&apos;s student-led entrepreneurship and innovation association based in Barcelona.
             </p>
           </div>
 
           {/* Minimal Nav - Mirroring Main Navigation */}
           <nav className="flex flex-wrap gap-x-8 gap-y-4">
-            <NextLink href="/about" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            <NextLink href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               About Us
             </NextLink>
-            <NextLink href="/work-with-us" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            <NextLink href="/work-with-us" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               Work With Us
             </NextLink>
-            <NextLink href="/events" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            <NextLink href="/events" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               Events
             </NextLink>
-            <NextLink href="/join" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            <NextLink href="/join" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               Join Us
             </NextLink>
           </nav>
@@ -59,7 +59,7 @@ export const Footer = () => {
               href={siteConfig.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-secondary transition-colors"
+              className="text-gray-300 hover:text-secondary transition-colors"
               aria-label="LinkedIn"
             >
               <LinkedInIcon className="w-5 h-5" />
@@ -68,7 +68,7 @@ export const Footer = () => {
               href={siteConfig.links.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-secondary transition-colors"
+              className="text-gray-300 hover:text-secondary transition-colors"
               aria-label="Instagram"
             >
               <InstagramIcon className="w-5 h-5" />
@@ -77,7 +77,7 @@ export const Footer = () => {
         </div>
 
         {/* Legal & Copyright */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
           <p>© {currentYear} Ennova. All rights reserved.</p>
           <div className="flex gap-6">
             <NextLink href="/privacy-policy" className="hover:text-white transition-colors">

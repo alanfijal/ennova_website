@@ -191,7 +191,7 @@ export function KeyEvents({ events }: { events: SerializableEvent[] }) {
                 {/* CTA */}
                 <NextLink href={`/events/${event.slug}`} className="block">
                   <div className={`flex items-center justify-between text-white ${colors.hover} transition-colors duration-300`}>
-                    <span className="font-bold text-sm">Learn More</span>
+                    <span className="font-bold text-sm">Learn more about {event.title}</span>
                     <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                   </div>
                 </NextLink>

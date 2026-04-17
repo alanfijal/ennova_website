@@ -224,7 +224,7 @@ export function WorkWithUsPageClient() {
                         </ul>
 
                         <div className="mt-auto flex items-center text-secondary font-bold group-hover:gap-2 transition-all duration-300">
-                          Learn More
+                          Learn more about {service.title}
                           <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </div>
                       </div>
