@@ -6,29 +6,36 @@ import { Button } from "@heroui/button";
 import { Input, Textarea } from "@heroui/input";
 import { PaperPlaneRightIcon, CheckCircleIcon } from "@phosphor-icons/react";
 
+import { sendContactMessage } from "@/app/actions/contact";
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     message: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const result = await sendContactMessage(formData);
+
+    setIsSubmitting(false);
+
+    if (result.status === "success") {
       setIsSubmitted(true);
-      setFormData({ name: "", email: "", company: "", message: "" });
-
-      // Reset success message after 5 seconds
+      setFormData({ name: "", email: "", company: "", message: "", website: "" });
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    } else {
+      setErrorMessage(result.message);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -54,6 +61,16 @@ export function ContactForm() {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            type="text"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute left-[-9999px] w-px h-px opacity-0"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Input
@@ -120,6 +137,12 @@ export function ContactForm() {
               }}
             />
           </div>
+
+          {errorMessage && (
+            <p className="text-red-400 text-sm" role="alert">
+              {errorMessage}
+            </p>
+          )}
 
           <Button
             type="submit"
