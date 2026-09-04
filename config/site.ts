@@ -51,3 +51,21 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/ennova.esade/",
   },
 };
+
+/**
+ * Single switch for the application season.
+ * Flip `isOpen` to false once the intake closes — every apply button, banner
+ * and announcement across the site reads from here.
+ */
+export const applications = {
+  isOpen: true,
+  /** External form applicants are sent to. */
+  applyUrl: "https://ennova-events.com/join/apply",
+  /** In-app anchor of the apply section, for internal links. */
+  anchor: "/join#apply",
+  /** Shown next to the announcements — leave empty to hide. */
+  deadline: "",
+};
+
+/** Absolute, shareable deep link straight to the apply section. */
+export const applyShareUrl = `${siteConfig.url.replace(/\/$/, "")}${applications.anchor}`;

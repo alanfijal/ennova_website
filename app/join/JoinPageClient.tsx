@@ -1,14 +1,17 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { StarIcon, SparkleIcon, UsersIcon, TrophyIcon, LightbulbIcon, HeartIcon, ArrowRightIcon, CalendarDotsIcon, GraduationCapIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
 import { MasonryGallery } from "@/components/features/MasonryGallery";
-import { TallyFormEmbed } from "@/components/features/TallyFormEmbed";
+import { ApplicationsCTA } from "@/components/features/ApplicationsCTA";
+import { CopyLinkButton } from "@/components/shared/CopyLinkButton";
 import { Marquee } from "@/components/magicui/marquee";
 import { WorldStudentMap } from "@/components/ui/WorldStudentMap";
+import { applications, applyShareUrl } from "@/config/site";
 
 // Alumni success stories data
 const alumniStories = [
@@ -83,6 +86,19 @@ const benefits = [
 ];
 
 export function JoinPageClient() {
+  // The page is long and its media settle late, so a plain hash jump can land
+  // in the wrong place. Re-align on #apply once the layout has stabilised.
+  useEffect(() => {
+    if (window.location.hash !== "#apply") return;
+
+    const align = () =>
+      document.getElementById("apply")?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const timer = setTimeout(align, 350);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="w-full overflow-hidden bg-[#FAFAFA]">
       {/* Ethereal Background - Animated Mesh Gradient Blobs */}
@@ -127,10 +143,24 @@ export function JoinPageClient() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm">
-              <SparkleIcon className="w-4 h-4 text-secondary" />
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary/70">
-                Join 80+ Members
-              </span>
+              {applications.isOpen ? (
+                <>
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+                  </span>
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-secondary">
+                    Applications are open
+                  </span>
+                </>
+              ) : (
+                <>
+                  <SparkleIcon className="w-4 h-4 text-secondary" />
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary/70">
+                    Join 80+ Members
+                  </span>
+                </>
+              )}
             </div>
           </motion.div>
 
@@ -154,6 +184,32 @@ export function JoinPageClient() {
             classroom theory into real-world experience. Lead real projects, grow as a leader, and
             meet genuinely cool people.
           </motion.p>
+
+          {/* Apply CTA — only while the intake is open */}
+          {applications.isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="flex flex-col items-center gap-4 mb-16"
+            >
+              <Button
+                as="a"
+                href={applications.applyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-16 px-12 bg-primary text-white hover:bg-secondary hover:text-white font-black text-lg rounded-none transition-all shadow-lg group"
+                endContent={<ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+              >
+                Apply Now
+              </Button>
+              <CopyLinkButton
+                url={applyShareUrl}
+                label="Copy link to applications"
+                className="text-slate-500 hover:text-secondary"
+              />
+            </motion.div>
+          )}
 
           {/* Stats Bar */}
           <motion.div
@@ -413,10 +469,10 @@ export function JoinPageClient() {
         </div>
       </section>
 
-      {/* Section 5: Applications */}
-      <section className="relative w-full py-24 px-6 z-10">
-        <div className="max-w-md mx-auto">
-          <TallyFormEmbed />
+      {/* Section 5: Applications — deep-link target (/join#apply) */}
+      <section id="apply" className="relative w-full py-24 px-6 z-10 scroll-mt-28">
+        <div className={applications.isOpen ? "max-w-2xl mx-auto" : "max-w-md mx-auto"}>
+          <ApplicationsCTA />
         </div>
       </section>
     </div>

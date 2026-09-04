@@ -8,6 +8,7 @@ import { Card, CardBody } from "@heroui/card";
 import { Avatar } from "@heroui/avatar";
 import { Chip } from "@heroui/chip";
 import type { DepartmentDetail } from "@/data/types";
+import { applications } from "@/config/site";
 
 // LinkedIn Icon Component (same as navbar)
 const LinkedInIcon = ({ className }: { className?: string }) => (
@@ -355,8 +356,10 @@ export function DepartmentPageClient({ department }: { department: DepartmentDet
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                as={Link}
-                href="/join"
+                as="a"
+                href={applications.isOpen ? applications.applyUrl : "/join"}
+                target={applications.isOpen ? "_blank" : undefined}
+                rel={applications.isOpen ? "noopener noreferrer" : undefined}
                 size="lg"
                 className="bg-white text-dark hover:bg-secondary hover:text-white font-bold rounded-none"
                 endContent={<ArrowSquareOutIcon className="w-5 h-5" />}

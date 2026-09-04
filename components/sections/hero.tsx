@@ -7,6 +7,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRightIcon, SparkleIcon, GlobeIcon, CalendarIcon } from "@phosphor-icons/react";
 import NextLink from "next/link";
 
+import { applications } from "@/config/site";
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -139,12 +141,28 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
-              <SparkleIcon className="w-4 h-4 text-secondary animate-pulse" />
-              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
-                Inspiring the Next Wave of Innovators
-              </span>
-            </div>
+            {applications.isOpen ? (
+              <NextLink
+                href={applications.anchor}
+                className="inline-flex items-center gap-3 px-6 py-2 rounded-full glass-dark border border-secondary/40 group hover:border-secondary transition-colors"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+                </span>
+                <span className="text-[10px] font-black tracking-[0.4em] uppercase text-secondary">
+                  Applications are open
+                </span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-secondary group-hover:translate-x-1 transition-transform" />
+              </NextLink>
+            ) : (
+              <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full glass-dark border border-white/10 group cursor-default">
+                <SparkleIcon className="w-4 h-4 text-secondary animate-pulse" />
+                <span className="text-[10px] font-black tracking-[0.4em] uppercase text-gray-400 group-hover:text-white transition-colors">
+                  Inspiring the Next Wave of Innovators
+                </span>
+              </div>
+            )}
           </motion.div>
 
           {/* Kinetic heading */}
@@ -186,12 +204,26 @@ export function Hero() {
               Work With Us
             </Button>
 
-            <NextLink href="/join" className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors">
-              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
-                <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
-              </div>
-              Join the Community
-            </NextLink>
+            {applications.isOpen ? (
+              <a
+                href={applications.applyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors"
+              >
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
+                  <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
+                </div>
+                Apply Now
+              </a>
+            ) : (
+              <NextLink href="/join" className="group flex items-center gap-3 text-white font-bold text-lg hover:text-secondary transition-colors">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-secondary transition-colors">
+                  <GlobeIcon className="w-5 h-5 group-hover:rotate-45 transition-transform duration-500" />
+                </div>
+                Join the Community
+              </NextLink>
+            )}
           </motion.div>
 
           {/* View Events — discreet tertiary link */}

@@ -32,7 +32,9 @@
 /* Base Styles */
 @layer base {
   html {
-    @apply overflow-x-hidden;
+    @apply overflow-x-hidden scroll-smooth;
+    /* Keep anchor targets clear of the fixed navbar */
+    scroll-padding-top: 7rem;
   }
 
   body {

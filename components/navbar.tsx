@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { siteConfig } from "@/config/site";
+import { siteConfig, applications } from "@/config/site";
 import { HolographicLogo } from "@/components/ui/HolographicLogo";
 
 if (typeof window !== "undefined") {
@@ -128,6 +128,18 @@ export const Navbar = () => {
 
             {/* 3. Corporate & Social Actions */}
             <div className="hidden lg:flex items-center gap-4">
+              {applications.isOpen && (
+                <NextLink
+                  href={applications.anchor}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-white transition-colors duration-300"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75 animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+                  </span>
+                  Apply
+                </NextLink>
+              )}
               <div className="flex gap-3 mr-2">
                 <a
                   href={siteConfig.links.linkedin}
@@ -199,7 +211,19 @@ export const Navbar = () => {
                 ))}
               </nav>
 
-              <div className="mt-auto pb-8">
+              <div className="mt-auto pb-8 flex flex-col gap-3">
+                {applications.isOpen && (
+                  <Button
+                    as="a"
+                    href={applications.applyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="w-full bg-secondary text-white hover:bg-white hover:text-dark font-bold rounded-none transition-all duration-500 h-12"
+                  >
+                    Apply Now
+                  </Button>
+                )}
                 <Button
                   as={NextLink}
                   href="https://ennova-events.com/"

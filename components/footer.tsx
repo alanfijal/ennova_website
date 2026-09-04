@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { siteConfig } from "@/config/site";
+import { siteConfig, applications } from "@/config/site";
 import { HolographicLogo } from "@/components/ui/HolographicLogo";
 
 // Keep only the essential social icons
@@ -51,6 +51,11 @@ export const Footer = () => {
             <NextLink href="/join" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
               Join Us
             </NextLink>
+            {applications.isOpen && (
+              <NextLink href={applications.anchor} className="text-sm font-bold text-secondary hover:text-white transition-colors">
+                Apply
+              </NextLink>
+            )}
           </nav>
 
           {/* Social Links */}
